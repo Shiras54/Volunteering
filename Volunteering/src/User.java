@@ -3,6 +3,7 @@ public class User {
 	private String id, name, dob, email, phone, address, password;
 	private Initiative[] volunteeringJobs;
 	private Initiative initiative;
+	private int points;
 	
 	public User() {
 		
@@ -48,5 +49,7 @@ public class User {
 	public void setInitiative(Initiative initiative) {this.initiative = initiative;}
 	public Initiative[] getVolunteeringJobs() {return volunteeringJobs;}
 	public void setVolunteeringJobs(Initiative[] volunteeringJobs) {this.volunteeringJobs = volunteeringJobs;}
-	
+	public int getPoints() {return points;}
+	public void setPoints(int points) {this.points=points;}
 }
+	
