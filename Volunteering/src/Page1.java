@@ -44,7 +44,7 @@ public class Page1 extends JFrame {
 	 * Create the frame.
 	 */
 	public Page1() {
-		setTitle("Volunteer for Earth");
+		setTitle("Volunteer For Earth");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setForeground(Color.WHITE);
 		setBackground(Color.WHITE);

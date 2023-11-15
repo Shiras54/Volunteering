@@ -37,7 +37,7 @@ public class adminP1 extends JFrame {
 	 * Create the frame.
 	 */
 	public adminP1() {
-		setTitle("Volunteer for Earth");
+		setTitle("Volunteer For Earth");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,8 +55,8 @@ public class adminP1 extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("Admin Login Page");
-		lblNewLabel.setBounds(113, 11, 194, 25);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel.setBounds(113, 11, 221, 25);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
 		contentPane.add(lblNewLabel);
 		
 		textField = new JTextField();
