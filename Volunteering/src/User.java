@@ -23,6 +23,12 @@ public class User {
 	public void volunteer() {
 		
 	}
+	public void withdraw() {
+		
+	}
+	public void terminate() {
+		
+	}
 	
 	public String getId() {return id;}
 	public void setId() {this.id = "";}
