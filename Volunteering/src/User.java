@@ -1,8 +1,9 @@
+import java.util.*;
 
 public class User {
 	private String id, name, dob, email, phone, address, password;
-	private Initiative[] volunteeringJobs;
-	private Initiative initiative;
+	private List<Initiative> volunteeringJobs = new ArrayList<Initiative>();
+	private Initiative initiative1,initiative2;
 	private int points;
 	
 	public User() {
@@ -19,16 +20,49 @@ public class User {
 		setPassword(password);
 	}
 	public void initiate() {
+		if(initiative1==null || initiative2 == null) {
+			if(initiative1==null) {
+				initiative1 = new Initiative();
+			} else if (initiative2 == null) {
+				initiative2 = new Initiative();
+			}
+		} else if(initiative1.getStatus() == "expired" || initiative2.getStatus() == "expired") {
+			if(initiative1.getStatus() == "expired") {
+				initiative1 = new Initiative();
+			} else if (initiative2.getStatus() == "expired") {
+				initiative2 = new Initiative();
+			}
+		} else {
+			System.out.print("Initiatives are not complete, do");
+		}
 		
 	}
-	public void volunteer() {
-		
+	public void volunteer(Initiative i) {
+		volunteeringJobs.add(i);
+		points+=i.getCredit();
 	}
-	public void withdraw() {
-		
+	public void withdraw(Initiative i) {
+		boolean found = false;
+		for(int j = 0;j<=volunteeringJobs.size();j++) {
+			if(volunteeringJobs.get(j).equals(i)) {
+				found = true;
+			}
+		}
+		if(found) {
+		volunteeringJobs.remove(volunteeringJobs.indexOf(i));
+		points-=i.getCredit();
+		} else {
+			System.out.print("Isn't in list");
+		}
 	}
-	public void terminate() {
-		
+	public void terminate(Initiative i) {
+		if(i.equals(initiative1)) {
+			initiative1 = null;
+		} else if (i.equals(initiative1)) {
+			initiative2 = null;
+		} else {
+			System.out.print("not your initiative");
+		}
 	}
 	
 	public String getId() {return id;}
