@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class VRlist extends JFrame {
 
@@ -77,6 +78,10 @@ public class VRlist extends JFrame {
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\People-icon.png"));
 		lblNewLabel_2.setBounds(350, 11, 76, 67);
 		contentPane.add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("Back");
+		btnNewButton.setBounds(322, 229, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 
 }
