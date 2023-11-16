@@ -7,6 +7,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Toolkit;
+import javax.swing.JButton;
 
 public class VolunteerDetails extends JFrame {
 
@@ -45,30 +46,38 @@ public class VolunteerDetails extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("(Volunteer name) Details:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(10, 11, 300, 46);
-		contentPane.add(lblNewLabel);
+		JLabel VDetails = new JLabel("(Volunteer name) Details");
+		VDetails.setFont(new Font("Tahoma", Font.BOLD, 22));
+		VDetails.setBounds(10, 11, 300, 46);
+		contentPane.add(VDetails);
 		
-		JLabel lblNewLabel_1 = new JLabel("Name:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(20, 73, 65, 28);
-		contentPane.add(lblNewLabel_1);
+		JLabel VName = new JLabel("Name:");
+		VName.setFont(new Font("Tahoma", Font.BOLD, 20));
+		VName.setBounds(20, 73, 81, 28);
+		contentPane.add(VName);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Age:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel_1_1.setBounds(20, 114, 65, 28);
 		contentPane.add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Id:");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel_1_2.setBounds(20, 153, 65, 28);
 		contentPane.add(lblNewLabel_1_2);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Sustanability points:");
-		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_1_3.setBounds(20, 186, 170, 28);
+		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel_1_3.setBounds(20, 186, 211, 28);
 		contentPane.add(lblNewLabel_1_3);
+		
+		JButton btnNewButton = new JButton("Remove");
+		btnNewButton.setBounds(337, 28, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Back to Admin Main Page");
+		btnNewButton_1.setBounds(241, 229, 185, 23);
+		contentPane.add(btnNewButton_1);
 	}
 
 }
