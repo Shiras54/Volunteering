@@ -79,10 +79,10 @@ public class User {
 	public void setAddress(String address) {this.address = address;}
 	public String getPassword() {return password;}
 	public void setPassword(String password) {this.password = password;}
-	public Initiative getInitiative() {return initiative;}
-	public void setInitiative(Initiative initiative) {this.initiative = initiative;}
-	public Initiative[] getVolunteeringJobs() {return volunteeringJobs;}
-	public void setVolunteeringJobs(Initiative[] volunteeringJobs) {this.volunteeringJobs = volunteeringJobs;}
+	public Initiative getInitiative1() {return initiative1;}
+	public void setInitiative1(Initiative initiative) {this.initiative1 = initiative;}
+	public List<Initiative> getVolunteeringJobs() {return volunteeringJobs;}
+	public void setVolunteeringJobs(List<Initiative> volunteeringJobs) {this.volunteeringJobs = volunteeringJobs;}
 	public int getPoints() {return points;}
 	public void setPoints(int points) {this.points=points;}
 }
