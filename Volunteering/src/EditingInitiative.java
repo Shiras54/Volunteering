@@ -14,10 +14,10 @@ public class EditingInitiative extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField name;
+	private JTextField NOV;
+	private JTextField timedate;
+	private JTextField descriptionTF;
 
 	/**
 	 * Launch the application.
@@ -51,54 +51,54 @@ public class EditingInitiative extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblName = new JLabel("Name:");
-		lblName.setBounds(10, 62, 95, 27);
-		lblName.setFont(new Font("Tahoma", Font.BOLD, 22));
-		contentPane.add(lblName);
+		JLabel Inname = new JLabel("Name:");
+		Inname.setBounds(10, 62, 95, 27);
+		Inname.setFont(new Font("Tahoma", Font.BOLD, 22));
+		contentPane.add(Inname);
 		
-		JLabel lblNewLabel = new JLabel("Editing initiative");
-		lblNewLabel.setBounds(120, 11, 183, 27);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		contentPane.add(lblNewLabel);
+		JLabel editingIn = new JLabel("Editing initiative");
+		editingIn.setBounds(120, 11, 183, 27);
+		editingIn.setFont(new Font("Tahoma", Font.BOLD, 22));
+		contentPane.add(editingIn);
 		
-		JLabel lblNumberOfVolunteers = new JLabel("Number of Volunteers:");
-		lblNumberOfVolunteers.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNumberOfVolunteers.setBounds(10, 113, 262, 27);
-		contentPane.add(lblNumberOfVolunteers);
+		JLabel InNOV = new JLabel("Number of Volunteers:");
+		InNOV.setFont(new Font("Tahoma", Font.BOLD, 22));
+		InNOV.setBounds(10, 113, 262, 27);
+		contentPane.add(InNOV);
 		
-		JLabel lblTimeDate = new JLabel("Time & Date:\r\n");
-		lblTimeDate.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblTimeDate.setBounds(10, 161, 157, 27);
-		contentPane.add(lblTimeDate);
+		JLabel INTime = new JLabel("Time & Date:\r\n");
+		INTime.setFont(new Font("Tahoma", Font.BOLD, 22));
+		INTime.setBounds(10, 161, 157, 27);
+		contentPane.add(INTime);
 		
-		JLabel lblDescription = new JLabel("Description:");
-		lblDescription.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblDescription.setBounds(10, 204, 143, 27);
-		contentPane.add(lblDescription);
+		JLabel lnDescription = new JLabel("Description:");
+		lnDescription.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lnDescription.setBounds(10, 204, 143, 27);
+		contentPane.add(lnDescription);
 		
-		textField = new JTextField();
-		textField.setBounds(95, 70, 219, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		name = new JTextField();
+		name.setBounds(95, 70, 219, 20);
+		contentPane.add(name);
+		name.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(267, 121, 159, 20);
-		contentPane.add(textField_1);
+		NOV = new JTextField();
+		NOV.setColumns(10);
+		NOV.setBounds(267, 121, 159, 20);
+		contentPane.add(NOV);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(158, 169, 219, 20);
-		contentPane.add(textField_2);
+		timedate = new JTextField();
+		timedate.setColumns(10);
+		timedate.setBounds(158, 169, 219, 20);
+		contentPane.add(timedate);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(158, 212, 219, 40);
-		contentPane.add(textField_3);
+		descriptionTF = new JTextField();
+		descriptionTF.setColumns(10);
+		descriptionTF.setBounds(158, 212, 219, 40);
+		contentPane.add(descriptionTF);
 		
-		JButton btnNewButton = new JButton("Back\r\n");
-		btnNewButton.setBounds(337, 39, 89, 23);
-		contentPane.add(btnNewButton);
+		JButton backbutton = new JButton("Back\r\n");
+		backbutton.setBounds(337, 39, 89, 23);
+		contentPane.add(backbutton);
 	}
 
 }

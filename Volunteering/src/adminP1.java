@@ -14,8 +14,8 @@ public class adminP1 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField nameTF;
+	private JTextField passTF;
 
 	/**
 	 * Launch the application.
@@ -49,33 +49,33 @@ public class adminP1 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Name:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		lblNewLabel_1.setBounds(33, 81, 100, 25);
-		contentPane.add(lblNewLabel_1);
+		JLabel adminN = new JLabel("Name:");
+		adminN.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+		adminN.setBounds(33, 81, 100, 25);
+		contentPane.add(adminN);
 		
-		JLabel lblNewLabel = new JLabel("Admin Login Page");
-		lblNewLabel.setBounds(113, 11, 221, 25);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		contentPane.add(lblNewLabel);
+		JLabel adminLogin = new JLabel("Admin Login Page");
+		adminLogin.setBounds(113, 11, 221, 25);
+		adminLogin.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+		contentPane.add(adminLogin);
 		
-		textField = new JTextField();
-		textField.setBounds(190, 88, 96, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		nameTF = new JTextField();
+		nameTF.setBounds(190, 88, 96, 20);
+		contentPane.add(nameTF);
+		nameTF.setColumns(10);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Password:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		lblNewLabel_1_1.setBounds(33, 154, 129, 25);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel adminPass = new JLabel("Password:");
+		adminPass.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+		adminPass.setBounds(33, 154, 129, 25);
+		contentPane.add(adminPass);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(190, 154, 96, 20);
-		contentPane.add(textField_1);
+		passTF = new JTextField();
+		passTF.setColumns(10);
+		passTF.setBounds(190, 154, 96, 20);
+		contentPane.add(passTF);
 		
-		JButton btnNewButton = new JButton("log in");
-		btnNewButton.setBounds(314, 217, 89, 23);
-		contentPane.add(btnNewButton);
+		JButton loginButton = new JButton("log in");
+		loginButton.setBounds(314, 217, 89, 23);
+		contentPane.add(loginButton);
 	}
 }

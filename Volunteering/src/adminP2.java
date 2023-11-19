@@ -66,8 +66,8 @@ public class adminP2 extends JFrame {
 		textPane.setBounds(55, 98, 314, 83);
 		contentPane.add(textPane);
 		
-		JButton btnAdminMainPage = new JButton("Admin Main Page");
-		btnAdminMainPage.setBounds(152, 214, 138, 23);
-		contentPane.add(btnAdminMainPage);
+		JButton AdminMainPageButton = new JButton("Admin Main Page");
+		AdminMainPageButton.setBounds(152, 214, 138, 23);
+		contentPane.add(AdminMainPageButton);
 	}
 }

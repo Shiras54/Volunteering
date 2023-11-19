@@ -48,18 +48,13 @@ public class Exit extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Thank You For Using Our APP");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		lblNewLabel.setBounds(63, 11, 336, 33);
+		lblNewLabel.setBounds(51, 11, 336, 33);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\er.png"));
-		lblNewLabel_1.setBounds(147, 91, 128, 128);
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\vv.png"));
+		lblNewLabel_1.setBounds(138, 76, 147, 150);
 		contentPane.add(lblNewLabel_1);
-		
-		JLabel lblToSaveThe = new JLabel("To Save The EARTH");
-		lblToSaveThe.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		lblToSaveThe.setBounds(98, 42, 248, 33);
-		contentPane.add(lblToSaveThe);
 	}
 
 }
