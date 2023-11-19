@@ -58,20 +58,20 @@ public class Initiativemain extends JFrame {
 		lblNewLabel.setBounds(146, 11, 100, 33);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Edit Personal Info");
-		btnNewButton.setBounds(10, 91, 144, 23);
-		contentPane.add(btnNewButton);
+		JButton editPI = new JButton("Edit Personal Info");
+		editPI.setBounds(10, 91, 144, 23);
+		contentPane.add(editPI);
 		
-		JButton btnAddNewInitiative = new JButton("Add new initiative");
-		btnAddNewInitiative.setBounds(10, 57, 144, 23);
-		contentPane.add(btnAddNewInitiative);
+		JButton AddNewInitiative = new JButton("Add new initiative");
+		AddNewInitiative.setBounds(10, 57, 144, 23);
+		contentPane.add(AddNewInitiative);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 193, 209, 59);
-		contentPane.add(scrollPane);
+		JScrollPane MyInitiativesTable = new JScrollPane();
+		MyInitiativesTable.setBounds(10, 193, 209, 59);
+		contentPane.add(MyInitiativesTable);
 		
 		table = new JTable();
-		scrollPane.setViewportView(table);
+		MyInitiativesTable.setViewportView(table);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -85,9 +85,9 @@ public class Initiativemain extends JFrame {
 		table.getColumnModel().getColumn(0).setPreferredWidth(46);
 		table.getColumnModel().getColumn(1).setPreferredWidth(93);
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(10, 125, 144, 23);
-		contentPane.add(btnBack);
+		JButton Back = new JButton("Back");
+		Back.setBounds(10, 125, 144, 23);
+		contentPane.add(Back);
 		
 		JLabel lblNewLabel_1 = new JLabel("My Active Initiatives:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -108,37 +108,37 @@ public class Initiativemain extends JFrame {
 			}
 		));
 		
-		JButton btnNewButton_1 = new JButton("E");
-		btnNewButton_1.setBounds(213, 236, 68, 16);
-		contentPane.add(btnNewButton_1);
+		JButton edit2 = new JButton("E");
+		edit2.setBounds(213, 236, 68, 16);
+		contentPane.add(edit2);
 		
-		JButton btnNewButton_1_1 = new JButton("E");
-		btnNewButton_1_1.setBounds(213, 216, 68, 23);
-		contentPane.add(btnNewButton_1_1);
+		JButton edit1 = new JButton("E");
+		edit1.setBounds(213, 216, 68, 23);
+		contentPane.add(edit1);
 		
-		JButton btnNewButton_1_1_1 = new JButton("R\r\n\r\n");
-		btnNewButton_1_1_1.setBounds(272, 216, 78, 23);
-		contentPane.add(btnNewButton_1_1_1);
+		JButton remove1 = new JButton("R\r\n\r\n");
+		remove1.setBounds(272, 216, 78, 23);
+		contentPane.add(remove1);
 		
-		JButton btnNewButton_1_1_1_1 = new JButton("R\r\n");
-		btnNewButton_1_1_1_1.setBounds(272, 233, 78, 19);
-		contentPane.add(btnNewButton_1_1_1_1);
+		JButton remove2 = new JButton("R\r\n");
+		remove2.setBounds(272, 233, 78, 19);
+		contentPane.add(remove2);
 		
-		JButton btnNewButton_1_1_1_2 = new JButton("V");
-		btnNewButton_1_1_1_2.setBounds(348, 216, 78, 23);
-		contentPane.add(btnNewButton_1_1_1_2);
+		JButton VR1 = new JButton("V");
+		VR1.setBounds(348, 216, 78, 23);
+		contentPane.add(VR1);
 		
-		JButton btnNewButton_1_1_1_2_1 = new JButton("V");
-		btnNewButton_1_1_1_2_1.setBounds(348, 233, 78, 19);
-		contentPane.add(btnNewButton_1_1_1_2_1);
+		JButton VR2 = new JButton("V");
+		VR2.setBounds(348, 233, 78, 19);
+		contentPane.add(VR2);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\ini.png"));
 		lblNewLabel_2.setBounds(348, 11, 68, 72);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton btnExit = new JButton("Exit");
-		btnExit.setBounds(179, 91, 144, 23);
-		contentPane.add(btnExit);
+		JButton Exit = new JButton("Exit");
+		Exit.setBounds(179, 91, 144, 23);
+		contentPane.add(Exit);
 	}
 }

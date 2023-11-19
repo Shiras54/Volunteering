@@ -51,21 +51,21 @@ public class GenerateReport extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("My Community Service Report");
-		lblNewLabel.setBounds(81, 20, 364, 27);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		contentPane.add(lblNewLabel);
+		JLabel commService = new JLabel("My Community Service Report");
+		commService.setBounds(81, 20, 364, 27);
+		commService.setFont(new Font("Tahoma", Font.BOLD, 22));
+		contentPane.add(commService);
 		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.setBounds(462, 279, 89, 23);
-		contentPane.add(btnNewButton);
+		JButton backButton = new JButton("Back");
+		backButton.setBounds(462, 279, 89, 23);
+		contentPane.add(backButton);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 91, 541, 111);
-		contentPane.add(scrollPane);
+		JScrollPane commTable = new JScrollPane();
+		commTable.setBounds(10, 91, 541, 111);
+		contentPane.add(commTable);
 		
 		table = new JTable();
-		scrollPane.setViewportView(table);
+		commTable.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
@@ -84,15 +84,15 @@ public class GenerateReport extends JFrame {
 		lblNewLabel_1.setBounds(502, 11, 49, 54);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Total Attended Hours:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblNewLabel_2.setBounds(20, 220, 171, 27);
-		contentPane.add(lblNewLabel_2);
+		JLabel atendedH = new JLabel("Total Attended Hours:");
+		atendedH.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		atendedH.setBounds(20, 220, 171, 27);
+		contentPane.add(atendedH);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Total Sustainability Points:");
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblNewLabel_2_1.setBounds(20, 257, 209, 27);
-		contentPane.add(lblNewLabel_2_1);
+		JLabel SusP = new JLabel("Total Sustainability Points:");
+		SusP.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		SusP.setBounds(20, 257, 209, 27);
+		contentPane.add(SusP);
 		table.getColumnModel().getColumn(0).setPreferredWidth(77);
 		table.getColumnModel().getColumn(1).setPreferredWidth(94);
 		table.getColumnModel().getColumn(2).setPreferredWidth(90);

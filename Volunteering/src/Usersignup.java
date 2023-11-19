@@ -53,7 +53,7 @@ public class Usersignup extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("User Sign Up");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(136, 11, 165, 38);
+		lblNewLabel.setBounds(164, 11, 165, 38);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblName = new JLabel("Name:");

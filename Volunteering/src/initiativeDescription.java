@@ -49,23 +49,23 @@ public class initiativeDescription extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("(initiative name) Description:");
-		lblNewLabel.setBounds(10, 23, 335, 27);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		contentPane.add(lblNewLabel);
+		JLabel INdescription = new JLabel("(initiative name) Description:");
+		INdescription.setBounds(10, 23, 335, 27);
+		INdescription.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+		contentPane.add(INdescription);
 		
 		textField = new JTextField();
 		textField.setBounds(31, 72, 370, 77);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Back to Admin main page");
-		btnNewButton.setBounds(236, 207, 190, 23);
-		contentPane.add(btnNewButton);
+		JButton BTAMP = new JButton("Back to Admin main page");
+		BTAMP.setBounds(236, 207, 190, 23);
+		contentPane.add(BTAMP);
 		
-		JButton btnNewButton_1 = new JButton("Remove");
-		btnNewButton_1.setBounds(48, 207, 89, 23);
-		contentPane.add(btnNewButton_1);
+		JButton R = new JButton("Remove");
+		R.setBounds(48, 207, 89, 23);
+		contentPane.add(R);
 	}
 
 }

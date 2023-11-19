@@ -14,8 +14,8 @@ public class userpage1 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField nameTF;
+	private JTextField PassTF;
 
 	/**
 	 * Launch the application.
@@ -49,45 +49,45 @@ public class userpage1 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("User ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(183, 11, 57, 27);
-		contentPane.add(lblNewLabel);
+		JLabel user = new JLabel("User ");
+		user.setFont(new Font("Tahoma", Font.BOLD, 22));
+		user.setBounds(183, 11, 57, 27);
+		contentPane.add(user);
 		
-		JLabel lblNewLabel_1 = new JLabel("Name:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel_1.setBounds(34, 76, 77, 27);
-		contentPane.add(lblNewLabel_1);
+		JLabel userName = new JLabel("Name:");
+		userName.setFont(new Font("Tahoma", Font.BOLD, 20));
+		userName.setBounds(34, 76, 77, 27);
+		contentPane.add(userName);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Password:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel_1_1.setBounds(34, 146, 115, 27);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel userPass = new JLabel("Password:");
+		userPass.setFont(new Font("Tahoma", Font.BOLD, 20));
+		userPass.setBounds(34, 146, 115, 27);
+		contentPane.add(userPass);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Not Registered Yet?");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.ITALIC, 15));
-		lblNewLabel_1_2.setBounds(268, 190, 142, 27);
-		contentPane.add(lblNewLabel_1_2);
+		JLabel NRY = new JLabel("Not Registered Yet?");
+		NRY.setFont(new Font("Tahoma", Font.ITALIC, 15));
+		NRY.setBounds(268, 190, 142, 27);
+		contentPane.add(NRY);
 		
-		JButton btnNewButton = new JButton("log in");
-		btnNewButton.setBounds(22, 213, 89, 23);
-		contentPane.add(btnNewButton);
+		JButton loginButton = new JButton("log in");
+		loginButton.setBounds(22, 213, 89, 23);
+		contentPane.add(loginButton);
 		
-		JLabel lblNewLabel_2 = new JLabel("Sign Up");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.ITALIC, 16));
-		lblNewLabel_2.setForeground(Color.BLUE);
-		lblNewLabel_2.setBounds(306, 215, 77, 21);
-		contentPane.add(lblNewLabel_2);
+		JLabel SignUp = new JLabel("Sign Up");
+		SignUp.setFont(new Font("Tahoma", Font.ITALIC, 16));
+		SignUp.setForeground(Color.BLUE);
+		SignUp.setBounds(306, 215, 77, 21);
+		contentPane.add(SignUp);
 		
-		textField = new JTextField();
-		textField.setBounds(147, 83, 175, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		nameTF = new JTextField();
+		nameTF.setBounds(147, 83, 175, 20);
+		contentPane.add(nameTF);
+		nameTF.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(147, 153, 175, 20);
-		contentPane.add(textField_1);
+		PassTF = new JTextField();
+		PassTF.setColumns(10);
+		PassTF.setBounds(147, 153, 175, 20);
+		contentPane.add(PassTF);
 	}
 
 }

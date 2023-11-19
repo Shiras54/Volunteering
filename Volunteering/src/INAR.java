@@ -56,21 +56,21 @@ public class INAR extends JFrame {
 		lblNewLabel.setBounds(10, 11, 347, 38);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\lis.png"));
-		lblNewLabel_1.setBounds(365, 10, 71, 50);
-		contentPane.add(lblNewLabel_1);
+		JLabel image = new JLabel("New label");
+		image.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\lis.png"));
+		image.setBounds(365, 10, 71, 50);
+		contentPane.add(image);
 		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.setBounds(10, 229, 89, 23);
-		contentPane.add(btnNewButton);
+		JButton backButton = new JButton("Back");
+		backButton.setBounds(10, 229, 89, 23);
+		contentPane.add(backButton);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(28, 112, 241, 77);
-		contentPane.add(scrollPane);
+		JScrollPane ARtable = new JScrollPane();
+		ARtable.setBounds(28, 112, 241, 77);
+		contentPane.add(ARtable);
 		
 		table = new JTable();
-		scrollPane.setViewportView(table);
+		ARtable.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -83,17 +83,17 @@ public class INAR extends JFrame {
 		));
 		table.getColumnModel().getColumn(1).setPreferredWidth(86);
 		
-		JButton btnWithdraw = new JButton("Withdraw");
-		btnWithdraw.setBounds(268, 138, 89, 15);
-		contentPane.add(btnWithdraw);
+		JButton withdraw1 = new JButton("Withdraw");
+		withdraw1.setBounds(268, 138, 89, 15);
+		contentPane.add(withdraw1);
 		
-		JButton btnWithdraw_1 = new JButton("Withdraw");
-		btnWithdraw_1.setBounds(268, 151, 89, 15);
-		contentPane.add(btnWithdraw_1);
+		JButton withdraw2 = new JButton("Withdraw");
+		withdraw2.setBounds(268, 151, 89, 15);
+		contentPane.add(withdraw2);
 		
-		JButton btnWithdraw_2 = new JButton("Withdraw");
-		btnWithdraw_2.setBounds(268, 164, 89, 15);
-		contentPane.add(btnWithdraw_2);
+		JButton withdraw3 = new JButton("Withdraw");
+		withdraw3.setBounds(268, 164, 89, 15);
+		contentPane.add(withdraw3);
 	}
 
 }

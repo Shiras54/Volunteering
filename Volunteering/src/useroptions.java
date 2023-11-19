@@ -49,26 +49,26 @@ public class useroptions extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("User Options");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(129, 11, 154, 42);
-		contentPane.add(lblNewLabel);
+		JLabel userOptions = new JLabel("User Options");
+		userOptions.setFont(new Font("Tahoma", Font.BOLD, 22));
+		userOptions.setBounds(129, 11, 154, 42);
+		contentPane.add(userOptions);
 		
-		JButton btnNewButton = new JButton("Create initiative");
-		btnNewButton.setBounds(108, 81, 191, 64);
-		contentPane.add(btnNewButton);
+		JButton createIN = new JButton("Create initiative");
+		createIN.setBounds(108, 81, 191, 64);
+		contentPane.add(createIN);
 		
-		JButton btnVolunteer = new JButton("Volunteer");
-		btnVolunteer.setBounds(108, 175, 191, 64);
-		contentPane.add(btnVolunteer);
+		JButton Volunteer = new JButton("Volunteer");
+		Volunteer.setBounds(108, 175, 191, 64);
+		contentPane.add(Volunteer);
 		
-		JButton btnExit = new JButton("Exit");
-		btnExit.setBounds(313, 150, 113, 23);
-		contentPane.add(btnExit);
+		JButton Exit = new JButton("Exit");
+		Exit.setBounds(313, 150, 113, 23);
+		contentPane.add(Exit);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\opv.png"));
-		lblNewLabel_1.setBounds(352, 22, 63, 64);
-		contentPane.add(lblNewLabel_1);
+		JLabel image = new JLabel("New label");
+		image.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\opv.png"));
+		image.setBounds(352, 22, 63, 64);
+		contentPane.add(image);
 	}
 }
