@@ -6,13 +6,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.Font;
 
-public class useroptions extends JFrame {
+public class Exit extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -24,7 +21,7 @@ public class useroptions extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					useroptions frame = new useroptions();
+					Exit frame = new Exit();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +33,7 @@ public class useroptions extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public useroptions() {
+	public Exit() {
 		setTitle("Volunteer For Earth");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
@@ -49,26 +46,20 @@ public class useroptions extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("User Options");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(129, 11, 154, 42);
+		JLabel lblNewLabel = new JLabel("Thank You For Using Our APP");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+		lblNewLabel.setBounds(63, 11, 336, 33);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Create initiative");
-		btnNewButton.setBounds(108, 81, 191, 64);
-		contentPane.add(btnNewButton);
-		
-		JButton btnVolunteer = new JButton("Volunteer");
-		btnVolunteer.setBounds(108, 175, 191, 64);
-		contentPane.add(btnVolunteer);
-		
-		JButton btnExit = new JButton("Exit");
-		btnExit.setBounds(313, 150, 113, 23);
-		contentPane.add(btnExit);
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\opv.png"));
-		lblNewLabel_1.setBounds(352, 22, 63, 64);
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\er.png"));
+		lblNewLabel_1.setBounds(147, 91, 128, 128);
 		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblToSaveThe = new JLabel("To Save The EARTH");
+		lblToSaveThe.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+		lblToSaveThe.setBounds(98, 42, 248, 33);
+		contentPane.add(lblToSaveThe);
 	}
+
 }

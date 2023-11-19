@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
 
 public class Initiativemain extends JFrame {
 
@@ -130,5 +131,14 @@ public class Initiativemain extends JFrame {
 		JButton btnNewButton_1_1_1_2_1 = new JButton("V");
 		btnNewButton_1_1_1_2_1.setBounds(348, 233, 78, 19);
 		contentPane.add(btnNewButton_1_1_1_2_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\ini.png"));
+		lblNewLabel_2.setBounds(348, 11, 68, 72);
+		contentPane.add(lblNewLabel_2);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.setBounds(179, 91, 144, 23);
+		contentPane.add(btnExit);
 	}
 }
