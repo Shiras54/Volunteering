@@ -49,10 +49,10 @@ public class VRlist extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Volunteers Registered List");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(38, 7, 336, 51);
-		contentPane.add(lblNewLabel);
+		JLabel VRlist = new JLabel("Volunteers Registered List");
+		VRlist.setFont(new Font("Tahoma", Font.BOLD, 22));
+		VRlist.setBounds(38, 7, 336, 51);
+		contentPane.add(VRlist);
 		
 		JLabel lblNewLabel_1 = new JLabel("1.");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
@@ -79,9 +79,9 @@ public class VRlist extends JFrame {
 		lblNewLabel_2.setBounds(350, 11, 76, 67);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.setBounds(322, 229, 89, 23);
-		contentPane.add(btnNewButton);
+		JButton back = new JButton("Back");
+		back.setBounds(322, 229, 89, 23);
+		contentPane.add(back);
 	}
 
 }

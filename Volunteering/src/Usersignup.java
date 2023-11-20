@@ -13,11 +13,11 @@ public class Usersignup extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField UserNameTF;
+	private JTextField userDateOfBirthTF;
+	private JTextField userPhoneNumberTF;
+	private JTextField userAdressTF;
+	private JTextField userPasswordTF;
 
 	/**
 	 * Launch the application.
@@ -56,60 +56,60 @@ public class Usersignup extends JFrame {
 		lblNewLabel.setBounds(164, 11, 165, 38);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblName = new JLabel("Name:");
-		lblName.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblName.setBounds(10, 50, 85, 38);
-		contentPane.add(lblName);
+		JLabel UserName = new JLabel("Name:");
+		UserName.setFont(new Font("Tahoma", Font.BOLD, 20));
+		UserName.setBounds(10, 50, 85, 38);
+		contentPane.add(UserName);
 		
-		JLabel lblId = new JLabel("Id:");
-		lblId.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblId.setBounds(10, 91, 85, 38);
-		contentPane.add(lblId);
+		JLabel userId = new JLabel("Id:");
+		userId.setFont(new Font("Tahoma", Font.BOLD, 20));
+		userId.setBounds(10, 91, 85, 38);
+		contentPane.add(userId);
 		
-		JLabel lblDateOfBirth = new JLabel("Date of Birth:");
-		lblDateOfBirth.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblDateOfBirth.setBounds(10, 131, 149, 38);
-		contentPane.add(lblDateOfBirth);
+		JLabel userDateOfBirth = new JLabel("Date of Birth:");
+		userDateOfBirth.setFont(new Font("Tahoma", Font.BOLD, 20));
+		userDateOfBirth.setBounds(10, 131, 149, 38);
+		contentPane.add(userDateOfBirth);
 		
-		JLabel lblPhoneNumber = new JLabel("Phone Number:");
-		lblPhoneNumber.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblPhoneNumber.setBounds(10, 168, 165, 38);
-		contentPane.add(lblPhoneNumber);
+		JLabel userPhoneNumber = new JLabel("Phone Number:");
+		userPhoneNumber.setFont(new Font("Tahoma", Font.BOLD, 20));
+		userPhoneNumber.setBounds(10, 168, 165, 38);
+		contentPane.add(userPhoneNumber);
 		
-		JLabel lblAdress = new JLabel("Adress:");
-		lblAdress.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblAdress.setBounds(10, 214, 165, 38);
-		contentPane.add(lblAdress);
+		JLabel userAdress = new JLabel("Adress:");
+		userAdress.setFont(new Font("Tahoma", Font.BOLD, 20));
+		userAdress.setBounds(10, 214, 165, 38);
+		contentPane.add(userAdress);
 		
-		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblPassword.setBounds(10, 252, 165, 38);
-		contentPane.add(lblPassword);
+		JLabel userPassword = new JLabel("Password:");
+		userPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
+		userPassword.setBounds(10, 252, 165, 38);
+		contentPane.add(userPassword);
 		
-		textField = new JTextField();
-		textField.setBounds(179, 63, 206, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		UserNameTF = new JTextField();
+		UserNameTF.setBounds(179, 63, 206, 20);
+		contentPane.add(UserNameTF);
+		UserNameTF.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(179, 144, 206, 20);
-		contentPane.add(textField_1);
+		userDateOfBirthTF = new JTextField();
+		userDateOfBirthTF.setColumns(10);
+		userDateOfBirthTF.setBounds(179, 144, 206, 20);
+		contentPane.add(userDateOfBirthTF);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(179, 181, 206, 20);
-		contentPane.add(textField_2);
+		userPhoneNumberTF = new JTextField();
+		userPhoneNumberTF.setColumns(10);
+		userPhoneNumberTF.setBounds(179, 181, 206, 20);
+		contentPane.add(userPhoneNumberTF);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(179, 227, 206, 20);
-		contentPane.add(textField_3);
+		userAdressTF = new JTextField();
+		userAdressTF.setColumns(10);
+		userAdressTF.setBounds(179, 227, 206, 20);
+		contentPane.add(userAdressTF);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(179, 263, 206, 20);
-		contentPane.add(textField_4);
+		userPasswordTF = new JTextField();
+		userPasswordTF.setColumns(10);
+		userPasswordTF.setBounds(179, 263, 206, 20);
+		contentPane.add(userPasswordTF);
 	}
 
 }

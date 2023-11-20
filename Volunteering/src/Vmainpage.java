@@ -80,33 +80,33 @@ public class Vmainpage extends JFrame {
 			}
 		));
 		
-		JButton btnNewButton = new JButton("register");
-		btnNewButton.setBounds(337, 138, 89, 18);
-		contentPane.add(btnNewButton);
+		JButton R1 = new JButton("register");
+		R1.setBounds(337, 138, 89, 18);
+		contentPane.add(R1);
 		
-		JButton btnNewButton_1 = new JButton("register");
-		btnNewButton_1.setBounds(337, 157, 89, 18);
-		contentPane.add(btnNewButton_1);
+		JButton R2 = new JButton("register");
+		R2.setBounds(337, 157, 89, 18);
+		contentPane.add(R2);
 		
-		JButton btnNewButton_2 = new JButton("register");
-		btnNewButton_2.setBounds(337, 175, 89, 18);
-		contentPane.add(btnNewButton_2);
+		JButton R3 = new JButton("register");
+		R3.setBounds(337, 175, 89, 18);
+		contentPane.add(R3);
 		
-		JButton btnInitiativesAlreadyRegistered = new JButton("Initiatives already registered in ");
-		btnInitiativesAlreadyRegistered.setBounds(10, 217, 218, 18);
-		contentPane.add(btnInitiativesAlreadyRegistered);
+		JButton InitiativesAlreadyRegisteredButton = new JButton("Initiatives already registered in ");
+		InitiativesAlreadyRegisteredButton.setBounds(10, 217, 218, 18);
+		contentPane.add(InitiativesAlreadyRegisteredButton);
 		
-		JButton btnEditPersonalInfo = new JButton("Edit Personal Info");
-		btnEditPersonalInfo.setBounds(276, 58, 149, 18);
-		contentPane.add(btnEditPersonalInfo);
+		JButton EditPersonalInfoButton = new JButton("Edit Personal Info");
+		EditPersonalInfoButton.setBounds(276, 58, 149, 18);
+		contentPane.add(EditPersonalInfoButton);
 		
-		JButton btnGenerateReport = new JButton("Generate Report");
-		btnGenerateReport.setBounds(276, 217, 137, 18);
-		contentPane.add(btnGenerateReport);
+		JButton GenerateReportButton = new JButton("Generate Report");
+		GenerateReportButton.setBounds(276, 217, 137, 18);
+		contentPane.add(GenerateReportButton);
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(277, 81, 149, 18);
-		contentPane.add(btnBack);
+		JButton Backbutton = new JButton("Back");
+		Backbutton.setBounds(277, 81, 149, 18);
+		contentPane.add(Backbutton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Your Sus.Points:");
 		lblNewLabel_1.setBounds(10, 56, 102, 14);
