@@ -1,5 +1,5 @@
 
 public class Admin {
-	private String name,id,password;
+	private String name,id,password, id2;
 	
 }
