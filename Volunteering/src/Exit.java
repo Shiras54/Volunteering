@@ -52,7 +52,7 @@ public class Exit extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\vv.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("vv.png"));
 		lblNewLabel_1.setBounds(138, 76, 147, 150);
 		contentPane.add(lblNewLabel_1);
 	}
