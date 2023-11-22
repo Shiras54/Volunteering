@@ -8,7 +8,6 @@ public class User {
 	private Initiative initiative1,initiative2;
 	private int points;
 	private Date dob;
-	private static int idCounter;
 	private DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 	static List<User> users;
 	
@@ -21,7 +20,7 @@ public class User {
 	}
 	
 	public User(String name, String dob, String email, String phone, String address, String password) {
-		createID();
+		setId(createID());
 		setName(name);
 		setDob(dob);
 		setEmail(email);
@@ -53,7 +52,8 @@ public class User {
 			setPassword(fin.next());
 			setPoints(fin.nextInt());
 			setDob(fin.next());
-			setInitiative1();
+			setInitiative1(Initiative.searchForInitiative(fin.next()));
+			setInitiative2(Initiative.searchForInitiative(fin.next()));
 			fin.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -69,6 +69,19 @@ public class User {
 			fin1.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static void sortUsers() {
+		User temp;
+		for(int i = 0;i<users.size();i++) {
+			for(int j = 1;j<(users.size()-i);j++){
+				if(users.get(j-1).id.compareTo(users.get(j).id) > 0) {
+					temp = users.get(j-1);
+					users.set(j-1,users.get(j));
+					users.set(j, temp);
+				}
+			}
 		}
 	}
 	
@@ -130,9 +143,9 @@ public class User {
 		}
 	}
 	
-	public void createID() {
-		idCounter++;
-		this.id = String.format("%10.0f", idCounter);
+	public String createID() {
+		User.sortUsers();
+		return String.format("%10.0f", Integer.parseInt(users.get(users.size()-1).id) + 1);
 	}
 	
 	public String getId() {return id;}

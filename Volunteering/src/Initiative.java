@@ -7,8 +7,9 @@ public class Initiative {
 	private int credit;
 	private List<User> volunteers = new ArrayList<User>();
 	private User initiator;
-	private Date startDate,endDate;
+	private Date date;
 	private DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	static List<Initiative> initiatives;
 
 	
 	public Initiative() {}
@@ -35,12 +36,40 @@ public class Initiative {
 	}
 	
 	public static Initiative searchForInitiative(String id) {
-		return this;
+		sortInitiatives();
+		int low = 0;
+		int high = initiatives.size()-1;
+		
+		while(low<=high) {
+			int middle = (low + high) / 2;
+			String idSearch = initiatives.get(middle).id;
+			if(id.equals(idSearch)) {
+				return initiatives.get(middle);
+			} else if(id.compareTo(idSearch)<0) {
+				high = middle-1;
+			} else if(id.compareTo(idSearch)>0) {
+				low = middle+1;
+			}
+		}
+		return null;
 	}
 
 	public void checkTime() {
+		
 	}
 
+	public static void sortInitiatives() {
+		Initiative temp;
+		for(int i = 0;i<initiatives.size();i++) {
+			for(int j = 1;j<(initiatives.size()-i);j++){
+				if(initiatives.get(j-1).id.compareTo(initiatives.get(j).id) > 0) {
+					temp = initiatives.get(j-1);
+					initiatives.set(j-1,initiatives.get(j));
+					initiatives.set(j, temp);
+				}
+			}
+		}
+	}
 
 	public String getStatus() {return status;}
 	public int getCredit() {return credit;}
