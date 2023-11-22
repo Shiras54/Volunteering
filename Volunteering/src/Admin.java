@@ -1,5 +1,16 @@
 
 public class Admin {
-	private String name,id,password;
+	private String name = "admin";
+	private String id = "0";
+	private String password = "admin2023";
+	
+	public Admin() {}
+	
+	public void approveInitiative(Initiative i) {
+		i.setStatus("active");
+	}
+	public void rejectInitiative(Initiative i) {
+		i = null;
+	}
 	
 }

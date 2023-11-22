@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 import java.text.*;
 
 public class User {
@@ -8,9 +9,15 @@ public class User {
 	private int points;
 	private Date dob;
 	private static int idCounter;
+	private DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+	static List<User> users;
 	
 	public User() {
 		
+	}
+	
+	public User(boolean t) {
+		this.readFromFile();
 	}
 	
 	public User(String name, String dob, String email, String phone, String address, String password) {
@@ -22,6 +29,61 @@ public class User {
 		setAddress(address);
 		setPassword(password);
 	}
+	
+	public void saveToFile() {
+		try {
+			PrintWriter fout = new PrintWriter("users.txt");
+			String data = String.format("%s %s %s %s %s %s %d %s %s %s\n",id, name, email, phone, address, password, points, getDobAsString(),initiative1.getId(),initiative2.getId());
+			fout.print(data);
+			fout.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void readFromFile() {
+		try {
+			Scanner fin = new Scanner(new FileReader("users.txt"));
+			setId(fin.next());
+			setName(fin.next());
+			setEmail(fin.next());
+			setPhone(fin.next());
+			setAddress(fin.next());
+			setPassword(fin.next());
+			setPoints(fin.nextInt());
+			setDob(fin.next());
+			setInitiative1();
+			fin.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void readUsers() {
+		try {
+			Scanner fin1 = new Scanner(new FileReader("Users.txt"));
+			while(fin1.hasNextLine()) {
+				users.add(new User(true));
+			}
+			fin1.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void saveUsers() {
+		try {
+			PrintWriter fout1 = new PrintWriter("Users.txt");
+			for (User u:users) {
+				u.saveToFile();
+			}
+			fout1.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void initiate() {
 		if(initiative1==null || initiative2 == null) {
 			if(initiative1==null) {
@@ -84,9 +146,11 @@ public class User {
 		}
 	}	
 	public Date getDob() {return dob;}
+	public String getDobAsString() {
+		return format.format(dob);
+	}
 	public void setDob(String dob) {
 		try {
-			DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			this.dob = format.parse(dob);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -111,6 +175,10 @@ public class User {
 	public Initiative getInitiative1() {return initiative1;}
 	public void setInitiative1(Initiative initiative) {
 		this.initiative1 = initiative;
+		}
+	public Initiative getInitiative2() {return initiative2;}
+	public void setInitiative2(Initiative initiative) {
+		this.initiative2 = initiative;
 		}
 	public List<Initiative> getVolunteeringJobs() {return volunteeringJobs;}
 	public void setVolunteeringJobs(List<Initiative> volunteeringJobs) {this.volunteeringJobs = volunteeringJobs;}
