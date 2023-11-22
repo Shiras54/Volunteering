@@ -1,6 +1,7 @@
 import java.util.*;
 import java.io.*;
 import java.text.*;
+import javax.swing.*;
 
 public class User {
 	private String id, name, email, phone, address, password;
@@ -96,6 +97,25 @@ public class User {
 			e.printStackTrace();
 		}
 	}
+
+	public static User searchForUser(String id) {
+		sortUsers();
+		int low = 0;
+		int high = users.size()-1;
+		
+		while(low<=high) {
+			int middle = (low + high) / 2;
+			String idSearch = users.get(middle).id;
+			if(id.equals(idSearch)) {
+				return users.get(middle);
+			} else if(id.compareTo(idSearch)<0) {
+				high = middle-1;
+			} else if(id.compareTo(idSearch)>0) {
+				low = middle+1;
+			}
+		}
+		return null;
+	}
 	
 	public void initiate() {
 		if(initiative1==null || initiative2 == null) {
@@ -111,7 +131,8 @@ public class User {
 				initiative2 = new Initiative();
 			}
 		} else {
-			System.out.print("Initiatives are not complete, do");
+			//temporary
+			JOptionPane.showMessageDialog(new JFrame(),"You do not have a free initiative. Do you want to delete one?");
 		}
 		
 	}
@@ -130,7 +151,7 @@ public class User {
 		volunteeringJobs.remove(volunteeringJobs.indexOf(i));
 		points-=i.getCredit();
 		} else {
-			System.out.print("Isn't in list");
+			JOptionPane.showMessageDialog(new JFrame(),"You did not volunteer in this initiative."); 
 		}
 	}
 	public void terminate(Initiative i) {
@@ -139,7 +160,7 @@ public class User {
 		} else if (i.equals(initiative1)) {
 			initiative2 = null;
 		} else {
-			System.out.print("not your initiative");
+			JOptionPane.showMessageDialog(new JFrame(),"This is not your initiative.");
 		}
 	}
 	
