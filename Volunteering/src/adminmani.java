@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
 
 public class adminmani extends JFrame {
 
@@ -47,7 +49,7 @@ public class adminmani extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 608, 365);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,7 +58,7 @@ public class adminmani extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel searchandedit = new JLabel("Search & Edit");
-		searchandedit.setBounds(125, 11, 170, 27);
+		searchandedit.setBounds(207, 11, 170, 27);
 		searchandedit.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
 		contentPane.add(searchandedit);
 		
@@ -70,60 +72,33 @@ public class adminmani extends JFrame {
 		contentPane.add(searchTF);
 		searchTF.setColumns(10);
 		
-		JButton d1 = new JButton("D");
-		d1.setBounds(278, 156, 83, 16);
-		contentPane.add(d1);
-		
-		JButton r1 = new JButton("R");
-		r1.setBounds(360, 156, 76, 16);
-		contentPane.add(r1);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 133, 269, 80);
+		scrollPane.setBounds(10, 133, 504, 80);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"", null, null},
-				{null, null, null},
-				{null, null, null},
+				{"", null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"Name", "Number of Volunteers", "Time & Date"
+				"Name", "Number of Volunteers", "Time & Date", "Description", "Remove"
 			}
 		));
-		
-		JButton d2 = new JButton("D");
-		d2.setBounds(272, 177, 89, 16);
-		contentPane.add(d2);
-		
-		JButton d3 = new JButton("D");
-		d3.setBounds(272, 197, 89, 16);
-		contentPane.add(d3);
-		
-		JButton r2 = new JButton("R");
-		r2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		r2.setBounds(360, 177, 76, 16);
-		contentPane.add(r2);
-		
-		JButton r3 = new JButton("R");
-		r3.setBounds(360, 197, 76, 16);
-		contentPane.add(r3);
+		table.getColumnModel().getColumn(1).setPreferredWidth(118);
+		table.getColumnModel().getColumn(3).setPreferredWidth(82);
+		table.getColumnModel().getColumn(4).setPreferredWidth(78);
 		
 		JLabel image = new JLabel("New label");
 		image.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\sr.png"));
-		image.setBounds(349, 11, 77, 73);
+		image.setBounds(495, 11, 77, 73);
 		contentPane.add(image);
 		
 		JButton Exitbutton = new JButton("Exit");
-		Exitbutton.setBounds(10, 229, 89, 23);
+		Exitbutton.setBounds(10, 272, 89, 23);
 		contentPane.add(Exitbutton);
-		table.getColumnModel().getColumn(1).setPreferredWidth(118);
 	}
-
 }

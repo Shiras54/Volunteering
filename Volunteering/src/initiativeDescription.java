@@ -9,6 +9,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class initiativeDescription extends JFrame {
 
@@ -62,10 +64,23 @@ public class initiativeDescription extends JFrame {
 		JButton BTAMP = new JButton("Back to Admin main page");
 		BTAMP.setBounds(236, 207, 190, 23);
 		contentPane.add(BTAMP);
+		BTAMP.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	BTAMPActionPerformed(evt);
+            }
+        });
 		
 		JButton R = new JButton("Remove");
 		R.setBounds(48, 207, 89, 23);
 		contentPane.add(R);
 	}
 
+	private void BTAMPActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Vmainpage().setVisible(true);
+            }
+        });
+        dispose();
+    }
 }

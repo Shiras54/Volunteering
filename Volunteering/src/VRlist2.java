@@ -3,25 +3,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Component;
-
-import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class AddInitiativee extends JFrame {
+public class VRlist2 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField nameTF;
-	private JTextField timeTF;
-	private JTextField descriptionTF;
 
 	/**
 	 * Launch the application.
@@ -30,7 +27,7 @@ public class AddInitiativee extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddInitiativee frame = new AddInitiativee();
+					VRlist frame = new VRlist();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +39,7 @@ public class AddInitiativee extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddInitiativee() {
+	public VRlist2() {
 		setTitle("Volunteer For Earth");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
@@ -50,45 +47,42 @@ public class AddInitiativee extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
+		contentPane.setForeground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Creating new initiative");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(93, 11, 280, 27);
-		contentPane.add(lblNewLabel);
+		JLabel VRlist = new JLabel("Volunteers Registered List");
+		VRlist.setFont(new Font("Tahoma", Font.BOLD, 22));
+		VRlist.setBounds(38, 7, 336, 51);
+		contentPane.add(VRlist);
 		
-		JLabel lnName = new JLabel("Name:");
-		lnName.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lnName.setBounds(10, 63, 85, 27);
-		contentPane.add(lnName);
+		JLabel lblNewLabel_1 = new JLabel("1.");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel_1.setBounds(38, 79, 49, 25);
+		contentPane.add(lblNewLabel_1);
 		
-		JLabel lnTime = new JLabel("Time & Date:");
-		lnTime.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lnTime.setBounds(10, 119, 146, 27);
-		contentPane.add(lnTime);
+		JLabel lblNewLabel_1_1 = new JLabel("2.");
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel_1_1.setBounds(38, 115, 49, 25);
+		contentPane.add(lblNewLabel_1_1);
 		
-		JLabel lnDescription = new JLabel("Description:");
-		lnDescription.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lnDescription.setBounds(10, 170, 146, 27);
-		contentPane.add(lnDescription);
+		JLabel lblNewLabel_1_2 = new JLabel("3.");
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel_1_2.setBounds(38, 158, 49, 25);
+		contentPane.add(lblNewLabel_1_2);
 		
-		nameTF = new JTextField();
-		nameTF.setBounds(182, 68, 221, 27);
-		contentPane.add(nameTF);
-		nameTF.setColumns(10);
+		JLabel lblNewLabel_1_3 = new JLabel("4.");
+		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel_1_3.setBounds(38, 202, 49, 25);
+		contentPane.add(lblNewLabel_1_3);
 		
-		timeTF = new JTextField();
-		timeTF.setColumns(10);
-		timeTF.setBounds(182, 124, 221, 27);
-		contentPane.add(timeTF);
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\People-icon.png"));
+		lblNewLabel_2.setBounds(350, 11, 76, 67);
+		contentPane.add(lblNewLabel_2);
 		
-		descriptionTF = new JTextField();
-		descriptionTF.setColumns(10);
-		descriptionTF.setBounds(182, 171, 224, 56);
-		contentPane.add(descriptionTF);
 		
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
@@ -96,9 +90,8 @@ public class AddInitiativee extends JFrame {
 				backButtonActionPerformed(e);   
 				}
 			});
-		backButton.setBounds(337, 238, 89, 23);
+		backButton.setBounds(322, 229, 89, 23);
 		contentPane.add(backButton);
-
 	}
 	private void backButtonActionPerformed(ActionEvent evt) {
         EventQueue.invokeLater(new Runnable() {
@@ -107,5 +100,7 @@ public class AddInitiativee extends JFrame {
             }
         });
         dispose();
-	}
+    }
+
+
 }

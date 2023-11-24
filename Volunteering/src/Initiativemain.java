@@ -12,6 +12,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Initiativemain extends JFrame {
 
@@ -35,6 +37,9 @@ public class Initiativemain extends JFrame {
 			}
 		});
 	}
+
+
+
 
 	/**
 	 * Create the frame.
@@ -65,6 +70,11 @@ public class Initiativemain extends JFrame {
 		JButton AddNewInitiative = new JButton("Add new initiative");
 		AddNewInitiative.setBounds(10, 57, 144, 23);
 		contentPane.add(AddNewInitiative);
+		AddNewInitiative.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	AddNewInitiativeActionPerformed(evt);
+            }
+        });
 		
 		JScrollPane MyInitiativesTable = new JScrollPane();
 		MyInitiativesTable.setBounds(10, 193, 209, 59);
@@ -84,10 +94,6 @@ public class Initiativemain extends JFrame {
 		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(46);
 		table.getColumnModel().getColumn(1).setPreferredWidth(93);
-		
-		JButton Back = new JButton("Back");
-		Back.setBounds(10, 125, 144, 23);
-		contentPane.add(Back);
 		
 		JLabel lblNewLabel_1 = new JLabel("My Active Initiatives:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -136,9 +142,30 @@ public class Initiativemain extends JFrame {
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\ini.png"));
 		lblNewLabel_2.setBounds(348, 11, 68, 72);
 		contentPane.add(lblNewLabel_2);
-		
-		JButton Exit = new JButton("Exit");
-		Exit.setBounds(179, 91, 144, 23);
-		contentPane.add(Exit);
+
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backButtonActionPerformed(e);   
+				}
+			});
+		backButton.setBounds(10, 125, 144, 23);
+		contentPane.add(backButton);
 	}
+	private void backButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new useroptions().setVisible(true);
+            }
+        });
+        dispose();
+    }
+	private void AddNewInitiativeActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AddInitiativee().setVisible(true);
+            }
+        });
+        dispose();
+    }
 }

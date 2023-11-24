@@ -8,6 +8,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 
@@ -69,5 +72,21 @@ public class adminP2 extends JFrame {
 		JButton AdminMainPageButton = new JButton("Admin Main Page");
 		AdminMainPageButton.setBounds(152, 214, 138, 23);
 		contentPane.add(AdminMainPageButton);
+		
+		AdminMainPageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	AdminMainPageButtonActionPerformed(evt);
+            }
+        });
+    }
+
+    private void AdminMainPageButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new adminmani().setVisible(true);
+            }
+        });
+        dispose();
+    }
 	}
-}
+
