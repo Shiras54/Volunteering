@@ -78,11 +78,13 @@ public class adminmani extends JFrame {
         	fullTable[i][3]=Initiative.activeInitiatives.get(i).getDescription();
         	fullTable[i][4]= new JButton("Remove");
         }
-        table.setModel(new DefaultTableModel(fullTable,
-            new String[] {
-                "Name", "Number of Volunteers", "Time & Date", "Description", "Remove"
-            }
-        ));
+        DefaultTableModel model = new DefaultTableModel(fullTable,
+    			new String[] {"Name", "Number of Volunteers", "Time & Date", "Description", "Remove"}) {
+					private static final long serialVersionUID = 1L;
+					public boolean isCellEditable(int row, int column) {
+    			       return false;
+    			    }};
+        table.setModel(model);
         table.getColumnModel().getColumn(1).setPreferredWidth(118);
         table.getColumnModel().getColumn(3).setPreferredWidth(82);
         table.getColumnModel().getColumn(4).setPreferredWidth(78);

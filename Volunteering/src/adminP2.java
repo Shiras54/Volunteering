@@ -1,17 +1,19 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.event.*;
 import javax.swing.table.*;
-
 import java.awt.event.*;
 
 
-public class adminP2 extends JFrame {
+public class adminP2 extends JFrame implements ActionListener,ListSelectionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-
+	private JButton acceptButton,rejectButton,AdminMainPageButton;
+	private JLabel newInitiative;
+	private JScrollPane scrollPane;
 	/**
 	 * Launch the application.
 	 */
@@ -45,24 +47,26 @@ public class adminP2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel newInitiative = new JLabel("Pending initiatives:");
+		newInitiative = new JLabel("Pending initiatives:");
 		newInitiative.setBounds(10, 11, 231, 27);
 		newInitiative.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
 		contentPane.add(newInitiative);
 		
-		JButton acceptButton = new JButton("Accept");
+		acceptButton = new JButton("Accept");
 		acceptButton.setBounds(27, 214, 89, 23);
 		contentPane.add(acceptButton);
+		acceptButton.addActionListener(this);
 		
-		JButton rejectButton = new JButton("Reject");
+		rejectButton = new JButton("Reject");
 		rejectButton.setBounds(326, 214, 89, 23);
 		contentPane.add(rejectButton);
+		rejectButton.addActionListener(this);
 		
-		JButton AdminMainPageButton = new JButton("Admin Main Page");
+		AdminMainPageButton = new JButton("Admin Main Page");
 		AdminMainPageButton.setBounds(152, 214, 138, 23);
 		contentPane.add(AdminMainPageButton);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(27, 52, 388, 109);
 		contentPane.add(scrollPane);
 		
@@ -70,17 +74,21 @@ public class adminP2 extends JFrame {
 		scrollPane.setViewportView(table);
 		Object[][] fullTable = new Object[Initiative.pendingInitiatives.size()][5];
         for (int i = 0;i<Initiative.pendingInitiatives.size();i++) {
-        	fullTable[i][0]=Initiative.pendingInitiatives.get(i).getName();
-        	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getDateAsString();
-        	fullTable[i][2]=Initiative.pendingInitiatives.get(i).getDescription();
-        	fullTable[i][3]= new JButton("Accept");
-        	fullTable[i][4]= new JButton("Remove");
+        	fullTable[i][0]=Initiative.pendingInitiatives.get(i).getId();
+        	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getName();
+        	fullTable[i][2]=Initiative.pendingInitiatives.get(i).getDateAsString();
+        	fullTable[i][3]=Initiative.pendingInitiatives.get(i).getDescription();
+        	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getCredit();
         }
-		table.setModel(new DefaultTableModel(fullTable,
-			new String[] {
-				"Name", "Description", "Time & Date", "Accept", "Remove"
-			}
-		));
+        DefaultTableModel model = new DefaultTableModel(fullTable,
+    			new String[] {"ID","Name", "Description", "Time & Date", "credit"}) {
+					private static final long serialVersionUID = 1L;
+					public boolean isCellEditable(int row, int column) {
+    			       return false;
+    			    }};
+		table.setModel(model);
+		
+	    table.getSelectionModel().addListSelectionListener(this);
 		
 		
 		AdminMainPageButton.addActionListener(new ActionListener() {
@@ -99,5 +107,26 @@ public class adminP2 extends JFrame {
         });
         dispose();
     }
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		EventQueue.invokeLater(new Runnable() {
+            public void run() {
+            	if(table.getSelectedRow()>0 && e.getSource()==acceptButton) {
+            		Admin.approveInitiative(Initiative.searchForInitiative(Initiative.pendingInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
+            	}
+            	if(table.getSelectedRow()>0 && e.getSource()==rejectButton) {
+            		Admin.rejectInitiative(Initiative.searchForInitiative(Initiative.pendingInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
+            	}
+            	table.repaint();
+            }
+		
+		});		
+	}
+}
 

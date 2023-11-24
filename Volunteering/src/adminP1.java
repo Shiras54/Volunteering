@@ -77,6 +77,7 @@ public class adminP1 extends JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
+        setVisible(true);
     }
 
     private void loginButtonActionPerformed(ActionEvent evt) {

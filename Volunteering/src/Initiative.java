@@ -43,7 +43,6 @@ public class Initiative {
 		setStatus(status);
 		setTime(time);
 		setInitiator(initiator);
-		pendingInitiatives.add(this);
 	}
 	public Initiative(Scanner fin) {
 		readFromLine(fin.nextLine());
@@ -160,12 +159,14 @@ public class Initiative {
 
 	public static void sortInitiatives(List<Initiative> k) {
 		Initiative temp;
-		for(int i = 0;i<k.size();i++) {
-			for(int j = 1;j<(k.size()-i);j++){
-				if(k.get(j-1).id.compareTo(k.get(j).id) > 0) {
-					temp = k.get(j-1);
-					k.set(j-1,k.get(j));
-					k.set(j, temp);
+		if(k.size()>1) {
+			for(int i = 0;i<k.size();i++) {
+				for(int j = 1;j<(k.size()-i);j++){
+					if(k.get(j-1).id.compareTo(k.get(j).id) > 0) {
+						temp = k.get(j-1);
+						k.set(j-1,k.get(j));
+						k.set(j, temp);
+					}
 				}
 			}
 		}
@@ -183,10 +184,10 @@ public class Initiative {
 		int newID = Integer.parseInt(activeInitiatives.get(activeInitiatives.size()-1).id);
 		newID = Math.max(newID,Integer.parseInt(pendingInitiatives.get(pendingInitiatives.size()-1).id));
 		newID = Math.max(newID,Integer.parseInt(expiredInitiatives.get(expiredInitiatives.size()-1).id));
-		return String.format("%10.0f", newID + 1f);
+		return String.format("%10.0f", newID + 1.0f);
 		}catch(NumberFormatException e) {
 			e.printStackTrace();
-			return String.format("%10.0f", 1f);
+			return String.format("%10.0f", 1.0f);
 		}
 	}
 	

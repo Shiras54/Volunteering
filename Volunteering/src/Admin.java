@@ -6,12 +6,14 @@ public class Admin {
 	
 	public Admin() {}
 	
-	public void approveInitiative(Initiative i) {
+	public static void approveInitiative(Initiative i) {
 		i.setStatus("active");
 	}
-	public void rejectInitiative(Initiative i) {
+	public static void rejectInitiative(Initiative i) {
 		Initiative.pendingInitiatives.remove(Initiative.pendingInitiatives.indexOf(i));
-		
+	}
+	public static void removeUser(User u) {
+		User.users.remove(User.users.indexOf(u));
 	}
 	
 }
