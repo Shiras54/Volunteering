@@ -5,7 +5,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -79,9 +83,24 @@ public class VRlist extends JFrame {
 		lblNewLabel_2.setBounds(350, 11, 76, 67);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton back = new JButton("Back");
-		back.setBounds(322, 229, 89, 23);
-		contentPane.add(back);
+		
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backButtonActionPerformed(e);   
+				}
+			});
+		backButton.setBounds(322, 229, 89, 23);
+		contentPane.add(backButton);
 	}
+	private void backButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Initiativemain().setVisible(true);
+            }
+        });
+        dispose();
+    }
+
 
 }

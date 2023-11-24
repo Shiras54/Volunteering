@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class INAR extends JFrame {
 
@@ -62,38 +64,40 @@ public class INAR extends JFrame {
 		contentPane.add(image);
 		
 		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backButtonActionPerformed(e);   
+			}
+		});
+		
 		backButton.setBounds(10, 229, 89, 23);
 		contentPane.add(backButton);
 		
 		JScrollPane ARtable = new JScrollPane();
-		ARtable.setBounds(28, 112, 241, 77);
+		ARtable.setBounds(28, 112, 358, 77);
 		contentPane.add(ARtable);
 		
 		table = new JTable();
 		ARtable.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
-				"Name", "Expire Date", "Sus.Points"
+				"Name", "Expire Date", "Sus.Points", "Withdraw"
 			}
 		));
 		table.getColumnModel().getColumn(1).setPreferredWidth(86);
-		
-		JButton withdraw1 = new JButton("Withdraw");
-		withdraw1.setBounds(268, 138, 89, 15);
-		contentPane.add(withdraw1);
-		
-		JButton withdraw2 = new JButton("Withdraw");
-		withdraw2.setBounds(268, 151, 89, 15);
-		contentPane.add(withdraw2);
-		
-		JButton withdraw3 = new JButton("Withdraw");
-		withdraw3.setBounds(268, 164, 89, 15);
-		contentPane.add(withdraw3);
 	}
+	private void backButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Vmainpage().setVisible(true);
+            }
+        });
+        dispose();
+    }
 
 }

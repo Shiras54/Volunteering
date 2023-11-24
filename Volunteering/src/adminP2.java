@@ -1,20 +1,16 @@
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.table.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.Toolkit;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
+import java.awt.event.*;
+
 
 public class adminP2 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -49,8 +45,8 @@ public class adminP2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel newInitiative = new JLabel("New initiative:");
-		newInitiative.setBounds(10, 40, 163, 27);
+		JLabel newInitiative = new JLabel("Pending initiatives:");
+		newInitiative.setBounds(10, 11, 231, 27);
 		newInitiative.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
 		contentPane.add(newInitiative);
 		
@@ -62,12 +58,44 @@ public class adminP2 extends JFrame {
 		rejectButton.setBounds(326, 214, 89, 23);
 		contentPane.add(rejectButton);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(55, 98, 314, 83);
-		contentPane.add(textPane);
-		
 		JButton AdminMainPageButton = new JButton("Admin Main Page");
 		AdminMainPageButton.setBounds(152, 214, 138, 23);
 		contentPane.add(AdminMainPageButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(27, 52, 388, 109);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Name", "Number of V", "Time & Date", "Accept", "Remove"
+			}
+		));
+		table.getColumn("Button1").setCellRenderer(new TableCellRenderer());
+		
+		AdminMainPageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	AdminMainPageButtonActionPerformed(evt);
+            }
+        });
+    }
+
+    private void AdminMainPageButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new adminmani().setVisible(true);
+            }
+        });
+        dispose();
+    }
 	}
-}
+
