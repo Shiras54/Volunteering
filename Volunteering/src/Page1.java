@@ -84,5 +84,6 @@ public class Page1 extends JFrame {
 		Application.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
 		Application.setBounds(135, 51, 112, 28);
 		contentPane.add(Application);
+		setVisible(true);
 	}
 }

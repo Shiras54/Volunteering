@@ -189,7 +189,7 @@ public class User {
 	
 	public String createID() {
 		User.sortUsers();
-		return String.format("%10.0f", Integer.parseInt(users.get(users.size()-1).id) + 1);
+		return String.format("%10.0f", (float)(Integer.parseInt(users.get(users.size()-1).id) + 1));
 	}
 	
 	public String getId() {return id;}

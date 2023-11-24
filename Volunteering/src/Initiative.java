@@ -17,18 +17,32 @@ public class Initiative {
 
 	
 	public Initiative() {
+		createID();
 		setName("1");
 		setDate("11/11/1111 11:11:11");
 		setDescription("111");
 		setStatus("pending");
+		setTime(2);
 		pendingInitiatives.add(this);
 	}
-	public Initiative(String name, String date, String description, String status, int credit, int time, List<User> volunteer, User initiator) {
+	public Initiative(String name, String date, String description, int credit, int time, User initiator) {
+		createID();
 		setName(name);
 		setDate(date);
 		setDescription(description);
 		setStatus("pending");
 		setTime(time);
+		setInitiator(initiator);
+		pendingInitiatives.add(this);
+	}
+	public Initiative(String id,String name, String date, String status, String description, int credit, int time, User initiator) {
+		setId(id);
+		setName(name);
+		setDate(date);
+		setDescription(description);
+		setStatus(status);
+		setTime(time);
+		setInitiator(initiator);
 		pendingInitiatives.add(this);
 	}
 	public Initiative(Scanner fin) {
@@ -36,7 +50,7 @@ public class Initiative {
 	}
 	
 	public String toString(String file) {
-		String s = String.format("%s %s %s %s [%s] %d %s ",id, name, time, status, description, credit, getDateAsString(),initiator.getId());
+		String s = String.format("%s %s %s %s [ %s ] %d %s ",id, name, time, status, description, credit, getDateAsString(),initiator.getId());
 		for(User x:volunteers) {
 			s+=x.getId() + " ";
 		}
@@ -98,7 +112,16 @@ public class Initiative {
 		setId(fin.next());
 		setName(fin.next());
 		setStatus(fin.next());
-		setDescription(fin.next());
+		String description = fin.next();
+		description = "";
+		while(true) {
+			if(fin.next().equals("]")) {
+				break;
+			}else {
+				description += fin.next();
+			}
+		}
+		setDescription(description);
 		setCredit(fin.nextInt());
 		setDate(fin.next());
 		setInitiator(User.searchForUser(fin.next()));
@@ -150,13 +173,18 @@ public class Initiative {
 
 	
 	public String createID() {
+		try {
 		sortInitiatives(activeInitiatives);
 		sortInitiatives(pendingInitiatives);
 		sortInitiatives(expiredInitiatives);
 		int newID = Integer.parseInt(activeInitiatives.get(activeInitiatives.size()-1).id);
 		newID = Math.max(newID,Integer.parseInt(pendingInitiatives.get(pendingInitiatives.size()-1).id));
 		newID = Math.max(newID,Integer.parseInt(expiredInitiatives.get(expiredInitiatives.size()-1).id));
-		return String.format("%10.0f", newID + 1);
+		return String.format("%10.0f", newID + 1f);
+		}catch(NumberFormatException e) {
+			e.printStackTrace();
+			return String.format("%10.0f", 1f);
+		}
 	}
 	
 	public int getTime() {return time;}

@@ -1,8 +1,8 @@
 
 public class Admin {
-	private String name = "admin";
-	private String id = "0";
-	private String password = "admin2023";
+	private static final String name = "admin";
+	private static final String id = "0000000000";
+	private static final String password = "admin2023";
 	
 	public Admin() {}
 	
