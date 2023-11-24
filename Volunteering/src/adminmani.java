@@ -118,7 +118,24 @@ public class adminmani extends JFrame {
         });
         Exitbutton.setBounds(10, 272, 89, 23);
         contentPane.add(Exitbutton);
-
+        
+        JButton pendingI = new JButton("Pending Initiatives");
+        pendingI.setBounds(389, 272, 159, 23);
+        contentPane.add(pendingI);
+        
+        pendingI.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	pendingIActionPerformed(evt);
+            }
+        });
         setVisible(true);
+    }
+    private void pendingIActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new adminP2().setVisible(true);
+            }
+        });
+        dispose();
     }
 }

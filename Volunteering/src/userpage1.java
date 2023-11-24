@@ -8,6 +8,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 
 public class userpage1 extends JFrame {
@@ -73,12 +76,6 @@ public class userpage1 extends JFrame {
 		loginButton.setBounds(22, 213, 89, 23);
 		contentPane.add(loginButton);
 		
-		JLabel SignUp = new JLabel("Sign Up");
-		SignUp.setFont(new Font("Tahoma", Font.ITALIC, 16));
-		SignUp.setForeground(Color.BLUE);
-		SignUp.setBounds(306, 215, 77, 21);
-		contentPane.add(SignUp);
-		
 		nameTF = new JTextField();
 		nameTF.setBounds(147, 83, 175, 20);
 		contentPane.add(nameTF);
@@ -88,6 +85,41 @@ public class userpage1 extends JFrame {
 		PassTF.setColumns(10);
 		PassTF.setBounds(147, 153, 175, 20);
 		contentPane.add(PassTF);
+		
+		JButton Signup = new JButton("Sign Up");
+		Signup.setBounds(295, 213, 89, 23);
+		contentPane.add(Signup);
+		
+		Signup.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	SignupActionPerformed(evt);
+            }
+        });
+		
+		JButton backButton = new JButton("Back");
+		backButton.setBounds(321, 28, 89, 23);
+		contentPane.add(backButton);
+		
+		backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	backButtonActionPerformed(evt);
+            }
+        });
 	}
-
+    private void backButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Page1().setVisible(true);
+            }
+        });
+        dispose();
+    }
+    private void SignupActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Usersignup().setVisible(true);
+            }
+        });
+        dispose();
+    }
 }

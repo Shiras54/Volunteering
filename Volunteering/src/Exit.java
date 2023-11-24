@@ -5,9 +5,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import javax.swing.JButton;
 
 public class Exit extends JFrame {
 
@@ -55,6 +59,23 @@ public class Exit extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon("vv.png"));
 		lblNewLabel_1.setBounds(138, 76, 147, 150);
 		contentPane.add(lblNewLabel_1);
+		
+		JButton login = new JButton("Log in");
+		login.setBounds(321, 217, 89, 23);
+		contentPane.add(login);
+		
+        login.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 	}
-
+    private void  loginButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Page1().setVisible(true);
+            }
+        });
+        dispose();
+    }
 }

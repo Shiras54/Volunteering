@@ -58,17 +58,60 @@ public class useroptions extends JFrame {
 		createIN.setBounds(108, 81, 191, 64);
 		contentPane.add(createIN);
 		
+		createIN.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	createINButtonActionPerformed(evt);
+            }
+        });
+		
 		JButton Volunteer = new JButton("Volunteer");
 		Volunteer.setBounds(108, 175, 191, 64);
 		contentPane.add(Volunteer);
 		
+		Volunteer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	VolunteerButtonActionPerformed(evt);
+            }
+        });
+		
+		
 		JButton Exit = new JButton("Exit");
 		Exit.setBounds(313, 150, 113, 23);
 		contentPane.add(Exit);
+		
+		Exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	ExitButtonActionPerformed(evt);
+            }
+        });
 		
 		JLabel image = new JLabel("New label");
 		image.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\opv.png"));
 		image.setBounds(352, 22, 63, 64);
 		contentPane.add(image);
 	}
+    private void createINButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Initiativemain().setVisible(true);
+            }
+        });
+        dispose();
+    }
+    private void VolunteerButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Vmainpage().setVisible(true);
+            }
+        });
+        dispose();
+    }
+    private void ExitButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Exit().setVisible(true);
+            }
+        });
+        dispose();
+    }
 }

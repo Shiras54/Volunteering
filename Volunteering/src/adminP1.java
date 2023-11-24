@@ -72,9 +72,18 @@ public class adminP1 extends JFrame {
         loginButton.setBounds(314, 217, 89, 23);
         contentPane.add(loginButton);
         
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(43, 217, 89, 23);
+        contentPane.add(backButton);
+        
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 loginButtonActionPerformed(evt);
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	backButtonActionPerformed(evt);
             }
         });
     }
@@ -83,6 +92,14 @@ public class adminP1 extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new adminP2().setVisible(true);
+            }
+        });
+        dispose();
+    }
+    private void backButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Page1().setVisible(true);
             }
         });
         dispose();

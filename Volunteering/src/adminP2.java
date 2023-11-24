@@ -50,20 +50,12 @@ public class adminP2 extends JFrame {
 		newInitiative.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
 		contentPane.add(newInitiative);
 		
-		JButton acceptButton = new JButton("Accept");
-		acceptButton.setBounds(27, 214, 89, 23);
-		contentPane.add(acceptButton);
-		
-		JButton rejectButton = new JButton("Reject");
-		rejectButton.setBounds(326, 214, 89, 23);
-		contentPane.add(rejectButton);
-		
 		JButton AdminMainPageButton = new JButton("Admin Main Page");
-		AdminMainPageButton.setBounds(152, 214, 138, 23);
+		AdminMainPageButton.setBounds(130, 212, 138, 23);
 		contentPane.add(AdminMainPageButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(27, 52, 388, 109);
+		scrollPane.setBounds(20, 49, 388, 109);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -80,13 +72,13 @@ public class adminP2 extends JFrame {
 				"Name", "Number of V", "Time & Date", "Accept", "Remove"
 			}
 		));
-		table.getColumn("Button1").setCellRenderer(new TableCellRenderer());
 		
 		AdminMainPageButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	AdminMainPageButtonActionPerformed(evt);
             }
         });
+		setVisible(true);
     }
 
     private void AdminMainPageButtonActionPerformed(ActionEvent evt) {

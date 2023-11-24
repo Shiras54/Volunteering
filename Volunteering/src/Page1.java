@@ -1,16 +1,10 @@
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import java.awt.Font;
-import java.awt.Color;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Toolkit;
 
 public class Page1 extends JFrame {
@@ -44,50 +38,6 @@ public class Page1 extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-<<<<<<< HEAD
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(335, 21, 0, 0);
-		contentPane.add(lblNewLabel);
-		
-		JLabel admin = new JLabel("Admin");
-		admin.setFont(new Font("Tahoma", Font.BOLD, 15));
-		admin.setBounds(39, 209, 49, 14);
-		contentPane.add(admin);
-		
-		JLabel user = new JLabel("User");
-		user.setFont(new Font("Tahoma", Font.BOLD, 15));
-		user.setBounds(308, 209, 49, 14);
-		contentPane.add(user);
-		
-		JButton adminButton = new JButton("New button");
-		adminButton.setForeground(Color.WHITE);
-		adminButton.setBackground(Color.WHITE);
-		adminButton.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\use.png"));
-		adminButton.setBounds(27, 119, 72, 74);
-		contentPane.add(adminButton);
-		
-		JButton userButton = new JButton("New button");
-		userButton.setBackground(Color.WHITE);
-		userButton.setForeground(Color.WHITE);
-		userButton.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\usx.png"));
-		userButton.setBounds(293, 119, 72, 74);
-		contentPane.add(userButton);
-		
-		JLabel KUV = new JLabel("KU Volunteer for the Earth ");
-		KUV.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		KUV.setBounds(90, 11, 245, 46);
-		contentPane.add(KUV);
-		
-		JLabel Application = new JLabel("Application ");
-		Application.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		Application.setBounds(135, 51, 112, 28);
-		contentPane.add(Application);
-		setVisible(true);
-	}
-=======
         JLabel admin = new JLabel("Admin");
         admin.setFont(new Font("Tahoma", Font.BOLD, 15));
         admin.setBounds(39, 209, 49, 14);
@@ -133,6 +83,8 @@ public class Page1 extends JFrame {
         Application.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
         Application.setBounds(135, 51, 112, 28);
         contentPane.add(Application);
+
+        setVisible(true);
     }
 
     private void adminButtonActionPerformed(ActionEvent evt) {
@@ -152,5 +104,4 @@ public class Page1 extends JFrame {
         });
         dispose();
     }
->>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 }
