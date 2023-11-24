@@ -10,7 +10,8 @@ public class Admin {
 		i.setStatus("active");
 	}
 	public void rejectInitiative(Initiative i) {
-		i = null;
+		Initiative.pendingInitiatives.remove(Initiative.pendingInitiatives.indexOf(i));
+		
 	}
 	
 }

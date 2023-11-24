@@ -79,18 +79,45 @@ public class adminmani extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
+<<<<<<< HEAD
 			new Object[][] {
 				{"", null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 			},
+=======
+			new Object[Initiative.pendingInitiatives.size()][3],
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 			new String[] {
 				"Name", "Number of Volunteers", "Time & Date", "Description", "Remove"
 			}
 		));
 		table.getColumnModel().getColumn(1).setPreferredWidth(118);
+<<<<<<< HEAD
 		table.getColumnModel().getColumn(3).setPreferredWidth(82);
 		table.getColumnModel().getColumn(4).setPreferredWidth(78);
+=======
+		
+		JButton d2 = new JButton("D");
+		d2.setBounds(272, 177, 89, 16);
+		contentPane.add(d2);
+		
+		JButton d3 = new JButton("D");
+		d3.setBounds(272, 197, 89, 16);
+		contentPane.add(d3);
+		
+		JButton r2 = new JButton("R");
+		r2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		r2.setBounds(360, 177, 76, 16);
+		contentPane.add(r2);
+		
+		JButton r3 = new JButton("R");
+		r3.setBounds(360, 197, 76, 16);
+		contentPane.add(r3);
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 		
 		JLabel image = new JLabel("New label");
 		image.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\sr.png"));
@@ -100,5 +127,10 @@ public class adminmani extends JFrame {
 		JButton Exitbutton = new JButton("Exit");
 		Exitbutton.setBounds(10, 272, 89, 23);
 		contentPane.add(Exitbutton);
+<<<<<<< HEAD
+=======
+		
+		setVisible(true);
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 	}
 }

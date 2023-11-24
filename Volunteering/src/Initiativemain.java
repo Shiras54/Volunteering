@@ -133,10 +133,19 @@ public class Initiativemain extends JFrame {
 		JButton VR1 = new JButton("V");
 		VR1.setBounds(348, 216, 78, 23);
 		contentPane.add(VR1);
-		
+		VR1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	VR1ActionPerformed(evt);
+            }
+        });
 		JButton VR2 = new JButton("V");
 		VR2.setBounds(348, 233, 78, 19);
 		contentPane.add(VR2);
+		VR2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	VR2ActionPerformed(evt);
+            }
+        });
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\ini.png"));
@@ -164,6 +173,22 @@ public class Initiativemain extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddInitiativee().setVisible(true);
+            }
+        });
+        dispose();
+    }
+	private void VR1ActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VRlist().setVisible(true);
+            }
+        });
+        dispose();
+    }
+	private void VR2ActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VRlist2().setVisible(true);
             }
         });
         dispose();
