@@ -1,11 +1,7 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.*;
 import java.time.*;
 import java.time.format.*;
-
-import javax.swing.JButton;
 
 public class Initiative {
 	private String id,name,description,status;
@@ -217,5 +213,5 @@ public class Initiative {
 	public void setInitiator(User initiator) {this.initiator = initiator;}
 	public void setStatus(String status) {this.status = status;}
 	public void setCredit(int credit) {this.credit = credit;}
-	
+
 }

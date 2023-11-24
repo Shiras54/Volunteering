@@ -55,6 +55,9 @@ public class Exit extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon("vv.png"));
 		lblNewLabel_1.setBounds(138, 76, 147, 150);
 		contentPane.add(lblNewLabel_1);
+		
+		Initiative.saveInitiatives();
+		User.saveUsers();
 	}
 
 }

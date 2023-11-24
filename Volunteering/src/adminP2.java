@@ -68,25 +68,27 @@ public class adminP2 extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
+		Object[][] fullTable = new Object[Initiative.pendingInitiatives.size()][5];
+        for (int i = 0;i<Initiative.pendingInitiatives.size();i++) {
+        	fullTable[i][0]=Initiative.pendingInitiatives.get(i).getName();
+        	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getDateAsString();
+        	fullTable[i][2]=Initiative.pendingInitiatives.get(i).getDescription();
+        	fullTable[i][3]= new JButton("Accept");
+        	fullTable[i][4]= new JButton("Remove");
+        }
+		table.setModel(new DefaultTableModel(fullTable,
 			new String[] {
-				"Name", "Number of V", "Time & Date", "Accept", "Remove"
+				"Name", "Description", "Time & Date", "Accept", "Remove"
 			}
 		));
-		table.getColumn("Button1").setCellRenderer(new TableCellRenderer());
+		
 		
 		AdminMainPageButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	AdminMainPageButtonActionPerformed(evt);
             }
         });
+		setVisible(true);
     }
 
     private void AdminMainPageButtonActionPerformed(ActionEvent evt) {

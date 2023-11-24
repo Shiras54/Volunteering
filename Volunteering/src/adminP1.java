@@ -82,9 +82,12 @@ public class adminP1 extends JFrame {
     private void loginButtonActionPerformed(ActionEvent evt) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new adminP2().setVisible(true);
+                if(nameTF.getText().equals(Admin.name) && passTF.getText().equals(Admin.password)) {
+                	new adminP2().setVisible(true);
+                	dispose();
+                }                
             }
         });
-        dispose();
+        
     }
 }
