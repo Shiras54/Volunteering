@@ -10,14 +10,14 @@ public class User {
 	private int points;
 	private Date dob;
 	private DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-	static List<User> users;
+	static List<User> users = new ArrayList<User>();
 	
 	public User() {
 		
 	}
 	
-	public User(boolean t) {
-		this.readFromFile();
+	public User(String line) {
+		this.readFromLine(line);
 	}
 	
 	public User(String name, String dob, String email, String phone, String address, String password) {
@@ -30,42 +30,63 @@ public class User {
 		setPassword(password);
 	}
 	
-	public void saveToFile() {
-		try {
-			PrintWriter fout = new PrintWriter("users.txt");
-			String data = String.format("%s %s %s %s %s %s %d %s %s %s\n",id, name, email, phone, address, password, points, getDobAsString(),initiative1.getId(),initiative2.getId());
-			fout.print(data);
-			fout.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
+	public String toString() {
+			String data = String.format("%s %s %s %s %s %s %d %s %s %s",id, name, email, phone, address, password, points, getDobAsString(),initiative1.getId(),initiative2.getId());
+			for(Initiative x:volunteeringJobs) {
+				data+=x.getId() + " ";
+			}
+			data+="\n";
+			return data;
 	}
 	
-	public void readFromFile() {
-		try {
-			Scanner fin = new Scanner(new FileReader("users.txt"));
-			setId(fin.next());
-			setName(fin.next());
-			setEmail(fin.next());
-			setPhone(fin.next());
-			setAddress(fin.next());
-			setPassword(fin.next());
-			setPoints(fin.nextInt());
-			setDob(fin.next());
-			setInitiative1(Initiative.searchForInitiative(fin.next()));
-			setInitiative2(Initiative.searchForInitiative(fin.next()));
-			fin.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+	public void readFromLine(String line) {
+		Scanner fin = new Scanner(line);
+		setId(fin.next());
+		setName(fin.next());
+		setEmail(fin.next());
+		setPhone(fin.next());
+		setAddress(fin.next());
+		setPassword(fin.next());
+		setPoints(fin.nextInt());
+		setDob(fin.next());
+		String tempId = fin.next();
+		Initiative i1 = Initiative.searchForInitiative(Initiative.activeInitiatives,tempId);
+		if (i1==null) {
+			i1 = Initiative.searchForInitiative(Initiative.pendingInitiatives,tempId);
 		}
+		if (i1==null) {
+			i1 = Initiative.searchForInitiative(Initiative.expiredInitiatives,tempId);
+		}
+		setInitiative1(i1);
+		String tempId2 = fin.next();
+		Initiative i2 = Initiative.searchForInitiative(Initiative.activeInitiatives,tempId2);
+		if (i2==null) {
+			i2 = Initiative.searchForInitiative(Initiative.pendingInitiatives,tempId2);
+		}
+		if (i2==null) {
+			i2 = Initiative.searchForInitiative(Initiative.expiredInitiatives,tempId2);
+		}
+		setInitiative1(i2);
+		while(fin.hasNext()) {
+			String tempId3 = fin.next();
+			Initiative i = Initiative.searchForInitiative(Initiative.activeInitiatives,tempId3);
+			if (i==null) {
+				
+				i = Initiative.searchForInitiative(Initiative.pendingInitiatives,tempId3);
+			}
+			if (i==null) {
+				i = Initiative.searchForInitiative(Initiative.expiredInitiatives,tempId3);
+			}
+			volunteeringJobs.add(i);
+		}
+		fin.close();
 	}
 	
 	public static void readUsers() {
 		try {
 			Scanner fin1 = new Scanner(new FileReader("Users.txt"));
 			while(fin1.hasNextLine()) {
-				users.add(new User(true));
+				users.add(new User(fin1.nextLine()));
 			}
 			fin1.close();
 		} catch (FileNotFoundException e) {
@@ -89,9 +110,11 @@ public class User {
 	public static void saveUsers() {
 		try {
 			PrintWriter fout1 = new PrintWriter("Users.txt");
+			String s = "";
 			for (User u:users) {
-				u.saveToFile();
+				s+=u;
 			}
+			fout1.print(s);
 			fout1.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

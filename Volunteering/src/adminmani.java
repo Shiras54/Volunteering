@@ -85,15 +85,12 @@ public class adminmani extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"", null, null},
-				{null, null, null},
-				{null, null, null},
-			},
+			new Object[Initiative.pendingInitiatives.size()][3],
 			new String[] {
 				"Name", "Number of Volunteers", "Time & Date"
 			}
 		));
+		table.getColumnModel().getColumn(1).setPreferredWidth(118);
 		
 		JButton d2 = new JButton("D");
 		d2.setBounds(272, 177, 89, 16);
@@ -123,7 +120,7 @@ public class adminmani extends JFrame {
 		JButton Exitbutton = new JButton("Exit");
 		Exitbutton.setBounds(10, 229, 89, 23);
 		contentPane.add(Exitbutton);
-		table.getColumnModel().getColumn(1).setPreferredWidth(118);
+		
+		setVisible(true);
 	}
-
 }

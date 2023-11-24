@@ -1,23 +1,12 @@
 
 import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.Window.Type;
 import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JMenuBar;
 import java.awt.Toolkit;
 
 public class Page1 extends JFrame {
