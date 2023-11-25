@@ -13,11 +13,20 @@ public class User {
 	static List<User> users = new ArrayList<User>();
 	
 	public User() {
-		
+		setId(createID());
+		setName("abc");
+		setDob("12/12/2012");
+		setEmail("mm@mm.mm");
+		setPhone("0000000");
+		setAddress("asdasd");
+		setPassword("123");
+		User.saveUsers();
+		Initiative.saveInitiatives();
 	}
 	
 	public User(String line) {
 		this.readFromLine(line);
+		
 	}
 	
 	public User(String name, String dob, String email, String phone, String address, String password) {
@@ -28,12 +37,14 @@ public class User {
 		setPhone(phone);
 		setAddress(address);
 		setPassword(password);
+		User.saveUsers();
+		Initiative.saveInitiatives();
 	}
 	
 	public String toString() {
-			String data = String.format("%s %s %s %s %s %s %d %s %s %s",id, name, email, phone, address, password, points, getDobAsString(),initiative1.getId(),initiative2.getId());
+			String data = String.format("%s\t%s\t%s\t%s\t%s\t%s\t%d\t%s\t%s\t%s",id, name, email, phone, address, password, points, getDobAsString(),initiative1!=null?initiative1.getId():"null",initiative2!=null?initiative2.getId():"null");
 			for(Initiative x:volunteeringJobs) {
-				data+=x.getId() + " ";
+				data+=x.getId() + "\t";
 			}
 			data+="\n";
 			return data;
@@ -50,23 +61,27 @@ public class User {
 		setPoints(fin.nextInt());
 		setDob(fin.next());
 		String tempId = fin.next();
-		Initiative i1 = Initiative.searchForInitiative(Initiative.activeInitiatives,tempId);
-		if (i1==null) {
-			i1 = Initiative.searchForInitiative(Initiative.pendingInitiatives,tempId);
-		}
-		if (i1==null) {
-			i1 = Initiative.searchForInitiative(Initiative.expiredInitiatives,tempId);
-		}
-		setInitiative1(i1);
+		if(!tempId.equals("null")) {
+			Initiative i1 = Initiative.searchForInitiative(Initiative.activeInitiatives,tempId);
+			if (i1==null) {
+				i1 = Initiative.searchForInitiative(Initiative.pendingInitiatives,tempId);
+			}
+			if (i1==null) {
+				i1 = Initiative.searchForInitiative(Initiative.expiredInitiatives,tempId);
+			}
+			setInitiative1(i1);
+		} else {setInitiative1(null);}
 		String tempId2 = fin.next();
-		Initiative i2 = Initiative.searchForInitiative(Initiative.activeInitiatives,tempId2);
-		if (i2==null) {
-			i2 = Initiative.searchForInitiative(Initiative.pendingInitiatives,tempId2);
-		}
-		if (i2==null) {
-			i2 = Initiative.searchForInitiative(Initiative.expiredInitiatives,tempId2);
-		}
-		setInitiative1(i2);
+		if(!tempId.equals("null")) {
+			Initiative i2 = Initiative.searchForInitiative(Initiative.activeInitiatives,tempId2);
+			if (i2==null) {
+				i2 = Initiative.searchForInitiative(Initiative.pendingInitiatives,tempId2);
+			}
+			if (i2==null) {
+				i2 = Initiative.searchForInitiative(Initiative.expiredInitiatives,tempId2);
+			}
+			setInitiative1(i2);
+		} else {setInitiative2(null);}
 		while(fin.hasNext()) {
 			String tempId3 = fin.next();
 			Initiative i = Initiative.searchForInitiative(Initiative.activeInitiatives,tempId3);
@@ -112,7 +127,7 @@ public class User {
 			PrintWriter fout1 = new PrintWriter("Users.txt");
 			String s = "";
 			for (User u:users) {
-				s+=u;
+				s+=u.toString();
 			}
 			fout1.print(s);
 			fout1.close();
@@ -143,25 +158,29 @@ public class User {
 	public void initiate() {
 		if(initiative1==null || initiative2 == null) {
 			if(initiative1==null) {
-				initiative1 = new Initiative();
+				initiative1 = new Initiative(this);
 			} else if (initiative2 == null) {
-				initiative2 = new Initiative();
+				initiative2 = new Initiative(this);
 			}
 		} else if(initiative1.getStatus() == "expired" || initiative2.getStatus() == "expired") {
 			if(initiative1.getStatus() == "expired") {
-				initiative1 = new Initiative();
+				initiative1 = new Initiative(this);
 			} else if (initiative2.getStatus() == "expired") {
-				initiative2 = new Initiative();
+				initiative2 = new Initiative(this);
 			}
 		} else {
 			//temporary
 			JOptionPane.showMessageDialog(new JFrame(),"You do not have a free initiative. Do you want to delete one?");
 		}
+		saveUsers();
+		Initiative.saveInitiatives();
 		
 	}
 	public void volunteer(Initiative i) {
 		volunteeringJobs.add(i);
 		points+=i.getCredit();
+		saveUsers();
+		Initiative.saveInitiatives();
 	}
 	public void withdraw(Initiative i) {
 		boolean found = false;
@@ -176,6 +195,8 @@ public class User {
 		} else {
 			JOptionPane.showMessageDialog(new JFrame(),"You did not volunteer in this initiative."); 
 		}
+		saveUsers();
+		Initiative.saveInitiatives();
 	}
 	public void terminate(Initiative i) {
 		if(i.equals(initiative1)) {
@@ -185,21 +206,31 @@ public class User {
 		} else {
 			JOptionPane.showMessageDialog(new JFrame(),"This is not your initiative.");
 		}
+		saveUsers();
+		Initiative.saveInitiatives();
 	}
 	
-	public String createID() {
+	public static String createID() {
 		User.sortUsers();
-		return String.format("%10.0f", (float)(Integer.parseInt(users.get(users.size()-1).id) + 1));
+		if (users.size()>0) {
+			return String.format("%10.0f", (float)(Integer.parseInt(users.get(users.size()-1).id) + 1));
+		} else {
+			return String.format("%10.0f",1.0f);
+		}
 	}
 	
 	public String getId() {return id;}
 	public void setId(String id) {
-		this.id = id;
+		if(!id.matches(".*[^0-9].*")) {
+			this.id = id;
 		}
+	}
 	public String getName() {return name;}
 	public void setName(String name) {
-		if(name.contains("")) {	
+		if(!name.matches(".*[^a-zA-Z].*")) {	
 			this.name = name;
+		} else {
+			this.name = "John Smith";
 		}
 	}	
 	public Date getDob() {return dob;}
@@ -217,18 +248,30 @@ public class User {
 	public void setEmail(String email) {
 		if(email.contains("@")&&email.contains(".")) {
 			this.email = email;
+		} else {
+			this.email = "email@ku.ac.ae";
 		}
 	}
 	public String getPhone() {return phone;}
-	public void setPhone(String phone) {this.phone = phone;}
+	public void setPhone(String phone) {
+		if(!phone.matches(".*[a-z].*")) {
+			this.phone = phone;
+		}  else {
+			this.phone = "+971555555555";
+		}
+	}
 	public String getAddress() {return address;}
 	public void setAddress(String address) {
 		this.address = address;
 		}
 	public String getPassword() {return password;}
 	public void setPassword(String password) {
-		this.password = password;
+		if(password.length()>8 && password.length()<20) {
+			this.password = password;
+		} else {
+			this.password = "password";
 		}
+	}
 	public Initiative getInitiative1() {return initiative1;}
 	public void setInitiative1(Initiative initiative) {
 		this.initiative1 = initiative;

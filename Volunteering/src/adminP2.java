@@ -14,6 +14,8 @@ public class adminP2 extends JFrame implements ActionListener,ListSelectionListe
 	private JButton acceptButton,rejectButton,AdminMainPageButton;
 	private JLabel newInitiative;
 	private JScrollPane scrollPane;
+	private DefaultTableModel model;
+	private Object[][] fullTable;
 	/**
 	 * Launch the application.
 	 */
@@ -80,7 +82,7 @@ public class adminP2 extends JFrame implements ActionListener,ListSelectionListe
         	fullTable[i][3]=Initiative.pendingInitiatives.get(i).getDescription();
         	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getCredit();
         }
-        DefaultTableModel model = new DefaultTableModel(fullTable,
+        model = new DefaultTableModel(fullTable,
     			new String[] {"ID","Name", "Description", "Time & Date", "credit"}) {
 					private static final long serialVersionUID = 1L;
 					public boolean isCellEditable(int row, int column) {
@@ -117,16 +119,54 @@ public class adminP2 extends JFrame implements ActionListener,ListSelectionListe
 	public void actionPerformed(ActionEvent e) {
 		EventQueue.invokeLater(new Runnable() {
             public void run() {
-            	if(table.getSelectedRow()>0 && e.getSource()==acceptButton) {
+            	if(table.getSelectedRow()>=0 && e.getSource()==acceptButton) {
             		Admin.approveInitiative(Initiative.searchForInitiative(Initiative.pendingInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
+            		
             	}
-            	if(table.getSelectedRow()>0 && e.getSource()==rejectButton) {
+            	if(table.getSelectedRow()>=0 && e.getSource()==rejectButton) {
             		Admin.rejectInitiative(Initiative.searchForInitiative(Initiative.pendingInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
+            		
             	}
-            	table.repaint();
+            	resetTable();
+            	
             }
 		
 		});		
+	}
+	public void resetTable() {
+		if (model.getRowCount() >= 0) {
+		     for (int i = model.getRowCount() - 1; i > -1; i--) {
+		         model.removeRow(i);
+		     }
+		 }
+		fullTable = new Object[Initiative.pendingInitiatives.size()][5];
+        for (int i = 0;i<Initiative.pendingInitiatives.size();i++) {
+        	fullTable[i][0]=Initiative.pendingInitiatives.get(i).getId();
+        	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getName();
+        	fullTable[i][2]=Initiative.pendingInitiatives.get(i).getDateAsString();
+        	fullTable[i][3]=Initiative.pendingInitiatives.get(i).getDescription();
+        	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getCredit();
+        }
+        model = new DefaultTableModel(fullTable,
+    			new String[] {"ID","Name", "Description", "Time & Date", "credit"}) {
+					private static final long serialVersionUID = 1L;
+					public boolean isCellEditable(int row, int column) {
+    			       return false;
+    			    }};
+		table.setModel(model);
+		for(Initiative i: Initiative.activeInitiatives) {
+			System.out.print(i);
+		}
+		System.out.print("\n----\n");
+		for(Initiative i: Initiative.pendingInitiatives) {
+			System.out.print(i);
+		}
+		System.out.print("\n----\n");
+		for(Initiative i: Initiative.expiredInitiatives) {
+			System.out.print(i);
+		}
+		System.out.print("\n--------\n");
+		
 	}
 }
 
