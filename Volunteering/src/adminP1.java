@@ -83,15 +83,15 @@ public class adminP1 extends JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	backButtonActionPerformed(evt);
             }
         });
-=======
+
         setVisible(true);
->>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
+
     }
 
     private void loginButtonActionPerformed(ActionEvent evt) {
@@ -112,14 +112,13 @@ public class adminP1 extends JFrame {
     private void backButtonActionPerformed(ActionEvent evt) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-<<<<<<< HEAD
+
                 new Page1().setVisible(true);
-=======
+
                 if(nameTF.getText().equals(Admin.name) && passTF.getText().equals(Admin.password)) {
                 	new adminP2().setVisible(true);
                 	dispose();
                 }                
->>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
             }
         });
         
