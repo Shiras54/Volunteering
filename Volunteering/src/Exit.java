@@ -60,6 +60,7 @@ public class Exit extends JFrame {
 		lblNewLabel_1.setBounds(138, 76, 147, 150);
 		contentPane.add(lblNewLabel_1);
 		
+<<<<<<< HEAD
 		JButton login = new JButton("Log in");
 		login.setBounds(321, 217, 89, 23);
 		contentPane.add(login);
@@ -69,6 +70,10 @@ public class Exit extends JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
+=======
+		Initiative.saveInitiatives();
+		User.saveUsers();
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 	}
     private void  loginButtonActionPerformed(ActionEvent evt) {
         EventQueue.invokeLater(new Runnable() {

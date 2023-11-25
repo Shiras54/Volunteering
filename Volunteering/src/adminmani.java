@@ -70,16 +70,21 @@ public class adminmani extends JFrame {
         // Replace the dummy data with your actual data
         table = new JTable();
         scrollPane.setViewportView(table);
-        table.setModel(new DefaultTableModel(
-            new Object[][] {
-                {"Name 1", 5, "Date & Time 1", "Description 1", "Remove"},
-                {"Name 2", 8, "Date & Time 2", "Description 2", "Remove"},
-                {"Name 3", 3, "Date & Time 3", "Description 3", "Remove"},
-            },
-            new String[] {
-                "Name", "Number of Volunteers", "Time & Date", "Description", "Remove"
-            }
-        ));
+        Object[][] fullTable = new Object[Initiative.activeInitiatives.size()][5];
+        for (int i = 0;i<Initiative.activeInitiatives.size();i++) {
+        	fullTable[i][0]=Initiative.activeInitiatives.get(i).getName();
+        	fullTable[i][1]=Initiative.activeInitiatives.get(i).getVolunteers().size();
+        	fullTable[i][2]=Initiative.activeInitiatives.get(i).getDateAsString();
+        	fullTable[i][3]=Initiative.activeInitiatives.get(i).getDescription();
+        	fullTable[i][4]= new JButton("Remove");
+        }
+        DefaultTableModel model = new DefaultTableModel(fullTable,
+    			new String[] {"Name", "Number of Volunteers", "Time & Date", "Description", "Remove"}) {
+					private static final long serialVersionUID = 1L;
+					public boolean isCellEditable(int row, int column) {
+    			       return false;
+    			    }};
+        table.setModel(model);
         table.getColumnModel().getColumn(1).setPreferredWidth(118);
         table.getColumnModel().getColumn(3).setPreferredWidth(82);
         table.getColumnModel().getColumn(4).setPreferredWidth(78);

@@ -1,17 +1,19 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.event.*;
 import javax.swing.table.*;
-
 import java.awt.event.*;
 
 
-public class adminP2 extends JFrame {
+public class adminP2 extends JFrame implements ActionListener,ListSelectionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-
+	private JButton acceptButton,rejectButton,AdminMainPageButton;
+	private JLabel newInitiative;
+	private JScrollPane scrollPane;
 	/**
 	 * Launch the application.
 	 */
@@ -45,21 +47,42 @@ public class adminP2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel newInitiative = new JLabel("Pending initiatives:");
+		newInitiative = new JLabel("Pending initiatives:");
 		newInitiative.setBounds(10, 11, 231, 27);
 		newInitiative.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
 		contentPane.add(newInitiative);
 		
+<<<<<<< HEAD
 		JButton AdminMainPageButton = new JButton("Admin Main Page");
 		AdminMainPageButton.setBounds(130, 212, 138, 23);
+=======
+		acceptButton = new JButton("Accept");
+		acceptButton.setBounds(27, 214, 89, 23);
+		contentPane.add(acceptButton);
+		acceptButton.addActionListener(this);
+		
+		rejectButton = new JButton("Reject");
+		rejectButton.setBounds(326, 214, 89, 23);
+		contentPane.add(rejectButton);
+		rejectButton.addActionListener(this);
+		
+		AdminMainPageButton = new JButton("Admin Main Page");
+		AdminMainPageButton.setBounds(152, 214, 138, 23);
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 		contentPane.add(AdminMainPageButton);
 		
+<<<<<<< HEAD
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(20, 49, 388, 109);
+=======
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(27, 52, 388, 109);
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+<<<<<<< HEAD
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
@@ -72,6 +95,26 @@ public class adminP2 extends JFrame {
 				"Name", "Number of V", "Time & Date", "Accept", "Remove"
 			}
 		));
+=======
+		Object[][] fullTable = new Object[Initiative.pendingInitiatives.size()][5];
+        for (int i = 0;i<Initiative.pendingInitiatives.size();i++) {
+        	fullTable[i][0]=Initiative.pendingInitiatives.get(i).getId();
+        	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getName();
+        	fullTable[i][2]=Initiative.pendingInitiatives.get(i).getDateAsString();
+        	fullTable[i][3]=Initiative.pendingInitiatives.get(i).getDescription();
+        	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getCredit();
+        }
+        DefaultTableModel model = new DefaultTableModel(fullTable,
+    			new String[] {"ID","Name", "Description", "Time & Date", "credit"}) {
+					private static final long serialVersionUID = 1L;
+					public boolean isCellEditable(int row, int column) {
+    			       return false;
+    			    }};
+		table.setModel(model);
+		
+	    table.getSelectionModel().addListSelectionListener(this);
+		
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 		
 		AdminMainPageButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -89,5 +132,26 @@ public class adminP2 extends JFrame {
         });
         dispose();
     }
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		EventQueue.invokeLater(new Runnable() {
+            public void run() {
+            	if(table.getSelectedRow()>0 && e.getSource()==acceptButton) {
+            		Admin.approveInitiative(Initiative.searchForInitiative(Initiative.pendingInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
+            	}
+            	if(table.getSelectedRow()>0 && e.getSource()==rejectButton) {
+            		Admin.rejectInitiative(Initiative.searchForInitiative(Initiative.pendingInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
+            	}
+            	table.repaint();
+            }
+		
+		});		
+	}
+}
 
