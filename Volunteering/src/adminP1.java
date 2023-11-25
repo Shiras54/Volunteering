@@ -89,10 +89,10 @@ public class adminP1 extends JFrame {
             	backButtonActionPerformed(evt);
             }
         });
-
         setVisible(true);
 
     }
+}
 
     private void loginButtonActionPerformed(ActionEvent evt) {
     	EventQueue.invokeLater(new Runnable() {
@@ -118,8 +118,10 @@ public class adminP1 extends JFrame {
                 if(nameTF.getText().equals(Admin.name) && passTF.getText().equals(Admin.password)) {
                 	new adminP2().setVisible(true);
                 	dispose();
+                } else {
+                	JOptionPane.showMessageDialog(null,"Username and/or Password is incorrect!","Warning",JOptionPane.ERROR_MESSAGE);
+                }
                 }                
-            }
         });
         
     }

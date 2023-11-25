@@ -17,23 +17,42 @@ public class Initiative {
 
 	
 	public Initiative() {
-		createID();
+		setId(createID());
 		setName("1");
 		setDate("11/11/1111 11:11:11");
 		setDescription("111");
 		setStatus("pending");
 		setTime(2);
+		setInitiator(new User());
 		pendingInitiatives.add(this);
+		User.saveUsers();
+		Initiative.saveInitiatives();
+	}
+	public Initiative(User u) {
+		setId(createID());
+		setName("1");
+		setDate("11/11/1111 11:11:11");
+		setDescription("111");
+		setStatus("pending");
+		setTime(2);
+		setCredit(10);
+		setInitiator(u);
+		pendingInitiatives.add(this);
+		User.saveUsers();
+		Initiative.saveInitiatives();
 	}
 	public Initiative(String name, String date, String description, int credit, int time, User initiator) {
-		createID();
+		setId(createID());
 		setName(name);
 		setDate(date);
 		setDescription(description);
 		setStatus("pending");
 		setTime(time);
 		setInitiator(initiator);
+		setCredit(credit);
 		pendingInitiatives.add(this);
+		User.saveUsers();
+		Initiative.saveInitiatives();
 	}
 	public Initiative(String id,String name, String date, String status, String description, int credit, int time, User initiator) {
 		setId(id);
@@ -43,42 +62,47 @@ public class Initiative {
 		setStatus(status);
 		setTime(time);
 		setInitiator(initiator);
+		User.saveUsers();
+		Initiative.saveInitiatives();
 	}
 	public Initiative(Scanner fin) {
 		readFromLine(fin.nextLine());
 	}
 	
-	public String toString(String file) {
-		String s = String.format("%s %s %s %s [ %s ] %d %s ",id, name, time, status, description, credit, getDateAsString(),initiator.getId());
+	public String toString() {
+		String s = String.format("%s\t%s\t%s\t%s\t[ %s ]\t%d\t%s\t",id, name, time, status, description, credit, getDateAsString(),initiator.getId());
 		for(User x:volunteers) {
-			s+=x.getId() + " ";
+			s+=x.getId() + "/t";
 		}
 		s+="\n";
 		return s;
 	}
 	
+	
 	public static void saveInitiatives() {
 		try {
 			PrintWriter fout1 = new PrintWriter("pendingInitiatives.txt");
-			PrintWriter fout2 = new PrintWriter("activeInitiatives.txt");
-			PrintWriter fout3 = new PrintWriter("expiredInitiatives.txt");
 			String s1 = "";
-			String s2 = "";
-			String s3 = "";
 			for (Initiative p:pendingInitiatives) {
-				s1+=p;
-			}			
-			for (Initiative p:activeInitiatives) {
-				s2+=p;
-			}			
-			for (Initiative p:expiredInitiatives) {
-				s3+=p;
-			}
+				s1+=p.toString();
+			}	
 			fout1.print(s1);
-			fout2.print(s2);
-			fout3.print(s3);
 			fout1.close();
+			
+			PrintWriter fout2 = new PrintWriter("activeInitiatives.txt");
+			String s2 = "";
+			for (Initiative p:activeInitiatives) {
+				s2+=p.toString();
+			}
+			fout2.print(s2);
 			fout2.close();
+			
+			PrintWriter fout3 = new PrintWriter("expiredInitiatives.txt");
+			String s3 = "";
+			for (Initiative p:expiredInitiatives) {
+				s3+=p.toString();
+			}
+			fout3.print(s3);
 			fout3.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -144,6 +168,8 @@ public class Initiative {
 				high = middle-1;
 			} else if(id.compareTo(idSearch)>0) {
 				low = middle+1;
+			} else if(!id.equals(idSearch) && low==high) {
+				break;
 			}
 		}
 		return null;
@@ -176,15 +202,15 @@ public class Initiative {
 	
 
 	
-	public String createID() {
+	public static String createID() {
 		try {
-		sortInitiatives(activeInitiatives);
-		sortInitiatives(pendingInitiatives);
-		sortInitiatives(expiredInitiatives);
-		int newID = Integer.parseInt(activeInitiatives.get(activeInitiatives.size()-1).id);
-		newID = Math.max(newID,Integer.parseInt(pendingInitiatives.get(pendingInitiatives.size()-1).id));
-		newID = Math.max(newID,Integer.parseInt(expiredInitiatives.get(expiredInitiatives.size()-1).id));
-		return String.format("%10.0f", newID + 1.0f);
+			sortInitiatives(activeInitiatives);
+			sortInitiatives(pendingInitiatives);
+			sortInitiatives(expiredInitiatives);
+			int newID = activeInitiatives.size()>0?Integer.parseInt(activeInitiatives.get(activeInitiatives.size()-1).id):1;
+			newID = Math.max(newID,pendingInitiatives.size()>0?Integer.parseInt(pendingInitiatives.get(pendingInitiatives.size()-1).id):newID);
+			newID = Math.max(newID,expiredInitiatives.size()>0?Integer.parseInt(expiredInitiatives.get(expiredInitiatives.size()-1).id):newID);
+			return String.format("%10.0f", newID + 1.0f);
 		}catch(NumberFormatException e) {
 			e.printStackTrace();
 			return String.format("%10.0f", 1.0f);
@@ -192,13 +218,43 @@ public class Initiative {
 	}
 	
 	public int getTime() {return time;}
-	public void setTime(int time) {this.time = time;}
+	public void setTime(int time) {
+		if (time>0) {
+			this.time = time;
+		} else {
+			this.time=1;
+		}
+	}
 	public String getStatus() {return status;}
 	public int getCredit() {return credit;}
+	public void setCredit(int credit) {
+		if (credit>=0) {
+			this.credit = credit;
+		} else {
+			this.credit=0;
+		}			
+	}
+			
 	public String getId() {return id;}
-	public void setId(String id) {this.id = id;}
+	public void setId(String id) {
+		if(!id.matches(".*[^0-9].*")) {
+			if (id.length()==10) {
+				this.id = id;
+			} else {
+				this.id = String.format("%10.0f", Float.parseFloat(id));
+			}
+		} else {
+			createID();
+		}
+		}
 	public String getName() {return name;}
-	public void setName(String name) {this.name = name;}
+	public void setName(String name) {
+		if(!name.matches(".*[^a-zA-Z].*")) {	
+			this.name = name;
+		} else {
+			this.name = "Volunteering #"+id;
+		}
+		}
 	public LocalDateTime getDate() {return date;}
 	public String getDateAsString() {
 		return format.format(date);
@@ -212,7 +268,12 @@ public class Initiative {
 	public void setVolunteers(List<User> volunteers) {this.volunteers = volunteers;}
 	public User getInitiator() {return initiator;}
 	public void setInitiator(User initiator) {this.initiator = initiator;}
-	public void setStatus(String status) {this.status = status;}
-	public void setCredit(int credit) {this.credit = credit;}
+	public void setStatus(String status) {
+		if (status.equals("pending") || status.equals("active") || status.equals("expired"))
+			this.status = status;
+		} else {
+			this.status = "pending";
+		}
+	
 
 }

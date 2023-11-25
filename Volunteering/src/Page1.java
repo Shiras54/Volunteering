@@ -30,6 +30,8 @@ public class Page1 extends JFrame {
     }
 
     public Page1() {
+    	User.readUsers();
+    	Initiative.readInitiatives();
         setTitle("Volunteer For Earth");
         setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
         setForeground(Color.WHITE);
