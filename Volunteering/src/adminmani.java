@@ -48,8 +48,8 @@ public class adminmani extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel searchandedit = new JLabel("Search & Edit");
-        searchandedit.setBounds(207, 11, 170, 27);
+        JLabel searchandedit = new JLabel("Admin Main Page");
+        searchandedit.setBounds(173, 11, 218, 27);
         searchandedit.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
         contentPane.add(searchandedit);
 
@@ -111,13 +111,14 @@ public class adminmani extends JFrame {
         contentPane.add(image);
 
         JButton Exitbutton = new JButton("Exit");
-        Exitbutton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose(); // Close the frame on exit button click
-            }
-        });
         Exitbutton.setBounds(10, 272, 89, 23);
         contentPane.add(Exitbutton);
+        
+        Exitbutton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	ExitbuttonActionPerformed(evt);
+            }
+        });
         
         JButton pendingI = new JButton("Pending Initiatives");
         pendingI.setBounds(389, 272, 159, 23);
@@ -134,6 +135,14 @@ public class adminmani extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new adminP2().setVisible(true);
+            }
+        });
+        dispose();
+    }
+    private void ExitbuttonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Exit().setVisible(true);
             }
         });
         dispose();

@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class EPI extends JFrame {
+public class EPII extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -41,7 +41,7 @@ public class EPI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EPI() {
+	public EPII() {
 		setBackground(Color.LIGHT_GRAY);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setTitle("Volunteer For Earth");
@@ -54,7 +54,7 @@ public class EPI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lbEPI = new JLabel("Edit Personal Info (V)");
+		JLabel lbEPI = new JLabel("Edit Personal Info (I)");
 		lbEPI.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lbEPI.setBounds(94, 11, 244, 27);
 		contentPane.add(lbEPI);
@@ -127,7 +127,7 @@ public class EPI extends JFrame {
             private void  btnNewButtonActionPerformed(ActionEvent evt) {
                 EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        new Vmainpage().setVisible(true);
+                        new Initiativemain().setVisible(true);
                     }
                 });
                 dispose();
@@ -135,7 +135,7 @@ public class EPI extends JFrame {
             private void  btnBackButtonActionPerformed(ActionEvent evt) {
                 EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        new Vmainpage().setVisible(true);
+                        new Initiativemain().setVisible(true);
                     }
                 });
                 dispose();

@@ -67,6 +67,12 @@ public class Initiativemain extends JFrame {
 		editPI.setBounds(10, 91, 144, 23);
 		contentPane.add(editPI);
 		
+		editPI.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	editPIActionPerformed(evt);
+            }
+        });
+		
 		JButton AddNewInitiative = new JButton("Add new initiative");
 		AddNewInitiative.setBounds(10, 57, 144, 23);
 		contentPane.add(AddNewInitiative);
@@ -189,6 +195,14 @@ public class Initiativemain extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VRlist2().setVisible(true);
+            }
+        });
+        dispose();
+    }
+	private void editPIActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new EPII().setVisible(true);
             }
         });
         dispose();
