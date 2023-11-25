@@ -13,7 +13,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class EditingInitiative extends JFrame {
+public class Editini2 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -41,7 +41,7 @@ public class EditingInitiative extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditingInitiative() {
+	public Editini2 () {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setTitle("Volunteer For Earth");
 		setBackground(Color.LIGHT_GRAY);
@@ -59,7 +59,7 @@ public class EditingInitiative extends JFrame {
 		Inname.setFont(new Font("Tahoma", Font.BOLD, 22));
 		contentPane.add(Inname);
 		
-		JLabel editingIn = new JLabel("Editing initiative (1)");
+		JLabel editingIn = new JLabel("Editing initiative (2)");
 		editingIn.setBounds(95, 11, 234, 27);
 		editingIn.setFont(new Font("Tahoma", Font.BOLD, 22));
 		contentPane.add(editingIn);

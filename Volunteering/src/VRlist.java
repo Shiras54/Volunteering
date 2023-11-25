@@ -53,9 +53,9 @@ public class VRlist extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel VRlist = new JLabel("Volunteers Registered List");
+		JLabel VRlist = new JLabel("Volunteers Registered List (1)");
 		VRlist.setFont(new Font("Tahoma", Font.BOLD, 22));
-		VRlist.setBounds(38, 7, 336, 51);
+		VRlist.setBounds(10, 11, 336, 51);
 		contentPane.add(VRlist);
 		
 		JLabel lblNewLabel_1 = new JLabel("1.");

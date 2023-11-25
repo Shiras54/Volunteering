@@ -74,23 +74,56 @@ public class adminP1 extends JFrame {
         loginButton.setBounds(314, 217, 89, 23);
         contentPane.add(loginButton);
         
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(43, 217, 89, 23);
+        contentPane.add(backButton);
+        
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 loginButtonActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	backButtonActionPerformed(evt);
+            }
+        });
         setVisible(true);
-    }
+}
 
     private void loginButtonActionPerformed(ActionEvent evt) {
+    	EventQueue.invokeLater(new Runnable() {
+            public void run() {
+            	
+            	if (nameTF.equals("admin")&& passTF.equals("admin2023")) {
+                new adminP2().setVisible(true);
+                dispose();
+                }
+            	else {
+            		JOptionPane.showMessageDialog(null,"the name and/or Password is wrong","Warning",JOptionPane.ERROR_MESSAGE);
+            	}
+            }
+        });
+        dispose();
+    }
+    private void backButtonActionPerformed(ActionEvent evt) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
+<<<<<<< HEAD
+                new Page1().setVisible(true);
+=======
                 if(nameTF.getText().equals(Admin.name) && passTF.getText().equals(Admin.password)) {
                 	new adminP2().setVisible(true);
                 	dispose();
+<<<<<<< HEAD
                 } else {
                 	JOptionPane.showMessageDialog(null,"Username and/or Password is incorrect!","Warning",JOptionPane.ERROR_MESSAGE);
                 }
+=======
+                }                
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
             }
         });
         

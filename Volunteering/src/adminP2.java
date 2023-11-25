@@ -54,6 +54,10 @@ public class adminP2 extends JFrame implements ActionListener,ListSelectionListe
 		newInitiative.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
 		contentPane.add(newInitiative);
 		
+<<<<<<< HEAD
+		JButton AdminMainPageButton = new JButton("Admin Main Page");
+		AdminMainPageButton.setBounds(130, 212, 138, 23);
+=======
 		acceptButton = new JButton("Accept");
 		acceptButton.setBounds(27, 214, 89, 23);
 		contentPane.add(acceptButton);
@@ -66,14 +70,34 @@ public class adminP2 extends JFrame implements ActionListener,ListSelectionListe
 		
 		AdminMainPageButton = new JButton("Admin Main Page");
 		AdminMainPageButton.setBounds(152, 214, 138, 23);
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 		contentPane.add(AdminMainPageButton);
 		
+<<<<<<< HEAD
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 49, 388, 109);
+=======
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(27, 52, 388, 109);
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+<<<<<<< HEAD
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Name", "Number of V", "Time & Date", "Accept", "Remove"
+			}
+		));
+=======
 		Object[][] fullTable = new Object[Initiative.pendingInitiatives.size()][5];
         for (int i = 0;i<Initiative.pendingInitiatives.size();i++) {
         	fullTable[i][0]=Initiative.pendingInitiatives.get(i).getId();
@@ -92,6 +116,7 @@ public class adminP2 extends JFrame implements ActionListener,ListSelectionListe
 		
 	    table.getSelectionModel().addListSelectionListener(this);
 		
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 		
 		AdminMainPageButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {

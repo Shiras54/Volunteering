@@ -5,6 +5,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTable;
@@ -44,7 +47,7 @@ public class Vmainpage extends JFrame {
 		setTitle("Volunteer For Earth");
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 550, 362);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,7 +57,7 @@ public class Vmainpage extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Volunteer");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(148, 11, 118, 48);
+		lblNewLabel.setBounds(203, 11, 118, 48);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblActiveInitiatives = new JLabel("Active initiatives:");
@@ -93,27 +96,83 @@ public class Vmainpage extends JFrame {
 		contentPane.add(R3);
 		
 		JButton InitiativesAlreadyRegisteredButton = new JButton("Initiatives already registered in ");
-		InitiativesAlreadyRegisteredButton.setBounds(10, 217, 218, 18);
+		InitiativesAlreadyRegisteredButton.setBounds(10, 280, 218, 18);
 		contentPane.add(InitiativesAlreadyRegisteredButton);
 		
+		InitiativesAlreadyRegisteredButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	InitiativesAlreadyRegisteredButtonActionPerformed(evt);
+            }
+        });
+		
 		JButton EditPersonalInfoButton = new JButton("Edit Personal Info");
-		EditPersonalInfoButton.setBounds(276, 58, 149, 18);
+		EditPersonalInfoButton.setBounds(366, 54, 149, 18);
 		contentPane.add(EditPersonalInfoButton);
 		
+		EditPersonalInfoButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	EditPersonalInfoButtonActionPerformed(evt);
+            }
+        });
+		
 		JButton GenerateReportButton = new JButton("Generate Report");
-		GenerateReportButton.setBounds(276, 217, 137, 18);
+		GenerateReportButton.setBounds(378, 280, 137, 18);
 		contentPane.add(GenerateReportButton);
 		
+		GenerateReportButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	GenerateReportButtonActionPerformed(evt);
+            }
+        });
+		
 		JButton Backbutton = new JButton("Back");
-		Backbutton.setBounds(277, 81, 149, 18);
+		Backbutton.setBounds(366, 81, 149, 18);
 		contentPane.add(Backbutton);
 		
+		Backbutton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	BackbuttonActionPerformed(evt);
+            }
+        });
+		
 		JLabel lblNewLabel_1 = new JLabel("Your Sus.Points:");
-		lblNewLabel_1.setBounds(10, 56, 102, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel_1.setBounds(10, 221, 163, 32);
 		contentPane.add(lblNewLabel_1);
 		table.getColumnModel().getColumn(1).setPreferredWidth(80);
 		table.getColumnModel().getColumn(2).setPreferredWidth(80);
 		table.getColumnModel().getColumn(3).setPreferredWidth(81);
 	}
-
+    private void GenerateReportButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GenerateReport().setVisible(true);
+            }
+        });
+        dispose();
+    }
+    private void InitiativesAlreadyRegisteredButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new INAR().setVisible(true);
+            }
+        });
+        dispose();
+    }
+    private void BackbuttonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new useroptions().setVisible(true);
+            }
+        });
+        dispose();
+    }
+    private void EditPersonalInfoButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new EPI().setVisible(true);
+            }
+        });
+        dispose();
+    }
 }

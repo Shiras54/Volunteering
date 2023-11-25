@@ -5,9 +5,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class Usersignup extends JFrame {
 
@@ -110,6 +114,41 @@ public class Usersignup extends JFrame {
 		userPasswordTF.setColumns(10);
 		userPasswordTF.setBounds(179, 263, 206, 20);
 		contentPane.add(userPasswordTF);
+		
+		JButton Signup = new JButton("Sign Up");
+		Signup.setBounds(395, 282, 89, 23);
+		contentPane.add(Signup);
+		
+		Signup.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	SignupButtonActionPerformed(evt);
+            }
+        });
+		
+		JButton Back = new JButton("Back");
+		Back.setBounds(395, 24, 89, 23);
+		contentPane.add(Back);
+		
+		Back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	BackButtonActionPerformed(evt);
+            }
+        });
 	}
-
+    private void BackButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new userpage1().setVisible(true);
+            }
+        });
+        dispose();
+    }
+    private void SignupButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new useroptions().setVisible(true);
+            }
+        });
+        dispose();
+    }
 }

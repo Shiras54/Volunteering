@@ -1,7 +1,16 @@
 import java.awt.*;
 import javax.swing.*;
+<<<<<<< HEAD
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Toolkit;
+=======
 import javax.swing.border.*;
 import java.awt.event.*;
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 
 public class Page1 extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -35,6 +44,9 @@ public class Page1 extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
+<<<<<<< HEAD
+
+=======
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -43,6 +55,7 @@ public class Page1 extends JFrame {
 		lblNewLabel.setBounds(335, 21, 0, 0);
 		contentPane.add(lblNewLabel);
 		
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
         JLabel admin = new JLabel("Admin");
         admin.setFont(new Font("Tahoma", Font.BOLD, 15));
         admin.setBounds(39, 209, 49, 14);
@@ -88,6 +101,10 @@ public class Page1 extends JFrame {
         Application.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
         Application.setBounds(135, 51, 112, 28);
         contentPane.add(Application);
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
         setVisible(true);
     }
 
@@ -107,5 +124,9 @@ public class Page1 extends JFrame {
             }
         });
         dispose();
+<<<<<<< HEAD
     }
+=======
+    }
+>>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
 }

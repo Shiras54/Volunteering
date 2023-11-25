@@ -98,9 +98,26 @@ public class AddInitiativee extends JFrame {
 			});
 		backButton.setBounds(337, 238, 89, 23);
 		contentPane.add(backButton);
+		
+		JButton btnDone = new JButton("Done");
+		btnDone.setBounds(25, 238, 89, 23);
+		contentPane.add(btnDone);
 
+		btnDone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnDoneActionPerformed(e);   
+				}
+			});
 	}
 	private void backButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Initiativemain().setVisible(true);
+            }
+        });
+        dispose();
+	}
+	private void btnDoneActionPerformed(ActionEvent evt) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Initiativemain().setVisible(true);
