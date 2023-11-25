@@ -76,6 +76,13 @@ public class userpage1 extends JFrame {
 		loginButton.setBounds(22, 213, 89, 23);
 		contentPane.add(loginButton);
 		
+		loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	loginButtonActionPerformed(evt);
+            }
+        });
+		
+		
 		nameTF = new JTextField();
 		nameTF.setBounds(147, 83, 175, 20);
 		contentPane.add(nameTF);
@@ -122,4 +129,14 @@ public class userpage1 extends JFrame {
         });
         dispose();
     }
+    
+    private void loginButtonActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new useroptions().setVisible(true);
+            }
+        });
+        dispose();
+    }
+    
 }

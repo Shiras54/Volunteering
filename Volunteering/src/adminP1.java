@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Toolkit;
@@ -89,9 +91,16 @@ public class adminP1 extends JFrame {
     }
 
     private void loginButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
+    	EventQueue.invokeLater(new Runnable() {
             public void run() {
+            	
+            	if (nameTF.equals("admin")&& passTF.equals("admin2023")) {
                 new adminP2().setVisible(true);
+                dispose();
+                }
+            	else {
+            		JOptionPane.showMessageDialog(null,"the name and/or Password is wrong","Warning",JOptionPane.ERROR_MESSAGE);
+            	}
             }
         });
         dispose();

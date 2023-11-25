@@ -124,9 +124,23 @@ public class Initiativemain extends JFrame {
 		edit2.setBounds(213, 236, 68, 16);
 		contentPane.add(edit2);
 		
+		edit2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	edit2ActionPerformed(evt);
+            }
+        });
+		
+		
 		JButton edit1 = new JButton("E");
 		edit1.setBounds(213, 216, 68, 23);
 		contentPane.add(edit1);
+		
+		edit1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	edit1ActionPerformed(evt);
+            }
+        });
+		
 		
 		JButton remove1 = new JButton("R\r\n\r\n");
 		remove1.setBounds(272, 216, 78, 23);
@@ -207,4 +221,22 @@ public class Initiativemain extends JFrame {
         });
         dispose();
     }
+	private void edit1ActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new EditingInitiative().setVisible(true);
+            }
+        });
+        dispose();
+    }
+	
+	private void edit2ActionPerformed(ActionEvent evt) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Editini2().setVisible(true);
+            }
+        });
+        dispose();
+    }
+	
 }
