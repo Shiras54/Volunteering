@@ -1,9 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.text.*;
 import java.awt.event.*;
-import java.text.*;
 
 public class userpage1 extends JFrame implements ActionListener {
 
@@ -80,23 +78,6 @@ public class userpage1 extends JFrame implements ActionListener {
 		backButton.addActionListener(this);
 	}
 
-    private void SignupActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Usersignup().setVisible(true);
-            }
-        });
-        dispose();
-    }
-    
-    private void loginButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new useroptions().setVisible(true);
-            }
-        });
-        dispose();
-    }
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==backButton) {

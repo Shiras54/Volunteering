@@ -1,8 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.table.*;
 import java.awt.event.*;
 
 public class InitiatorDetails extends JFrame implements ActionListener{
