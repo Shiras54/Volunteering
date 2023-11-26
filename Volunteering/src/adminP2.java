@@ -6,41 +6,29 @@ import javax.swing.table.*;
 import java.awt.event.*;
 
 
-public class adminP2 extends JFrame implements ActionListener,ListSelectionListener{
+public class adminP2 extends JFrame implements ActionListener,ListSelectionListener,MouseListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
 	private JButton acceptButton,rejectButton,AdminMainPageButton;
 	private JLabel newInitiative;
+	private JTextArea initiativeDescription;
 	private JScrollPane scrollPane;
 	private DefaultTableModel model;
 	private Object[][] fullTable;
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					adminP2 frame = new adminP2();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new adminP2();
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public adminP2() {
 		setTitle("Volunteer For Earth");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 650, 300);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.LIGHT_GRAY);
 		contentPane.setBackground(Color.LIGHT_GRAY);
@@ -54,112 +42,80 @@ public class adminP2 extends JFrame implements ActionListener,ListSelectionListe
 		newInitiative.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
 		contentPane.add(newInitiative);
 		
-<<<<<<< HEAD
-		JButton AdminMainPageButton = new JButton("Admin Main Page");
+		AdminMainPageButton = new JButton("Admin Main Page");
 		AdminMainPageButton.setBounds(130, 212, 138, 23);
-=======
 		acceptButton = new JButton("Accept");
-		acceptButton.setBounds(27, 214, 89, 23);
+		acceptButton.setBounds(77, 214, 89, 23);
 		contentPane.add(acceptButton);
 		acceptButton.addActionListener(this);
 		
 		rejectButton = new JButton("Reject");
-		rejectButton.setBounds(326, 214, 89, 23);
+		rejectButton.setBounds(276, 214, 89, 23);
 		contentPane.add(rejectButton);
 		rejectButton.addActionListener(this);
 		
 		AdminMainPageButton = new JButton("Admin Main Page");
-		AdminMainPageButton.setBounds(152, 214, 138, 23);
->>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
+		AdminMainPageButton.setBounds(456, 214, 138, 23);
 		contentPane.add(AdminMainPageButton);
 		
-<<<<<<< HEAD
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 49, 388, 109);
-=======
+		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(27, 52, 388, 109);
->>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
+		scrollPane.setBounds(27, 52, 388, 150);
 		contentPane.add(scrollPane);
+		
+		initiativeDescription = new JTextArea("Description:\n");
+		initiativeDescription.setBounds(430,52,190,150);
+		contentPane.add(initiativeDescription);
+		initiativeDescription.setEditable(false);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-<<<<<<< HEAD
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Name", "Number of V", "Time & Date", "Accept", "Remove"
-			}
-		));
-=======
-		Object[][] fullTable = new Object[Initiative.pendingInitiatives.size()][5];
+
+		fullTable = new Object[Initiative.pendingInitiatives.size()][5];
         for (int i = 0;i<Initiative.pendingInitiatives.size();i++) {
         	fullTable[i][0]=Initiative.pendingInitiatives.get(i).getId();
         	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getName();
-        	fullTable[i][2]=Initiative.pendingInitiatives.get(i).getDateAsString();
-        	fullTable[i][3]=Initiative.pendingInitiatives.get(i).getDescription();
-        	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getCredit();
+        	fullTable[i][3]=Initiative.pendingInitiatives.get(i).getDateAsString();
+        	fullTable[i][2]=Initiative.pendingInitiatives.get(i).getDescription();
+        	fullTable[i][4]=Initiative.pendingInitiatives.get(i).getCredit();
         }
         model = new DefaultTableModel(fullTable,
-    			new String[] {"ID","Name", "Description", "Time & Date", "credit"}) {
+    			new String[] {"ID","Name", "Description", "Time & Date", "Credit"}) {
 					private static final long serialVersionUID = 1L;
 					public boolean isCellEditable(int row, int column) {
     			       return false;
     			    }};
 		table.setModel(model);
+	    table.setAutoCreateRowSorter(true);
+
 		
 	    table.getSelectionModel().addListSelectionListener(this);
-		
->>>>>>> branch 'master' of https://github.com/Shiras54/Volunteering.git
-		
-		AdminMainPageButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	AdminMainPageButtonActionPerformed(evt);
-            }
-        });
+	    table.addMouseListener(this);
+				
+		AdminMainPageButton.addActionListener(this);
 		setVisible(true);
     }
 
-    private void AdminMainPageButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new adminmani().setVisible(true);
-            }
-        });
-        dispose();
-    }
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
-		
+
+	public void valueChanged(ListSelectionEvent e) {		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            	if(table.getSelectedRow()>=0 && e.getSource()==acceptButton) {
-            		Admin.approveInitiative(Initiative.searchForInitiative(Initiative.pendingInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
-            		
-            	}
-            	if(table.getSelectedRow()>=0 && e.getSource()==rejectButton) {
-            		Admin.rejectInitiative(Initiative.searchForInitiative(Initiative.pendingInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
-            		
-            	}
-            	resetTable();
-            	
-            }
-		
-		});		
-	}
-	public void resetTable() {
-		if (model.getRowCount() >= 0) {
+    	if(table.getSelectedRow()>=0 && e.getSource()==acceptButton) {
+    		Admin.approveInitiative(Initiative.searchForInitiative(Initiative.pendingInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
+    		
+    	} else if(table.getSelectedRow()>=0 && e.getSource()==rejectButton) {
+    		Admin.rejectInitiative(Initiative.searchForInitiative(Initiative.pendingInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
+    	} else if(e.getSource()==AdminMainPageButton) {
+    		new adminmani().setVisible(true);
+    		dispose();
+    	}
+    	resetFrame();
+    	
+    }
+	public void resetFrame() {
+		if (model.getRowCount() > 0) {
 		     for (int i = model.getRowCount() - 1; i > -1; i--) {
 		         model.removeRow(i);
 		     }
@@ -168,9 +124,9 @@ public class adminP2 extends JFrame implements ActionListener,ListSelectionListe
         for (int i = 0;i<Initiative.pendingInitiatives.size();i++) {
         	fullTable[i][0]=Initiative.pendingInitiatives.get(i).getId();
         	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getName();
-        	fullTable[i][2]=Initiative.pendingInitiatives.get(i).getDateAsString();
-        	fullTable[i][3]=Initiative.pendingInitiatives.get(i).getDescription();
-        	fullTable[i][1]=Initiative.pendingInitiatives.get(i).getCredit();
+        	fullTable[i][3]=Initiative.pendingInitiatives.get(i).getDateAsString();
+        	fullTable[i][2]=Initiative.pendingInitiatives.get(i).getDescription();
+        	fullTable[i][4]=Initiative.pendingInitiatives.get(i).getCredit();
         }
         model = new DefaultTableModel(fullTable,
     			new String[] {"ID","Name", "Description", "Time & Date", "credit"}) {
@@ -179,19 +135,21 @@ public class adminP2 extends JFrame implements ActionListener,ListSelectionListe
     			       return false;
     			    }};
 		table.setModel(model);
-		for(Initiative i: Initiative.activeInitiatives) {
-			System.out.print(i);
-		}
-		System.out.print("\n----\n");
-		for(Initiative i: Initiative.pendingInitiatives) {
-			System.out.print(i);
-		}
-		System.out.print("\n----\n");
-		for(Initiative i: Initiative.expiredInitiatives) {
-			System.out.print(i);
-		}
-		System.out.print("\n--------\n");
 		
 	}
+
+	public void mouseClicked(MouseEvent e) {
+		if (e.getClickCount() == 2) {
+    		initiativeDescription.setText("Description:\n"+(String)(table.getValueAt(table.rowAtPoint(e.getPoint()),2)));
+        }
+	}
+
+	public void mousePressed(MouseEvent e) {}
+
+	public void mouseReleased(MouseEvent e) {}
+
+	public void mouseEntered(MouseEvent e) {}
+
+	public void mouseExited(MouseEvent e) {}
 }
 

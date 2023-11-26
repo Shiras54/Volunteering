@@ -25,7 +25,19 @@ public class Admin {
 		Initiative.saveInitiatives();
 	}
 	public static void removeUser(User u) {
+		removeInitiative(u.getInitiative1());
+		removeInitiative(u.getInitiative2());
 		User.users.remove(User.users.indexOf(u));
+		u=null;
+		User.saveUsers();
+		Initiative.saveInitiatives();
+	}
+	public static void removeInitiative(Initiative i) {
+		if (Initiative.activeInitiatives.indexOf(i)>=0) {
+		Initiative.activeInitiatives.remove(Initiative.activeInitiatives.indexOf(i));
+		}
+		i=null;
+		Initiative.sortInitiatives(Initiative.activeInitiatives);
 		User.saveUsers();
 		Initiative.saveInitiatives();
 	}

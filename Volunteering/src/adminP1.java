@@ -1,17 +1,7 @@
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import javax.swing.JTextField;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.event.*;
 
 public class adminP1 extends JFrame {
 
@@ -92,37 +82,26 @@ public class adminP1 extends JFrame {
         setVisible(true);
 
     }
-}
+
 
     private void loginButtonActionPerformed(ActionEvent evt) {
     	EventQueue.invokeLater(new Runnable() {
             public void run() {
-            	
-            	if (nameTF.equals("admin")&& passTF.equals("admin2023")) {
-                new adminP2().setVisible(true);
-                dispose();
-                }
-            	else {
-            		JOptionPane.showMessageDialog(null,"the name and/or Password is wrong","Warning",JOptionPane.ERROR_MESSAGE);
-            	}
-            }
-        });
-        dispose();
-    }
+            	 if(nameTF.getText().equals(Admin.name) && passTF.getText().equals(Admin.password)) {
+                 	new adminP2().setVisible(true);
+                 	dispose();
+                 } else {
+                 	JOptionPane.showMessageDialog(null,"Username and/or Password is incorrect!","Warning",JOptionPane.ERROR_MESSAGE);
+                 }
+                 }
+        	});
+    	}
     private void backButtonActionPerformed(ActionEvent evt) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-
-                new Page1().setVisible(true);
-
-                if(nameTF.getText().equals(Admin.name) && passTF.getText().equals(Admin.password)) {
-                	new adminP2().setVisible(true);
-                	dispose();
-                } else {
-                	JOptionPane.showMessageDialog(null,"Username and/or Password is incorrect!","Warning",JOptionPane.ERROR_MESSAGE);
-                }
-                }                
-        });
+                new Page1().setVisible(true);  
+                dispose();
+        }});
         
     }
 }

@@ -1,47 +1,24 @@
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.text.*;
+import java.awt.event.*;
+import java.text.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-public class Usersignup extends JFrame {
+public class Usersignup extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField UserNameTF;
-	private JTextField userDateOfBirthTF;
-	private JTextField userPhoneNumberTF;
-	private JTextField userAdressTF;
-	private JTextField userPasswordTF;
-
-	/**
-	 * Launch the application.
-	 */
+	private JTextField UserNameTF,userAdressTF,userPasswordTF,userEmailTF;
+	private JFormattedTextField userDateOfBirthTF, userPhoneNumberTF;
+	private JLabel lblNewLabel,UserName,userEmail,userDateOfBirth,userPhoneNumber,userAdress,userPassword;
+	private JButton Signup,Back;
+	private MaskFormatter phoneFormat,dobFormat;
+	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Usersignup frame = new Usersignup();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new Usersignup();
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Usersignup() {
 		setTitle("Volunteer For Earth");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
@@ -51,41 +28,50 @@ public class Usersignup extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		try {
+			dobFormat = new MaskFormatter("##/##/####");
+			phoneFormat = new MaskFormatter("##########");
+			dobFormat.setPlaceholderCharacter('_');
+			phoneFormat.setPlaceholderCharacter('_');
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("User Sign Up");
+		lblNewLabel = new JLabel("User Sign Up");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblNewLabel.setBounds(164, 11, 165, 38);
 		contentPane.add(lblNewLabel);
 		
-		JLabel UserName = new JLabel("Name:");
+		UserName = new JLabel("Name:");
 		UserName.setFont(new Font("Tahoma", Font.BOLD, 20));
 		UserName.setBounds(10, 50, 85, 38);
 		contentPane.add(UserName);
 		
-		JLabel userId = new JLabel("Id:");
-		userId.setFont(new Font("Tahoma", Font.BOLD, 20));
-		userId.setBounds(10, 91, 85, 38);
-		contentPane.add(userId);
+		userEmail = new JLabel("Email:");
+		userEmail.setFont(new Font("Tahoma", Font.BOLD, 20));
+		userEmail.setBounds(10, 91, 85, 38);
+		contentPane.add(userEmail);
 		
-		JLabel userDateOfBirth = new JLabel("Date of Birth:");
+		userDateOfBirth = new JLabel("Date of Birth:");
 		userDateOfBirth.setFont(new Font("Tahoma", Font.BOLD, 20));
 		userDateOfBirth.setBounds(10, 131, 149, 38);
 		contentPane.add(userDateOfBirth);
 		
-		JLabel userPhoneNumber = new JLabel("Phone Number:");
+		userPhoneNumber = new JLabel("Phone Number:");
 		userPhoneNumber.setFont(new Font("Tahoma", Font.BOLD, 20));
 		userPhoneNumber.setBounds(10, 168, 165, 38);
 		contentPane.add(userPhoneNumber);
 		
-		JLabel userAdress = new JLabel("Adress:");
+		userAdress = new JLabel("Address:");
 		userAdress.setFont(new Font("Tahoma", Font.BOLD, 20));
 		userAdress.setBounds(10, 214, 165, 38);
 		contentPane.add(userAdress);
 		
-		JLabel userPassword = new JLabel("Password:");
+		userPassword = new JLabel("Password:");
 		userPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
 		userPassword.setBounds(10, 252, 165, 38);
 		contentPane.add(userPassword);
@@ -95,12 +81,17 @@ public class Usersignup extends JFrame {
 		contentPane.add(UserNameTF);
 		UserNameTF.setColumns(10);
 		
-		userDateOfBirthTF = new JTextField();
+		userEmailTF = new JTextField();
+		userEmailTF.setBounds(179, 100, 206, 20);
+		contentPane.add(userEmailTF);
+		userEmailTF.setColumns(10);
+		
+		userDateOfBirthTF = new JFormattedTextField(dobFormat);
 		userDateOfBirthTF.setColumns(10);
 		userDateOfBirthTF.setBounds(179, 144, 206, 20);
 		contentPane.add(userDateOfBirthTF);
 		
-		userPhoneNumberTF = new JTextField();
+		userPhoneNumberTF = new JFormattedTextField(phoneFormat);
 		userPhoneNumberTF.setColumns(10);
 		userPhoneNumberTF.setBounds(179, 181, 206, 20);
 		contentPane.add(userPhoneNumberTF);
@@ -115,40 +106,34 @@ public class Usersignup extends JFrame {
 		userPasswordTF.setBounds(179, 263, 206, 20);
 		contentPane.add(userPasswordTF);
 		
-		JButton Signup = new JButton("Sign Up");
+		Signup = new JButton("Sign Up");
 		Signup.setBounds(395, 282, 89, 23);
 		contentPane.add(Signup);
 		
-		Signup.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	SignupButtonActionPerformed(evt);
-            }
-        });
+		Signup.addActionListener(this);
 		
-		JButton Back = new JButton("Back");
+		Back = new JButton("Back");
 		Back.setBounds(395, 24, 89, 23);
 		contentPane.add(Back);
 		
-		Back.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	BackButtonActionPerformed(evt);
-            }
-        });
+		Back.addActionListener(this);
+		setVisible(true);
 	}
-    private void BackButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new userpage1().setVisible(true);
-            }
-        });
-        dispose();
-    }
-    private void SignupButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new useroptions().setVisible(true);
-            }
-        });
-        dispose();
-    }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==Back) {
+			 new userpage1().setVisible(true);
+			 dispose();
+		} else if(e.getSource()==Signup) {
+			if(!UserNameTF.getText().equals("") && !userDateOfBirthTF.getText().equals("") && !userEmailTF.getText().equals("") && !userPhoneNumberTF.getText().equals("") && !userAdressTF.getText().equals("") && !userPasswordTF.getText().equals("")) {
+				new User(UserNameTF.getText(),userDateOfBirthTF.getText(),userEmailTF.getText(),userPhoneNumberTF.getText(),userAdressTF.getText(),userPasswordTF.getText());
+				new userpage1().setVisible(true);
+				dispose();
+			} else {
+				JOptionPane.showMessageDialog(null, "Boxes have been left empty!");
+			}
+		}
+		
+	}
 }

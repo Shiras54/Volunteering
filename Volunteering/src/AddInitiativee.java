@@ -1,128 +1,134 @@
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.text.MaskFormatter;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.Component;
+import java.awt.event.*;
+import java.text.ParseException;
 
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-public class AddInitiativee extends JFrame {
+public class AddInitiativee extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField nameTF;
-	private JTextField timeTF;
-	private JTextField descriptionTF;
+	private JTextField nameTF,timeTF,creditTF;
+	private JLabel lblNewLabel,lnName,lnTime,lnDescription,lnCredit,dateLabel;
+	private JButton backButton,btnDone;
+	private JTextArea descriptionTA;
+	private JScrollPane scrollPane;
+	private JFormattedTextField date;
+	private MaskFormatter format;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddInitiativee frame = new AddInitiativee();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new AddInitiativee();
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public AddInitiativee() {
 		setTitle("Volunteer For Earth");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 430);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		try {
+			format = new MaskFormatter("##/##/#### ##:##:##");
+			format.setPlaceholderCharacter('_');
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Creating new initiative");
+		lblNewLabel = new JLabel("Creating new initiative");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblNewLabel.setBounds(93, 11, 280, 27);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lnName = new JLabel("Name:");
+		lnName = new JLabel("Name:");
 		lnName.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lnName.setBounds(10, 63, 85, 27);
 		contentPane.add(lnName);
 		
-		JLabel lnTime = new JLabel("Time & Date:");
+		lnTime = new JLabel("Length:");
 		lnTime.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lnTime.setBounds(10, 119, 146, 27);
 		contentPane.add(lnTime);
 		
-		JLabel lnDescription = new JLabel("Description:");
+		lnDescription = new JLabel("Description:");
 		lnDescription.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lnDescription.setBounds(10, 170, 146, 27);
 		contentPane.add(lnDescription);
 		
+		lnCredit = new JLabel("Credits:");
+		lnCredit.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lnCredit.setBounds(10, 250, 146, 27);
+		contentPane.add(lnCredit);
+
+		dateLabel = new JLabel("Date & Time:");
+		dateLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
+		dateLabel.setBounds(10, 290, 146, 27);
+		contentPane.add(dateLabel);
+		
 		nameTF = new JTextField();
-		nameTF.setBounds(182, 68, 221, 27);
+		nameTF.setBounds(182, 68, 250, 25);
 		contentPane.add(nameTF);
 		nameTF.setColumns(10);
 		
 		timeTF = new JTextField();
 		timeTF.setColumns(10);
-		timeTF.setBounds(182, 124, 221, 27);
+		timeTF.setBounds(182, 124, 250, 25);
 		contentPane.add(timeTF);
 		
-		descriptionTF = new JTextField();
-		descriptionTF.setColumns(10);
-		descriptionTF.setBounds(182, 171, 224, 56);
-		contentPane.add(descriptionTF);
+		date = new JFormattedTextField(format);
+		date.setBounds(182, 290, 250, 25);
+		contentPane.add(date);
+		date.setColumns(10);
 		
-		JButton backButton = new JButton("Back");
-		backButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				backButtonActionPerformed(e);   
-				}
-			});
-		backButton.setBounds(337, 238, 89, 23);
+		
+		descriptionTA = new JTextArea();
+		contentPane.add(descriptionTA);
+		descriptionTA.setBounds(182, 171, 250, 70);
+		descriptionTA.setLineWrap(true);
+		descriptionTA.setWrapStyleWord(true);
+		descriptionTA.setEditable(true);
+		descriptionTA.setEnabled(true);
+		
+		scrollPane = new JScrollPane(descriptionTA);
+		scrollPane.setBounds(182, 171, 250, 70);
+		contentPane.add(scrollPane);
+		
+
+		creditTF = new JTextField();
+		creditTF.setColumns(10);
+		creditTF.setBounds(182, 250, 250, 25);
+		contentPane.add(creditTF);
+		
+		backButton = new JButton("Back");
+		backButton.addActionListener(this);
+		backButton.setBounds(337, 330, 89, 23);
 		contentPane.add(backButton);
 		
-		JButton btnDone = new JButton("Done");
-		btnDone.setBounds(25, 238, 89, 23);
+		btnDone = new JButton("Done");
+		btnDone.setBounds(25, 330, 89, 23);
 		contentPane.add(btnDone);
 
-		btnDone.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnDoneActionPerformed(e);   
-				}
-			});
+		btnDone.addActionListener(this);
+		setVisible(true);
 	}
-	private void backButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Initiativemain().setVisible(true);
-            }
-        });
-        dispose();
-	}
-	private void btnDoneActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Initiativemain().setVisible(true);
-            }
-        });
-        dispose();
+
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == backButton) {
+			new Initiativemain().setVisible(true);
+			dispose();
+		}else if (e.getSource() == btnDone) {
+			new Initiativemain().setVisible(true);
+			dispose();
+			User.loggedIn.initiate(nameTF.getText(),date.getText(),descriptionTA.getText(),Integer.parseInt(creditTF.getText()),Integer.parseInt(timeTF.getText()));
+		}
 	}
 }

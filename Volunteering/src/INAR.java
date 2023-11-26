@@ -1,45 +1,26 @@
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.event.*;
+import javax.swing.table.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.Toolkit;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class INAR extends JFrame {
+public class INAR extends JFrame implements ActionListener,ListSelectionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private JLabel lblNewLabel,image;
+	private JButton backButton;
+	private JScrollPane ARtable;
+	private DefaultTableModel model;
+	private Object[][] fullTable;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					INAR frame = new INAR();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new INAR();
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public INAR() {
 		setTitle("Volunteer For Earth");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
@@ -53,51 +34,74 @@ public class INAR extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Initiatives already registerd in:");
+		lblNewLabel = new JLabel("Initiatives already registerd in:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblNewLabel.setBounds(10, 11, 347, 38);
 		contentPane.add(lblNewLabel);
 		
-		JLabel image = new JLabel("New label");
+		image = new JLabel("New label");
 		image.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\lis.png"));
 		image.setBounds(365, 10, 71, 50);
 		contentPane.add(image);
 		
-		JButton backButton = new JButton("Back");
-		backButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				backButtonActionPerformed(e);   
-			}
-		});
-		
+		backButton = new JButton("Back");
+		backButton.addActionListener(this);
 		backButton.setBounds(10, 229, 89, 23);
 		contentPane.add(backButton);
 		
-		JScrollPane ARtable = new JScrollPane();
+		ARtable = new JScrollPane();
 		ARtable.setBounds(28, 112, 358, 77);
 		contentPane.add(ARtable);
 		
 		table = new JTable();
+		contentPane.add(table);
 		ARtable.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"Name", "Expire Date", "Sus.Points", "Withdraw"
+		
+		int j = 0;
+		for(Initiative x:User.loggedIn.getVolunteeringJobs()) {
+			if(x.getStatus().equals("active")) {
+				j++;
 			}
-		));
-		table.getColumnModel().getColumn(1).setPreferredWidth(86);
+		}
+		System.out.print(j);
+		
+		fullTable = new Object[j][5];
+		int i = 0;
+        while(i<j) {
+        	if(User.loggedIn.getVolunteeringJobs().get(i).getStatus().equals("active")) {
+	        	fullTable[i][0]=User.loggedIn.getVolunteeringJobs().get(i).getName();
+	        	fullTable[i][1]=User.loggedIn.getVolunteeringJobs().get(i).getExpirationDateAsString();
+	        	fullTable[i][2]=User.loggedIn.getVolunteeringJobs().get(i).getCredit();
+	        	fullTable[i][3]=User.loggedIn.getVolunteeringJobs().get(i).getTime();
+	        	i++;
+        	}
+        }
+        model = new DefaultTableModel(fullTable,
+    			new String[] {"Name", "Expire Date", "Credits", "Period"}) {
+					private static final long serialVersionUID = 1L;
+					public boolean isCellEditable(int row, int column) {
+    			       return false;
+    			    }};
+		table.setModel(model);
+	    table.setAutoCreateRowSorter(true);
+	    
+		
+		setVisible(true);
 	}
-	private void backButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Vmainpage().setVisible(true);
-            }
-        });
-        dispose();
-    }
+
+
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==backButton) {
+			new Vmainpage().setVisible(true);
+			dispose();
+		}
+		
+	}
 
 }

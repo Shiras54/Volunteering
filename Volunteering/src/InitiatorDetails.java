@@ -1,39 +1,24 @@
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.event.*;
+import javax.swing.table.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.Toolkit;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-
-public class InitiatorDetails extends JFrame {
+public class InitiatorDetails extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JLabel Idetails,IName,IAge,IId,NOAI;
+	private JButton remove,back;
+	private User i;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InitiatorDetails frame = new InitiatorDetails();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new InitiatorDetails(new User());
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public InitiatorDetails() {
+	public InitiatorDetails(User i) {
+		this.i=i;
 		setTitle("Volunteer For Earth");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
@@ -46,38 +31,63 @@ public class InitiatorDetails extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel Idetails = new JLabel("(Initiator Name) Details");
+		Idetails = new JLabel(i.getName()+" Details");
 		Idetails.setFont(new Font("Tahoma", Font.BOLD, 22));
-		Idetails.setBounds(21, 21, 297, 27);
+		Idetails.setBounds(21, 21, 400, 27);
 		contentPane.add(Idetails);
 		
-		JLabel IName = new JLabel("Name:");
+		IName = new JLabel("Email: "+i.getEmail());
 		IName.setFont(new Font("Tahoma", Font.BOLD, 20));
-		IName.setBounds(21, 71, 84, 27);
+		IName.setBounds(21, 71, 400, 27);
 		contentPane.add(IName);
 		
-		JLabel IAge = new JLabel("Age:");
+		IAge = new JLabel("DoB: "+i.getDobAsString());
 		IAge.setFont(new Font("Tahoma", Font.BOLD, 20));
-		IAge.setBounds(21, 106, 66, 27);
+		IAge.setBounds(21, 106, 400, 27);
 		contentPane.add(IAge);
 		
-		JLabel IId = new JLabel("Id:");
+		IId = new JLabel("Id: "+i.getId());
 		IId.setFont(new Font("Tahoma", Font.BOLD, 20));
-		IId.setBounds(21, 148, 84, 27);
+		IId.setBounds(21, 148, 400, 27);
 		contentPane.add(IId);
 		
-		JLabel NOAI = new JLabel("Number of active initiatives:");
+		int j=0;
+		
+		if(i.getInitiative1()!=null && i.getInitiative2()!=null && !i.getInitiative1().getStatus().equals("expired") && !i.getInitiative2().getStatus().equals("expired")) {
+			j = 2;
+		} else if((i.getInitiative1()!=null && !i.getInitiative1().getStatus().equals("expired")) ^ (i.getInitiative2()!=null && !i.getInitiative2().getStatus().equals("expired"))){
+			j = 1;
+		}else {
+			j = 0;
+		}
+		
+		NOAI = new JLabel("Number of active initiatives: "+j);
 		NOAI.setFont(new Font("Tahoma", Font.BOLD, 20));
-		NOAI.setBounds(21, 185, 297, 27);
+		NOAI.setBounds(21, 185, 400, 27);
 		contentPane.add(NOAI);
 		
-		JButton remove = new JButton("Remove");
-		remove.setBounds(337, 28, 89, 23);
+		remove = new JButton("Remove User");
+		remove.setBounds(305, 25, 120, 23);
 		contentPane.add(remove);
+		remove.addActionListener(this);
 		
-		JButton back = new JButton("Back to Admin Main Page");
+		back = new JButton("Back to Admin Main Page");
 		back.setBounds(231, 223, 195, 23);
 		contentPane.add(back);
+		back.addActionListener(this);
+		setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==back) {
+			new adminmani();
+			dispose();
+		} else if(e.getSource()==remove) {
+			Admin.removeUser(i);
+			new adminmani();
+			dispose();
+		}
 	}
 
 }

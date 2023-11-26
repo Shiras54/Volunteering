@@ -1,5 +1,8 @@
 import java.io.*;
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import java.time.*;
 import java.time.format.*;
 
@@ -9,40 +12,39 @@ public class Initiative {
 	private List<User> volunteers = new ArrayList<User>();
 	private User initiator;
 	private LocalDateTime date;
-	private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+	static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
 	static List<Initiative> pendingInitiatives = new ArrayList<Initiative>();
 	static List<Initiative> activeInitiatives = new ArrayList<Initiative>();
 	static List<Initiative> expiredInitiatives = new ArrayList<Initiative>();
 
 	
+	
 	public Initiative() {
-		setId(createID());
-		setName("1");
+		setName("abcc");
 		setDate("11/11/1111 11:11:11");
 		setDescription("111");
 		setStatus("pending");
 		setTime(2);
+		setCredit(10);
 		setInitiator(new User());
+		setId(createID());
 		pendingInitiatives.add(this);
-		User.saveUsers();
 		Initiative.saveInitiatives();
 	}
 	public Initiative(User u) {
-		setId(createID());
-		setName("1");
+		setName("abcc");
 		setDate("11/11/1111 11:11:11");
 		setDescription("111");
 		setStatus("pending");
 		setTime(2);
 		setCredit(10);
 		setInitiator(u);
+		setId(createID());
 		pendingInitiatives.add(this);
-		User.saveUsers();
 		Initiative.saveInitiatives();
 	}
 	public Initiative(String name, String date, String description, int credit, int time, User initiator) {
-		setId(createID());
 		setName(name);
 		setDate(date);
 		setDescription(description);
@@ -50,34 +52,42 @@ public class Initiative {
 		setTime(time);
 		setInitiator(initiator);
 		setCredit(credit);
+		setId(createID());
 		pendingInitiatives.add(this);
-		User.saveUsers();
 		Initiative.saveInitiatives();
 	}
 	public Initiative(String id,String name, String date, String status, String description, int credit, int time, User initiator) {
-		setId(id);
 		setName(name);
+		setId(id);
 		setDate(date);
 		setDescription(description);
 		setStatus(status);
 		setTime(time);
 		setInitiator(initiator);
-		User.saveUsers();
 		Initiative.saveInitiatives();
 	}
-	public Initiative(Scanner fin) {
-		readFromLine(fin.nextLine());
+	public Initiative(String line) {
+		readFromLine(line);
 	}
 	
 	public String toString() {
-		String s = String.format("%s\t%s\t%s\t%s\t[ %s ]\t%d\t%s\t",id, name, time, status, description, credit, getDateAsString(),initiator.getId());
+		String s = String.format("%s\t%s\t%d\t%s\t[ %s ]\t%d\t%s\t%s",name,((id==null)?createID():id), time, status, description, credit,getDateAsString(),initiator.getId().trim());
 		for(User x:volunteers) {
-			s+=x.getId() + "/t";
+			s+="\t"+x.getId();
 		}
 		s+="\n";
 		return s;
 	}
 	
+	public void removeVolunteer(User v) {
+		if(volunteers.contains(v)) {
+			v.setPoints(v.getPoints()-credit);
+			volunteers.remove(volunteers.indexOf(v));
+			v.getVolunteeringJobs().remove(v.getVolunteeringJobs().indexOf(this));
+			User.saveUsers();
+			saveInitiatives();
+		}
+	}
 	
 	public static void saveInitiatives() {
 		try {
@@ -112,19 +122,20 @@ public class Initiative {
 	public static void readInitiatives() {
 		try {
 			Scanner fin1 = new Scanner(new FileReader("pendingInitiatives.txt"));
-			Scanner fin2 = new Scanner(new FileReader("activeInitiatives.txt"));
-			Scanner fin3 = new Scanner(new FileReader("expiredInitiatives.txt"));
 			while(fin1.hasNextLine()) {
-				pendingInitiatives.add(new Initiative(fin1));
-			}
-			while(fin2.hasNextLine()) {
-				pendingInitiatives.add(new Initiative(fin2));
-			}
-			while(fin3.hasNextLine()) {
-				pendingInitiatives.add(new Initiative(fin3));
+				String line = fin1.nextLine();
+				pendingInitiatives.add(new Initiative(line));
 			}
 			fin1.close();
+			Scanner fin2 = new Scanner(new FileReader("activeInitiatives.txt"));
+			while(fin2.hasNextLine()) {
+				activeInitiatives.add(new Initiative(fin2.nextLine()));
+			}
 			fin2.close();
+			Scanner fin3 = new Scanner(new FileReader("expiredInitiatives.txt"));
+			while(fin3.hasNextLine()) {
+				expiredInitiatives.add(new Initiative(fin3.nextLine()));
+			}
 			fin3.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -132,55 +143,143 @@ public class Initiative {
 	}
 	public void readFromLine(String line) {
 		Scanner fin = new Scanner(line);
-		setId(fin.next());
 		setName(fin.next());
+		setId(fin.next());
+		setTime(fin.nextInt());
 		setStatus(fin.next());
 		String description = fin.next();
 		description = "";
 		while(true) {
-			if(fin.next().equals("]")) {
+			String text = fin.next();
+			if(text.trim().equals("]")) {
 				break;
 			}else {
-				description += fin.next();
+				description += text;
 			}
 		}
 		setDescription(description);
 		setCredit(fin.nextInt());
-		setDate(fin.next());
-		setInitiator(User.searchForUser(fin.next()));
-		while(fin.hasNext()) {
-			volunteers.add(User.searchForUser(fin.next()));
-		}
+		setDate(fin.next()+" "+fin.next());
 		fin.close();
+	}
+	public static void linkUsers() {
+		try {
+			Scanner fin11 = new Scanner(new FileReader("pendingInitiatives.txt"));
+			for(int j = 0;j<pendingInitiatives.size();j++) {
+				System.out.print(pendingInitiatives.size()+"\n");
+				Scanner fin1 = new Scanner(fin11.nextLine());
+				fin1.next();
+				String id = fin1.next();
+				int index = pendingInitiatives.indexOf(searchForInitiative(pendingInitiatives,id));
+				while(fin1.hasNext()) {
+					String text = fin1.next();
+					if(text.trim().equals("]")) {
+						break;
+					}else {
+						continue;
+					}
+				}
+				fin1.next();
+				fin1.next();
+				fin1.next();
+				pendingInitiatives.get(index).setInitiator(User.searchForUser(fin1.next().trim()));
+				while(fin1.hasNext()) {
+					pendingInitiatives.get(index).volunteers.add(User.searchForUser(fin1.next()));
+				}
+				fin1.close();
+			}
+			fin11.close();
+			
+			Scanner fin22 = new Scanner(new FileReader("activeInitiatives.txt"));
+			for(int j = 0;j<activeInitiatives.size();j++) {
+				Scanner fin2 = new Scanner(fin22.nextLine());
+				fin2.next();
+				int index = activeInitiatives.indexOf(searchForInitiative(activeInitiatives,fin2.next()));
+				while(fin2.hasNext()) {
+					String text = fin2.next();
+					if(text.trim().equals("]")) {
+						break;
+					}else {
+						continue;
+					}
+				}
+				fin2.next();
+				fin2.next();
+				fin2.next();
+				activeInitiatives.get(index).setInitiator(User.searchForUser(fin2.next()));
+				while(fin2.hasNext()) {
+					activeInitiatives.get(index).volunteers.add(User.searchForUser(fin2.next()));
+				}
+				fin2.close();
+			}
+			fin22.close();
+			
+			Scanner fin33 = new Scanner(new FileReader("expiredInitiatives.txt"));
+			for(int j = 0;j<expiredInitiatives.size();j++) {
+				Scanner fin3 = new Scanner(fin33.nextLine());
+				fin3.next();
+				int index = expiredInitiatives.indexOf(searchForInitiative(expiredInitiatives,fin3.next()));
+				while(fin3.hasNext()) {
+					String text = fin3.next();
+					if(text.trim().equals("]")) {
+						break;
+					}else {
+						continue;
+					}
+				}
+				fin3.next();
+				fin3.next();
+				fin3.next();
+				expiredInitiatives.get(index).setInitiator(User.searchForUser(fin3.next()));
+				while(fin3.hasNext()) {
+					expiredInitiatives.get(index).volunteers.add(User.searchForUser(fin3.next()));
+				}
+				fin3.close();
+			}
+			fin33.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static Initiative searchForInitiative(List<Initiative> i,String id) {
 		sortInitiatives(i);
 		int low = 0;
 		int high = i.size()-1;
-		
+		id=id.trim();
 		while(low<=high) {
-			int middle = (low + high) / 2;
-			String idSearch = i.get(middle).id;
-			if(id.equals(idSearch)) {
+			int middle = low + (high-low) / 2;
+			String idSearch = i.get(middle).id.trim();
+			if(id.equals(idSearch.trim())) {
 				return i.get(middle);
-			} else if(id.compareTo(idSearch)<0) {
+			} else if(id.compareTo(idSearch.trim())<0) {
 				high = middle-1;
-			} else if(id.compareTo(idSearch)>0) {
+			} else if(id.compareTo(idSearch.trim())>0) {
 				low = middle+1;
-			} else if(!id.equals(idSearch) && low==high) {
+			} else if(!id.equals(idSearch.trim()) && low>=high) {
 				break;
 			}
 		}
 		return null;
 	}
 
-	public void checkTime() {
+	public void checkInitiativeTime() {
 		if(LocalDateTime.now().compareTo((date.plusHours(time))) > 0) {
 			setStatus("expired");
 			activeInitiatives.remove(activeInitiatives.indexOf(this));
 			expiredInitiatives.add(this);
 		}
+	}
+	
+	public static void checkTime() {
+		for(Initiative i: activeInitiatives) {
+			i.checkInitiativeTime();
+		}
+	}
+	
+	public static String returnNow() {
+		return format.format(LocalDateTime.now());
 	}
 
 	public static void sortInitiatives(List<Initiative> k) {
@@ -188,10 +287,27 @@ public class Initiative {
 		if(k.size()>1) {
 			for(int i = 0;i<k.size();i++) {
 				for(int j = 1;j<(k.size()-i);j++){
+					if(k.get(j-1).id == null)
+						try {
+							k.get(j-1).id = String.format("%10.0f",Float.parseFloat(k.get(k.size()-1).id.trim())+1.0f);
+						} catch(Throwable e) {
+							e.printStackTrace();
+							System.out.println("test");
+							k.get(j-1).id = String.format("%10.0f",(float)(k.get(j-1).name.hashCode()));
+						}
+					if(k.get(j).id == null)
+						try {
+							k.get(j).id = String.format("%10.0f",Float.parseFloat(k.get(k.size()-1).id.trim())+1f);
+						} catch(NullPointerException e) {
+							e.printStackTrace();
+							k.get(j).id = String.format("%10.0f",(float)(Math.abs(k.get(j).name.hashCode())));
+						}
 					if(k.get(j-1).id.compareTo(k.get(j).id) > 0) {
 						temp = k.get(j-1);
 						k.set(j-1,k.get(j));
 						k.set(j, temp);
+					} else if(k.get(j-1).id.compareTo(k.get(j).id) == 0) {
+						k.get(j).id = String.format("%10.0f",Float.parseFloat(k.get(k.size()-1).id.trim())+1f);
 					}
 				}
 			}
@@ -203,18 +319,28 @@ public class Initiative {
 
 	
 	public static String createID() {
-		try {
+		
 			sortInitiatives(activeInitiatives);
 			sortInitiatives(pendingInitiatives);
 			sortInitiatives(expiredInitiatives);
-			int newID = activeInitiatives.size()>0?Integer.parseInt(activeInitiatives.get(activeInitiatives.size()-1).id):1;
-			newID = Math.max(newID,pendingInitiatives.size()>0?Integer.parseInt(pendingInitiatives.get(pendingInitiatives.size()-1).id):newID);
-			newID = Math.max(newID,expiredInitiatives.size()>0?Integer.parseInt(expiredInitiatives.get(expiredInitiatives.size()-1).id):newID);
-			return String.format("%10.0f", newID + 1.0f);
-		}catch(NumberFormatException e) {
-			e.printStackTrace();
-			return String.format("%10.0f", 1.0f);
-		}
+			int newID = 0;
+			if (activeInitiatives.size()>0) {
+				if(activeInitiatives.get(activeInitiatives.size()-1).id!=null) {
+					newID = Integer.parseInt(activeInitiatives.get(activeInitiatives.size()-1).id.trim());
+				}
+			}
+			if (pendingInitiatives.size()>0) {
+				if(pendingInitiatives.get(pendingInitiatives.size()-1).id!=null) {
+					newID = Math.max(newID,Integer.parseInt(pendingInitiatives.get(pendingInitiatives.size()-1).id.trim()));
+				}
+			}
+			if (expiredInitiatives.size()>0) {
+				if(expiredInitiatives.get(expiredInitiatives.size()-1).id!=null) {
+					newID = Math.max(newID,Integer.parseInt(expiredInitiatives.get(expiredInitiatives.size()-1).id.trim()));
+				}
+			}
+			return String.format("%.0f", (float)(newID+1));
+		
 	}
 	
 	public int getTime() {return time;}
@@ -237,11 +363,11 @@ public class Initiative {
 			
 	public String getId() {return id;}
 	public void setId(String id) {
-		if(!id.matches(".*[^0-9].*")) {
+		if(id.matches("\\d+")) {
 			if (id.length()==10) {
 				this.id = id;
 			} else {
-				this.id = String.format("%10.0f", Float.parseFloat(id));
+				this.id = String.format("%.0f", Float.parseFloat(id));
 			}
 		} else {
 			createID();
@@ -249,31 +375,42 @@ public class Initiative {
 		}
 	public String getName() {return name;}
 	public void setName(String name) {
-		if(!name.matches(".*[^a-zA-Z].*")) {	
+		if(name.matches("[a-zA-Z]+")) {	
 			this.name = name;
 		} else {
-			this.name = "Volunteering #"+id;
+			this.name = "Initiative #"+id;
 		}
 		}
 	public LocalDateTime getDate() {return date;}
 	public String getDateAsString() {
 		return format.format(date);
 	}
+	public String getExpirationDateAsString() {
+		return format.format(date.plusHours(time));
+	}
 	public void setDate(String date) {
+		try {
 		this.date = LocalDateTime.parse(date,format);
+		}catch(DateTimeParseException e) {
+			e.printStackTrace();
+			this.date = LocalDateTime.now();
+		}
 	}
 	public String getDescription() {return description;}
 	public void setDescription(String description) {this.description = description;}
 	public List<User> getVolunteers() {return volunteers;}
 	public void setVolunteers(List<User> volunteers) {this.volunteers = volunteers;}
 	public User getInitiator() {return initiator;}
-	public void setInitiator(User initiator) {this.initiator = initiator;}
+	public void setInitiator(User initiator) {
+		this.initiator = initiator;
+		}
 	public void setStatus(String status) {
-		if (status.equals("pending") || status.equals("active") || status.equals("expired"))
+		if (status.equals("pending") || status.equals("active") || status.equals("expired")) {
 			this.status = status;
 		} else {
 			this.status = "pending";
 		}
+	}
 	
 
 }

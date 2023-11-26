@@ -1,47 +1,26 @@
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.event.*;
+import javax.swing.table.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.JTextField;
-
-public class Vmainpage extends JFrame {
+public class Vmainpage extends JFrame implements ActionListener,ListSelectionListener,MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private JLabel lblNewLabel,lblActiveInitiatives,lblNewLabel_1;
+	private JScrollPane scrollPane;
+	private JButton Register,InitiativesAlreadyRegisteredButton,EditPersonalInfoButton,GenerateReportButton,Backbutton;
+	private DefaultTableModel model;
+	private Object[][] fullTable;
+	private JTextArea initiativeDescription;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Vmainpage frame = new Vmainpage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new Vmainpage();
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Vmainpage() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
 		setTitle("Volunteer For Earth");
@@ -55,124 +34,140 @@ public class Vmainpage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Volunteer");
+		lblNewLabel = new JLabel("Volunteer");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblNewLabel.setBounds(203, 11, 118, 48);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblActiveInitiatives = new JLabel("Active initiatives:");
+		lblActiveInitiatives = new JLabel("Active initiatives:");
 		lblActiveInitiatives.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblActiveInitiatives.setBounds(10, 81, 170, 30);
 		contentPane.add(lblActiveInitiatives);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 115, 332, 78);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		table.setForeground(Color.BLACK);
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"Name", "Time & Date", "Sus.Points", "Description"
-			}
-		));
 		
-		JButton R1 = new JButton("register");
-		R1.setBounds(337, 138, 89, 18);
-		contentPane.add(R1);
+		fullTable = new Object[Initiative.activeInitiatives.size()][5];
+        for (int i = 0;i<Initiative.activeInitiatives.size();i++) {
+        	fullTable[i][0]=Initiative.activeInitiatives.get(i).getId();
+        	fullTable[i][1]=Initiative.activeInitiatives.get(i).getName();
+        	fullTable[i][2]=Initiative.activeInitiatives.get(i).getDateAsString();
+        	fullTable[i][3]=Initiative.activeInitiatives.get(i).getCredit();
+        	fullTable[i][4]=Initiative.activeInitiatives.get(i).getDescription();
+        }
 		
-		JButton R2 = new JButton("register");
-		R2.setBounds(337, 157, 89, 18);
-		contentPane.add(R2);
+		model = new DefaultTableModel(fullTable,
+				new String[] {"ID","Name", "Time & Date", "Sus.Points", "Description"}){
+					private static final long serialVersionUID = 1L;
+					public boolean isCellEditable(int row, int column) {
+						return false;
+					}};
+		table.setModel(model);
+		table.addMouseListener(this);
+		table.getSelectionModel().addListSelectionListener(this);
 		
-		JButton R3 = new JButton("register");
-		R3.setBounds(337, 175, 89, 18);
-		contentPane.add(R3);
+		Register = new JButton("Register");
+		Register.setBounds(200, 200, 89, 18);
+		contentPane.add(Register);
+		Register.addActionListener(this);
 		
-		JButton InitiativesAlreadyRegisteredButton = new JButton("Initiatives already registered in ");
+		initiativeDescription = new JTextArea("Description:\n");
+		initiativeDescription.setBounds(366,110,149,150);
+		contentPane.add(initiativeDescription);
+		initiativeDescription.setEditable(false);
+		
+		InitiativesAlreadyRegisteredButton = new JButton("Initiatives already registered in ");
 		InitiativesAlreadyRegisteredButton.setBounds(10, 280, 218, 18);
 		contentPane.add(InitiativesAlreadyRegisteredButton);
 		
-		InitiativesAlreadyRegisteredButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	InitiativesAlreadyRegisteredButtonActionPerformed(evt);
-            }
-        });
+		InitiativesAlreadyRegisteredButton.addActionListener(this);
 		
-		JButton EditPersonalInfoButton = new JButton("Edit Personal Info");
+		EditPersonalInfoButton = new JButton("Edit Personal Info");
 		EditPersonalInfoButton.setBounds(366, 54, 149, 18);
 		contentPane.add(EditPersonalInfoButton);
 		
-		EditPersonalInfoButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	EditPersonalInfoButtonActionPerformed(evt);
-            }
-        });
+		EditPersonalInfoButton.addActionListener(this);
 		
-		JButton GenerateReportButton = new JButton("Generate Report");
+		GenerateReportButton = new JButton("Generate Report");
 		GenerateReportButton.setBounds(378, 280, 137, 18);
 		contentPane.add(GenerateReportButton);
 		
-		GenerateReportButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	GenerateReportButtonActionPerformed(evt);
-            }
-        });
+		GenerateReportButton.addActionListener(this);
 		
-		JButton Backbutton = new JButton("Back");
+		Backbutton = new JButton("Back");
 		Backbutton.setBounds(366, 81, 149, 18);
 		contentPane.add(Backbutton);
 		
-		Backbutton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	BackbuttonActionPerformed(evt);
-            }
-        });
+		Backbutton.addActionListener(this);
 		
-		JLabel lblNewLabel_1 = new JLabel("Your Sus.Points:");
+		lblNewLabel_1 = new JLabel("Your Points:"+User.loggedIn.getPoints());
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblNewLabel_1.setBounds(10, 221, 163, 32);
 		contentPane.add(lblNewLabel_1);
+		
 		table.getColumnModel().getColumn(1).setPreferredWidth(80);
 		table.getColumnModel().getColumn(2).setPreferredWidth(80);
 		table.getColumnModel().getColumn(3).setPreferredWidth(81);
+		
+		setVisible(true);
 	}
-    private void GenerateReportButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GenerateReport().setVisible(true);
-            }
-        });
-        dispose();
-    }
-    private void InitiativesAlreadyRegisteredButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new INAR().setVisible(true);
-            }
-        });
-        dispose();
-    }
-    private void BackbuttonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new useroptions().setVisible(true);
-            }
-        });
-        dispose();
-    }
-    private void EditPersonalInfoButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EPI().setVisible(true);
-            }
-        });
-        dispose();
-    }
+
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==Backbutton) {
+			new useroptions().setVisible(true);
+			dispose();
+		}else if(e.getSource()==GenerateReportButton) {
+			new GenerateReport().setVisible(true);
+			dispose();
+		}else if(e.getSource()==EditPersonalInfoButton) {
+			EPI PI = new EPI();
+			PI.source="volunteer";
+			dispose();
+		}else if(e.getSource()==InitiativesAlreadyRegisteredButton) {
+			new INAR().setVisible(true);
+			dispose();
+		}else if(table.getSelectedRow()>=0 && e.getSource()==Register) {
+			User.loggedIn.volunteer(Initiative.searchForInitiative(Initiative.activeInitiatives,(String)(table.getValueAt(table.getSelectedRow(),0))));
+		}
+	}
+
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mouseClicked(MouseEvent e) {
+		if (e.getClickCount() == 2) {
+    		initiativeDescription.setText("Description:\n"+(String)(table.getValueAt(table.rowAtPoint(e.getPoint()),4)));
+        }
+	}
+	
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

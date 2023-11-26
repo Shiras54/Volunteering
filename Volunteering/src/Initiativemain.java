@@ -1,49 +1,26 @@
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.event.*;
+import javax.swing.table.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.Toolkit;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class Initiativemain extends JFrame {
+public class Initiativemain extends JFrame implements ActionListener,ListSelectionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-	private JTable table_1;
+	private JLabel lblNewLabel,lblNewLabel_1,lblNewLabel_2;
+	private JButton editPI,AddNewInitiative,editInitiativeButton,RemoveInitiativeButton,VolunteersButton,backButton;
+	private JScrollPane MyInitiativesTable;
+	private Object[][] fullTable;
+	private DefaultTableModel model;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Initiativemain frame = new Initiativemain();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new Initiativemain();
 	}
 
-
-
-
-	/**
-	 * Create the frame.
-	 */
 	public Initiativemain() {
 		setForeground(Color.LIGHT_GRAY);
 		setTitle("Volunteer For Earth");
@@ -58,185 +35,192 @@ public class Initiativemain extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Initiator");
+		lblNewLabel = new JLabel("Initiator");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblNewLabel.setBounds(146, 11, 100, 33);
 		contentPane.add(lblNewLabel);
 		
-		JButton editPI = new JButton("Edit Personal Info");
+		editPI = new JButton("Edit Personal Info");
 		editPI.setBounds(10, 91, 144, 23);
 		contentPane.add(editPI);
+		editPI.addActionListener(this);
 		
-		editPI.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	editPIActionPerformed(evt);
-            }
-        });
-		
-		JButton AddNewInitiative = new JButton("Add new initiative");
+		AddNewInitiative = new JButton("Add new initiative");
 		AddNewInitiative.setBounds(10, 57, 144, 23);
 		contentPane.add(AddNewInitiative);
-		AddNewInitiative.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	AddNewInitiativeActionPerformed(evt);
-            }
-        });
+		AddNewInitiative.addActionListener(this);
 		
-		JScrollPane MyInitiativesTable = new JScrollPane();
+		MyInitiativesTable = new JScrollPane();
 		MyInitiativesTable.setBounds(10, 193, 209, 59);
 		contentPane.add(MyInitiativesTable);
 		
 		table = new JTable();
 		MyInitiativesTable.setViewportView(table);
+		
+		fullTable = new Object[2][2];
+		if(User.loggedIn.getInitiative1()==null) {
+			fullTable[0][0]=null;
+			fullTable[0][1]=null;
+		} else {
+			fullTable[0][0]=User.loggedIn.getInitiative1().getName();
+			fullTable[0][1]=User.loggedIn.getInitiative1().getVolunteers().size();
+		}
+		if(User.loggedIn.getInitiative2()==null) {
+			fullTable[1][0]=null;
+			fullTable[1][1]=null;
+		} else {
+			fullTable[1][0]=User.loggedIn.getInitiative2().getName();
+			fullTable[1][1]=User.loggedIn.getInitiative2().getVolunteers().size();
+		}
+		
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"Name", "No of Volunteers"
-			}
-		));
+		model = new DefaultTableModel(fullTable,
+				new String[] {
+						"Name", "No of Volunteers"
+					}
+				);
+		table.setModel(model);
 		table.getColumnModel().getColumn(0).setPreferredWidth(46);
 		table.getColumnModel().getColumn(1).setPreferredWidth(93);
 		
-		JLabel lblNewLabel_1 = new JLabel("My Active Initiatives:");
+		lblNewLabel_1 = new JLabel("My Active Initiatives:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblNewLabel_1.setBounds(10, 159, 194, 23);
-		contentPane.add(lblNewLabel_1);
+		contentPane.add(lblNewLabel_1);		
+			
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(213, 193, 213, 23);
-		contentPane.add(scrollPane_1);
-		
-		table_1 = new JTable();
-		scrollPane_1.setViewportView(table_1);
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Edit", "Remove", "V registered"
-			}
-		));
-		
-		JButton edit2 = new JButton("E");
-		edit2.setBounds(213, 236, 68, 16);
-		contentPane.add(edit2);
-		
-		edit2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	edit2ActionPerformed(evt);
-            }
-        });
+		editInitiativeButton = new JButton("Edit");
+		editInitiativeButton.setBounds(230, 188, 200, 20);
+		contentPane.add(editInitiativeButton);
+		editInitiativeButton.addActionListener(this);
 		
 		
-		JButton edit1 = new JButton("E");
-		edit1.setBounds(213, 216, 68, 23);
-		contentPane.add(edit1);
+		RemoveInitiativeButton = new JButton("Remove");
+		RemoveInitiativeButton.setBounds(230, 210, 200, 20);
+		contentPane.add(RemoveInitiativeButton);
+		RemoveInitiativeButton.addActionListener(this);
+
 		
-		edit1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	edit1ActionPerformed(evt);
-            }
-        });
+		VolunteersButton = new JButton("Volunteer List");
+		VolunteersButton.setBounds(230, 232, 200, 20);
+		contentPane.add(VolunteersButton);
+		VolunteersButton.addActionListener(this);
+
 		
-		
-		JButton remove1 = new JButton("R\r\n\r\n");
-		remove1.setBounds(272, 216, 78, 23);
-		contentPane.add(remove1);
-		
-		JButton remove2 = new JButton("R\r\n");
-		remove2.setBounds(272, 233, 78, 19);
-		contentPane.add(remove2);
-		
-		JButton VR1 = new JButton("V");
-		VR1.setBounds(348, 216, 78, 23);
-		contentPane.add(VR1);
-		VR1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	VR1ActionPerformed(evt);
-            }
-        });
-		JButton VR2 = new JButton("V");
-		VR2.setBounds(348, 233, 78, 19);
-		contentPane.add(VR2);
-		VR2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	VR2ActionPerformed(evt);
-            }
-        });
-		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\ini.png"));
 		lblNewLabel_2.setBounds(348, 11, 68, 72);
 		contentPane.add(lblNewLabel_2);
 
-		JButton backButton = new JButton("Back");
-		backButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				backButtonActionPerformed(e);   
-				}
-			});
+		backButton = new JButton("Back");
+		backButton.addActionListener(this);
 		backButton.setBounds(10, 125, 144, 23);
 		contentPane.add(backButton);
+		
+		setVisible(true);
 	}
-	private void backButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new useroptions().setVisible(true);
-            }
-        });
-        dispose();
-    }
-	private void AddNewInitiativeActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddInitiativee().setVisible(true);
-            }
-        });
-        dispose();
-    }
-	private void VR1ActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VRlist().setVisible(true);
-            }
-        });
-        dispose();
-    }
-	private void VR2ActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VRlist2().setVisible(true);
-            }
-        });
-        dispose();
-    }
-	private void editPIActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EPII().setVisible(true);
-            }
-        });
-        dispose();
-    }
-	private void edit1ActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EditingInitiative().setVisible(true);
-            }
-        });
-        dispose();
-    }
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(table.getSelectedRow()>=0 && e.getSource()==editInitiativeButton) {
+			if(table.getSelectedRow()==0) {
+				if(User.loggedIn.getInitiative1()!=null) {
+					new EditingInitiative().setVisible(true);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Initiative does not exist!");
+				}
+			} else if(table.getSelectedRow() == 1) {
+				if(User.loggedIn.getInitiative2()!=null) {
+					new Editini2().setVisible(true);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Initiative does not exist!");
+				}
+			}
+		} else if(e.getSource()==backButton) {
+			new useroptions().setVisible(true);
+			dispose();
+		} else if(e.getSource()==AddNewInitiative) {
+			new AddInitiativee().setVisible(true);
+			dispose();
+		} else if(table.getSelectedRow()>=0 && e.getSource()==VolunteersButton) {
+			if(table.getSelectedRow()==0) {
+				if(User.loggedIn.getInitiative1()!=null) {
+					VolunteerDetails v = new VolunteerDetails(User.loggedIn.getInitiative1());
+					v.setSource("initiate");
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Initiative does not exist!");
+				}
+			} else if(table.getSelectedRow() == 1) {
+				if(User.loggedIn.getInitiative2()!=null) {
+					VolunteerDetails v = new VolunteerDetails(User.loggedIn.getInitiative2());
+					v.setSource("initiate");
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Initiative does not exist!");
+				}
+			}
+		} else if(table.getSelectedRow()>=0 && e.getSource()==RemoveInitiativeButton) {
+			if(table.getSelectedRow()==0) {
+				if(User.loggedIn.getInitiative1()!=null) {
+					User.loggedIn.terminate(User.loggedIn.getInitiative1());
+				} else {
+					JOptionPane.showMessageDialog(null, "Initiative does not exist!");
+				}
+			} else if(table.getSelectedRow() == 1) {
+				if(User.loggedIn.getInitiative2()!=null) {
+					User.loggedIn.terminate(User.loggedIn.getInitiative2());
+				} else {
+					JOptionPane.showMessageDialog(null, "Initiative does not exist!");
+				}
+			}
+		} else if(e.getSource()== editPI) {
+			EPI PI = new EPI();
+			PI.source="initiate";
+			dispose();
+		}
+		resetTable();
+	}
+
+	public void valueChanged(ListSelectionEvent e) {
+		
+	}
 	
-	private void edit2ActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Editini2().setVisible(true);
-            }
-        });
-        dispose();
-    }
+	public void resetTable() {
+		if (model.getRowCount() > 0) {
+		     for (int i = model.getRowCount() - 1; i > -1; i--) {
+		         model.removeRow(i);
+		     }
+		 }
+		fullTable = new Object[2][2];
+		if(User.loggedIn.getInitiative1()==null) {
+			fullTable[0][0]=null;
+			fullTable[0][1]=null;
+		} else {
+			fullTable[0][0]=User.loggedIn.getInitiative1().getName();
+			fullTable[0][1]=User.loggedIn.getInitiative1().getVolunteers().size();
+		}
+		if(User.loggedIn.getInitiative2()==null) {
+			fullTable[1][0]=null;
+			fullTable[1][1]=null;
+		} else {
+			fullTable[1][0]=User.loggedIn.getInitiative2().getName();
+			fullTable[1][1]=User.loggedIn.getInitiative2().getVolunteers().size();
+		}
+		
+		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		model = new DefaultTableModel(fullTable,
+    			new String[] {"Name", "No of Volunteers"}) {
+					private static final long serialVersionUID = 1L;
+					public boolean isCellEditable(int row, int column) {
+    			       return false;
+    			    }};
+		table.setModel(model);
+		table.getColumnModel().getColumn(0).setPreferredWidth(46);
+		table.getColumnModel().getColumn(1).setPreferredWidth(93);
+	}
 	
 }
