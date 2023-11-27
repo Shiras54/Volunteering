@@ -24,7 +24,7 @@ public class Initiativemain extends JFrame implements ActionListener,ListSelecti
 	public Initiativemain() {
 		setForeground(Color.LIGHT_GRAY);
 		setTitle("Volunteer For Earth");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -108,7 +108,7 @@ public class Initiativemain extends JFrame implements ActionListener,ListSelecti
 
 		
 		lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\ini.png"));
+		lblNewLabel_2.setIcon(new ImageIcon("ini.png"));
 		lblNewLabel_2.setBounds(348, 11, 68, 72);
 		contentPane.add(lblNewLabel_2);
 

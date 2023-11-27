@@ -22,7 +22,7 @@ public class GenerateReport extends JFrame implements ActionListener{
 
 	public GenerateReport() {
 		setTitle("Volunteer For Earth");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 569, 344);
@@ -69,7 +69,7 @@ public class GenerateReport extends JFrame implements ActionListener{
 	    table.setAutoCreateRowSorter(true);
 		
 		image = new JLabel("New label");
-		image.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\xp.png"));
+		image.setIcon(new ImageIcon("xp.png"));
 		image.setBounds(502, 11, 49, 54);
 		contentPane.add(image);
 		

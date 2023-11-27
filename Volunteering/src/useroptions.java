@@ -19,7 +19,7 @@ public class useroptions extends JFrame implements ActionListener{
 
 	public useroptions() {
 		setTitle("Volunteer For Earth");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -55,7 +55,7 @@ public class useroptions extends JFrame implements ActionListener{
 		exit.addActionListener(this);
 		
 		image = new JLabel("New label");
-		image.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\opv.png"));
+		image.setIcon(new ImageIcon("opv.png"));
 		image.setBounds(352, 22, 63, 64);
 		contentPane.add(image);
 	}

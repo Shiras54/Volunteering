@@ -23,7 +23,7 @@ public class EPI extends JFrame implements ActionListener{
 
 	public EPI() {
 		setBackground(Color.LIGHT_GRAY);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("Tree-icon.png"));
 		setTitle("Volunteer For Earth");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 420, 400);
@@ -109,7 +109,7 @@ public class EPI extends JFrame implements ActionListener{
 		contentPane.add(passTF);
 		
 		lblimg = new JLabel("");
-		lblimg.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\fix.png"));
+		lblimg.setIcon(new ImageIcon("fix.png"));
 		lblimg.setBounds(377, 11, 49, 48);
 		contentPane.add(lblimg);
 		

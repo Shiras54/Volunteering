@@ -22,7 +22,7 @@ public class Vmainpage extends JFrame implements ActionListener,ListSelectionLis
 	}
 
 	public Vmainpage() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("Tree-icon.png"));
 		setTitle("Volunteer For Earth");
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

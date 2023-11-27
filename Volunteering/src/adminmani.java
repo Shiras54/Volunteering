@@ -26,7 +26,7 @@ public class adminmani extends JFrame implements ActionListener,ListSelectionLis
 
     public adminmani() {
         setTitle("Volunteer For Earth");
-        setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
+        setIconImage(Toolkit.getDefaultToolkit().getImage("Tree-icon.png"));
         setBackground(Color.LIGHT_GRAY);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 750, 365);
@@ -91,7 +91,7 @@ public class adminmani extends JFrame implements ActionListener,ListSelectionLis
 
 
         image = new JLabel("New label");
-        image.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\sr.png"));
+        image.setIcon(new ImageIcon("sr.png"));
         image.setBounds(495, 11, 77, 73);
         contentPane.add(image);
 

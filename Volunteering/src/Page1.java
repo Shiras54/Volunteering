@@ -18,7 +18,7 @@ public class Page1 extends JFrame implements ActionListener {
   	
     	
         setTitle("Volunteer For Earth");
-        setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
+        setIconImage(Toolkit.getDefaultToolkit().getImage("Tree-icon.png"));
         setForeground(Color.WHITE);
         setBackground(Color.WHITE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,7 +50,7 @@ public class Page1 extends JFrame implements ActionListener {
         adminButton = new JButton("Admin");
         adminButton.setForeground(Color.WHITE);
         adminButton.setBackground(Color.WHITE);
-        adminButton.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\use.png"));
+        adminButton.setIcon(new ImageIcon("use.png"));
         adminButton.setBounds(27, 119, 72, 74);
         contentPane.add(adminButton);
 
@@ -59,7 +59,7 @@ public class Page1 extends JFrame implements ActionListener {
         userButton = new JButton("User");
         userButton.setBackground(Color.WHITE);
         userButton.setForeground(Color.WHITE);
-        userButton.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\usx.png"));
+        userButton.setIcon(new ImageIcon("usx.png"));
         userButton.setBounds(293, 119, 72, 74);
         contentPane.add(userButton);
 

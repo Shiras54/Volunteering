@@ -23,7 +23,7 @@ public class INAR extends JFrame implements ActionListener,ListSelectionListener
 
 	public INAR() {
 		setTitle("Volunteer For Earth");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("Tree-icon.png"));
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -40,7 +40,7 @@ public class INAR extends JFrame implements ActionListener,ListSelectionListener
 		contentPane.add(lblNewLabel);
 		
 		image = new JLabel("New label");
-		image.setIcon(new ImageIcon("C:\\Users\\saeed\\OneDrive\\Desktop\\lis.png"));
+		image.setIcon(new ImageIcon("lis.png"));
 		image.setBounds(365, 10, 71, 50);
 		contentPane.add(image);
 		
