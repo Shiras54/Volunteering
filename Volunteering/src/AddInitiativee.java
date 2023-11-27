@@ -52,7 +52,7 @@ public class AddInitiativee extends JFrame implements ActionListener {
 		lnName.setBounds(10, 63, 85, 27);
 		contentPane.add(lnName);
 		
-		lnTime = new JLabel("Length:");
+		lnTime = new JLabel("Period (Hrs):");
 		lnTime.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lnTime.setBounds(10, 119, 146, 27);
 		contentPane.add(lnTime);

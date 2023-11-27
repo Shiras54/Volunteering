@@ -60,7 +60,7 @@ public class adminP1 extends JFrame {
         passTF.setBounds(190, 154, 96, 20);
         contentPane.add(passTF);
         
-        JButton loginButton = new JButton("log in");
+        JButton loginButton = new JButton("Log In");
         loginButton.setBounds(314, 217, 89, 23);
         contentPane.add(loginButton);
         

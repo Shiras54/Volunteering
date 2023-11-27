@@ -261,18 +261,22 @@ public class Initiative {
 		return null;
 	}
 
-	public void checkInitiativeTime() {
-		if(LocalDateTime.now().compareTo((date.plusHours(time))) > 0) {
-			setStatus("expired");
-			activeInitiatives.remove(activeInitiatives.indexOf(this));
-			expiredInitiatives.add(this);
-		}
-	}
+
 	
 	public static void checkTime() {
+		List<String> s = new ArrayList<String>();
 		for(Initiative i: activeInitiatives) {
-			i.checkInitiativeTime();
+			if(LocalDateTime.now().compareTo((i.date.plusHours(i.time))) >= 0) {
+				s.add(i.getId());
+			}
 		}
+		for(int i=0;i<s.size();i++) {
+			Initiative j = searchForInitiative(activeInitiatives,s.get(i));
+			j.setStatus("expired");
+			activeInitiatives.remove(activeInitiatives.indexOf(j));
+			expiredInitiatives.add(j);
+			j.getInitiator().terminate(j);
+			}
 	}
 	
 	public static String returnNow() {

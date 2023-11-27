@@ -62,7 +62,7 @@ public class Vmainpage extends JFrame implements ActionListener,ListSelectionLis
         }
 		
 		model = new DefaultTableModel(fullTable,
-				new String[] {"ID","Name", "Time & Date", "Sus.Points", "Description"}){
+				new String[] {"ID","Name", "Time & Date", "Credit", "Description"}){
 					private static final long serialVersionUID = 1L;
 					public boolean isCellEditable(int row, int column) {
 						return false;

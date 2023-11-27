@@ -12,7 +12,7 @@ public class INAR extends JFrame implements ActionListener,ListSelectionListener
 	private JPanel contentPane;
 	private JTable table;
 	private JLabel lblNewLabel,image;
-	private JButton backButton;
+	private JButton backButton,withdrawButton;
 	private JScrollPane ARtable;
 	private DefaultTableModel model;
 	private Object[][] fullTable;
@@ -46,8 +46,13 @@ public class INAR extends JFrame implements ActionListener,ListSelectionListener
 		
 		backButton = new JButton("Back");
 		backButton.addActionListener(this);
-		backButton.setBounds(10, 229, 89, 23);
+		backButton.setBounds(20, 229, 89, 23);
 		contentPane.add(backButton);
+		
+		withdrawButton = new JButton("Withdraw");
+		withdrawButton.addActionListener(this);
+		withdrawButton.setBounds(250, 229, 89, 23);
+		contentPane.add(withdrawButton);
 		
 		ARtable = new JScrollPane();
 		ARtable.setBounds(28, 112, 358, 77);
@@ -63,21 +68,21 @@ public class INAR extends JFrame implements ActionListener,ListSelectionListener
 				j++;
 			}
 		}
-		System.out.print(j);
 		
 		fullTable = new Object[j][5];
 		int i = 0;
         while(i<j) {
         	if(User.loggedIn.getVolunteeringJobs().get(i).getStatus().equals("active")) {
-	        	fullTable[i][0]=User.loggedIn.getVolunteeringJobs().get(i).getName();
-	        	fullTable[i][1]=User.loggedIn.getVolunteeringJobs().get(i).getExpirationDateAsString();
-	        	fullTable[i][2]=User.loggedIn.getVolunteeringJobs().get(i).getCredit();
-	        	fullTable[i][3]=User.loggedIn.getVolunteeringJobs().get(i).getTime();
+        		fullTable[i][0]=User.loggedIn.getVolunteeringJobs().get(i).getId();
+	        	fullTable[i][1]=User.loggedIn.getVolunteeringJobs().get(i).getName();
+	        	fullTable[i][2]=User.loggedIn.getVolunteeringJobs().get(i).getExpirationDateAsString();
+	        	fullTable[i][3]=User.loggedIn.getVolunteeringJobs().get(i).getCredit();
+	        	fullTable[i][4]=User.loggedIn.getVolunteeringJobs().get(i).getTime();
 	        	i++;
         	}
         }
         model = new DefaultTableModel(fullTable,
-    			new String[] {"Name", "Expire Date", "Credits", "Period"}) {
+    			new String[] {"ID", "Name", "Expire Date", "Credits", "Period"}) {
 					private static final long serialVersionUID = 1L;
 					public boolean isCellEditable(int row, int column) {
     			       return false;
@@ -90,18 +95,54 @@ public class INAR extends JFrame implements ActionListener,ListSelectionListener
 	}
 
 
-	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void valueChanged(ListSelectionEvent e) {}
 
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==backButton) {
 			new Vmainpage().setVisible(true);
 			dispose();
+		}else if(table.getSelectedRow()>=0 && e.getSource()==withdrawButton) {
+			User.loggedIn.withdraw(Initiative.searchForInitiative(Initiative.activeInitiatives, (String)(table.getValueAt(table.getSelectedRow(),0))));
+			resetFrame();
 		}
 		
+	}
+	
+	public void resetFrame() {
+		if (model.getRowCount() > 0) {
+		     for (int i = model.getRowCount() - 1; i > -1; i--) {
+		         model.removeRow(i);
+		     }
+		 }		
+		
+		int j = 0;
+		for(Initiative x:User.loggedIn.getVolunteeringJobs()) {
+			if(x.getStatus().equals("active")) {
+				j++;
+			}
+		}
+		
+		fullTable = new Object[j][5];
+		int i = 0;
+        while(i<j) {
+        	if(User.loggedIn.getVolunteeringJobs().get(i).getStatus().equals("active")) {
+        		fullTable[i][0]=User.loggedIn.getVolunteeringJobs().get(i).getId();
+	        	fullTable[i][1]=User.loggedIn.getVolunteeringJobs().get(i).getName();
+	        	fullTable[i][2]=User.loggedIn.getVolunteeringJobs().get(i).getExpirationDateAsString();
+	        	fullTable[i][3]=User.loggedIn.getVolunteeringJobs().get(i).getCredit();
+	        	fullTable[i][4]=User.loggedIn.getVolunteeringJobs().get(i).getTime();
+	        	i++;
+        	}
+        }
+        model = new DefaultTableModel(fullTable,
+    			new String[] {"ID", "Name", "Expire Date", "Credits", "Period"}) {
+					private static final long serialVersionUID = 1L;
+					public boolean isCellEditable(int row, int column) {
+    			       return false;
+    			    }};
+		table.setModel(model);
+	    table.setAutoCreateRowSorter(true);
 	}
 
 }

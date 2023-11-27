@@ -328,7 +328,7 @@ public class User {
 	}
 	public void withdraw(Initiative i) {
 		boolean found = false;
-		for(int j = 0;j<=volunteeringJobs.size();j++) {
+		for(int j = 0;j<volunteeringJobs.size();j++) {
 			if(volunteeringJobs.get(j).equals(i)) {
 				found = true;
 			}

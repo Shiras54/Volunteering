@@ -1,42 +1,21 @@
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import java.awt.Font;
-import javax.swing.JButton;
-
-public class Exit extends JFrame {
+public class Exit extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JLabel lblNewLabel,lblNewLabel_1;
+	private JButton login;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Exit frame = new Exit();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new Exit();
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public Exit() {
 		setTitle("Volunteer For Earth");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\saeed\\OneDrive\\Desktop\\Tree-icon.png"));
@@ -50,35 +29,36 @@ public class Exit extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Thank You For Using Our APP");
+		lblNewLabel = new JLabel("Thank You For Using Our APP");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
 		lblNewLabel.setBounds(51, 11, 336, 33);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon("vv.png"));
 		lblNewLabel_1.setBounds(138, 76, 147, 150);
 		contentPane.add(lblNewLabel_1);
 		
-		JButton login = new JButton("Log in");
+		login = new JButton("Log in");
 		login.setBounds(321, 217, 89, 23);
 		contentPane.add(login);
 		
-        login.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
+        login.addActionListener(this);
         
+        setVisible(true);
+        
+        Initiative.checkTime();
 		Initiative.saveInitiatives();
 		User.saveUsers();
+		
 	}
-    private void  loginButtonActionPerformed(ActionEvent evt) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Page1().setVisible(true);
-            }
-        });
-        dispose();
-    }
+
+
+
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==login) {
+			new Page1();
+			dispose();
+		}
+	}
 }

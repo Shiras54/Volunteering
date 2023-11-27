@@ -48,7 +48,7 @@ public class userpage1 extends JFrame implements ActionListener {
 		NRY.setBounds(268, 190, 142, 27);
 		contentPane.add(NRY);
 		
-		loginButton = new JButton("log in");
+		loginButton = new JButton("Log In");
 		loginButton.setBounds(22, 213, 89, 23);
 		contentPane.add(loginButton);
 		

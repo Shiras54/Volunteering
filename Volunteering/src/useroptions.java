@@ -69,7 +69,7 @@ public class useroptions extends JFrame implements ActionListener{
 			dispose();
 		}
 		else if (e.getSource() == exit) {
-            new Exit().setVisible(true);
+            new Exit();
 			dispose();
 		}
 	}

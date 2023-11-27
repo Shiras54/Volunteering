@@ -56,7 +56,7 @@ public class Editini2 extends JFrame implements ActionListener{
 		InNOV.setBounds(10, 113, 262, 27);
 		contentPane.add(InNOV);
 		
-		INTime = new JLabel("Time:\n");
+		INTime = new JLabel("Period (Hrs):\n");
 		INTime.setFont(new Font("Tahoma", Font.BOLD, 22));
 		INTime.setBounds(10, 161, 157, 27);
 		contentPane.add(INTime);
