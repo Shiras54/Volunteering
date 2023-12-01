@@ -163,7 +163,6 @@ public class Initiative {
 		try {
 			Scanner fin11 = new Scanner(new FileReader("pendingInitiatives.txt"));
 			for(int j = 0;j<pendingInitiatives.size();j++) {
-				System.out.print(pendingInitiatives.size()+"\n");
 				Scanner fin1 = new Scanner(fin11.nextLine());
 				fin1.next();
 				String id = fin1.next();

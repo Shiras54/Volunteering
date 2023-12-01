@@ -1,12 +1,11 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.event.*;
 import java.awt.Font;
 import javax.swing.table.*;
 import java.awt.event.*;
 
-public class adminmani extends JFrame implements ActionListener,ListSelectionListener,MouseListener {
+public class adminmani extends JFrame implements ActionListener,MouseListener {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -84,7 +83,6 @@ public class adminmani extends JFrame implements ActionListener,ListSelectionLis
     			    }};
         table.setModel(model);
         
-	    table.getSelectionModel().addListSelectionListener(this);
 	    table.addMouseListener(this);
 	    table.setAutoCreateRowSorter(true);
 	    
@@ -135,33 +133,15 @@ public class adminmani extends JFrame implements ActionListener,ListSelectionLis
         }		
 	}
 
-	public void mousePressed(MouseEvent e) {
-		
-	}
+	public void mousePressed(MouseEvent e) {}
 
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseReleased(MouseEvent e) {}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseEntered(MouseEvent e) {}
 
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseExited(MouseEvent e) {}
 
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	public void actionPerformed(ActionEvent e) {
         if(e.getSource()==exitButton) {
         	new Exit().setVisible(true);

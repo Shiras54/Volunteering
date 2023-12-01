@@ -1,12 +1,11 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.event.*;
 import javax.swing.table.*;
 import java.awt.event.*;
 
 
-public class Initiativemain extends JFrame implements ActionListener,ListSelectionListener {
+public class Initiativemain extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -185,9 +184,7 @@ public class Initiativemain extends JFrame implements ActionListener,ListSelecti
 		resetTable();
 	}
 
-	public void valueChanged(ListSelectionEvent e) {
-		
-	}
+
 	
 	public void resetTable() {
 		if (model.getRowCount() > 0) {

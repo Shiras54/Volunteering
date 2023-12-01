@@ -125,9 +125,10 @@ public class AddInitiativee extends JFrame implements ActionListener {
 			new Initiativemain().setVisible(true);
 			dispose();
 		}else if (e.getSource() == btnDone) {
+			User.loggedIn.initiate(nameTF.getText(),date.getText(),descriptionTA.getText(),Integer.parseInt(creditTF.getText()),Integer.parseInt(timeTF.getText()));
 			new Initiativemain().setVisible(true);
 			dispose();
-			User.loggedIn.initiate(nameTF.getText(),date.getText(),descriptionTA.getText(),Integer.parseInt(creditTF.getText()),Integer.parseInt(timeTF.getText()));
+
 		}
 	}
 }

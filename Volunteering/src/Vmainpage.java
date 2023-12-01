@@ -1,11 +1,10 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.event.*;
 import javax.swing.table.*;
 import java.awt.event.*;
 
-public class Vmainpage extends JFrame implements ActionListener,ListSelectionListener,MouseListener {
+public class Vmainpage extends JFrame implements ActionListener,MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -69,7 +68,7 @@ public class Vmainpage extends JFrame implements ActionListener,ListSelectionLis
 					}};
 		table.setModel(model);
 		table.addMouseListener(this);
-		table.getSelectionModel().addListSelectionListener(this);
+
 		
 		Register = new JButton("Register");
 		Register.setBounds(200, 200, 89, 18);
@@ -136,38 +135,17 @@ public class Vmainpage extends JFrame implements ActionListener,ListSelectionLis
 		}
 	}
 
-	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
     		initiativeDescription.setText("Description:\n"+(String)(table.getValueAt(table.rowAtPoint(e.getPoint()),4)));
         }
 	}
-	
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mousePressed(MouseEvent e) {}
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseReleased(MouseEvent e) {}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseEntered(MouseEvent e) {}
 
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseExited(MouseEvent e) {}
 }

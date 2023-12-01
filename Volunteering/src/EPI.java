@@ -138,7 +138,11 @@ public class EPI extends JFrame implements ActionListener{
 			dispose();
 		}else if(e.getSource()==btnNewButton) {
 			User.loggedIn.changeInfo(nameTF.getText(),dobTF.getText(),emailTF.getText(),phoneTF.getText(),addressTF.getText(),passTF.getText());
-			new Vmainpage().setVisible(true);
+			if(source.equals("volunteer")) {
+				new Vmainpage().setVisible(true);
+			} else if(source.equals("initiate")) {
+				new Initiativemain().setVisible(true);
+			}
 			dispose();
 		}
 		

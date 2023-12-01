@@ -111,7 +111,7 @@ public class Editini2 extends JFrame implements ActionListener{
 		btnDone = new JButton("Done");
 		btnDone.setBounds(275, 360, 89, 23);
 		contentPane.add(btnDone);
-		backbutton.addActionListener(this);
+		btnDone.addActionListener(this);
 		
 		setVisible(true);
     }
@@ -121,8 +121,8 @@ public class Editini2 extends JFrame implements ActionListener{
 			new Initiativemain().setVisible(true);
 			dispose();
 		}else if(e.getSource()==btnDone) {
-			new Initiativemain().setVisible(true);
 			User.loggedIn.changeInitiative2(name.getText(),date.getText(),timedate.getText(),NOV.getText(),descriptionTA.getText());
+			new Initiativemain().setVisible(true);
 			dispose();
 		}
 		

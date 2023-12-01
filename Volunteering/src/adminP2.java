@@ -6,7 +6,7 @@ import javax.swing.table.*;
 import java.awt.event.*;
 
 
-public class adminP2 extends JFrame implements ActionListener,ListSelectionListener,MouseListener{
+public class adminP2 extends JFrame implements ActionListener,MouseListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -89,7 +89,6 @@ public class adminP2 extends JFrame implements ActionListener,ListSelectionListe
 	    table.setAutoCreateRowSorter(true);
 
 		
-	    table.getSelectionModel().addListSelectionListener(this);
 	    table.addMouseListener(this);
 				
 		AdminMainPageButton.addActionListener(this);

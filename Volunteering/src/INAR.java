@@ -1,12 +1,11 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.event.*;
 import javax.swing.table.*;
 import java.awt.event.*;
 
 
-public class INAR extends JFrame implements ActionListener,ListSelectionListener{
+public class INAR extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -93,9 +92,6 @@ public class INAR extends JFrame implements ActionListener,ListSelectionListener
 		
 		setVisible(true);
 	}
-
-
-	public void valueChanged(ListSelectionEvent e) {}
 
 
 	public void actionPerformed(ActionEvent e) {

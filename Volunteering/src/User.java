@@ -276,44 +276,47 @@ public class User {
 	}
 	
 	public void changeInitiative1(String name,String date,String time,String credit,String description) {
-		if(name!=null)
-			initiative1.setName(name);
-		if(date!=null)
-			initiative1.setDate(date);
-		if(time!=null)
-			initiative1.setTime(Integer.parseInt(time));
-		if(credit!=null)
-			initiative1.setCredit(Integer.parseInt(credit));
-		if(description!=null)
-			initiative1.setDescription(description);
+		if(!name.equals("")) {
+			initiative1.setName(name);}
+		if(!date.equals("__/__/____ __:__:__")) {
+			initiative1.setDate(date);}
+		if(!time.equals("")) {
+			initiative1.setTime(Integer.parseInt(time));}
+		if(!credit.equals("")) {
+			initiative1.setCredit(Integer.parseInt(credit));}
+		if(!description.equals("")) {
+			initiative1.setDescription(description);}
+		Initiative.saveInitiatives();
 	}
 	
 	public void changeInitiative2(String name,String date,String time,String credit,String description) {
-		if(name!=null)
-			initiative2.setName(name);
-		if(date!=null)
-			initiative2.setDate(date);
-		if(time!=null)
-			initiative2.setTime(Integer.parseInt(time));
-		if(credit!=null)
-			initiative2.setCredit(Integer.parseInt(credit));
-		if(description!=null)
-			initiative2.setDescription(description);
+		if(!name.equals("")) {
+			initiative2.setName(name);}
+		if(!date.equals("__/__/____ __:__:__")) {
+			initiative2.setDate(date);}
+		if(!time.equals("")) {
+			initiative2.setTime(Integer.parseInt(time));}
+		if(!credit.equals("")) {
+			initiative2.setCredit(Integer.parseInt(credit));}
+		if(!description.equals("")) {
+			initiative2.setDescription(description);}
+		Initiative.saveInitiatives();
 	}
 	
 	public void changeInfo(String name,String dob,String email,String phone,String address,String password) {
-		if(name!=null)
-			setName(name);
-		if(dob!=null)
-			setDob(dob);
-		if(email!=null)
-			setEmail(email);
-		if(phone!=null)
-			setPhone(phone);
-		if(address!=null)
-			setAddress(address);
-		if(password!=null)
-			setPassword(password);
+		if(!name.equals("")) {
+			setName(name);}
+		if(!dob.equals("__/__/____")) {
+			setDob(dob);}
+		if(!email.equals("")) {
+			setEmail(email);}
+		if(!phone.equals("")) {
+			setPhone(phone);}
+		if(!address.equals("")) {
+			setAddress(address);}
+		if(!password.equals("")) {
+			setPassword(password);}
+		saveUsers();
 	}
 	
 	
