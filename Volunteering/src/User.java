@@ -165,18 +165,7 @@ public class User {
 		}
 	}
 	
-	public static void sortUser() {
-		User temp;
-		for(int i = 0;i<users.size();i++) {
-			for(int j = 1;j<(users.size()-i);j++){
-				if(users.get(j-1).id.compareTo(users.get(j).id) > 0) {
-					temp = users.get(j-1);
-					users.set(j-1,users.get(j));
-					users.set(j, temp);
-				}
-			}
-		}
-	}
+	
 	public static void sortUsers() {
 		User temp;
 		if(users.size()>1) {

@@ -16,10 +16,10 @@ public class Admin {
 		Initiative.saveInitiatives();
 	}
 	public static void rejectInitiative(Initiative i) {
-		System.out.print(Initiative.pendingInitiatives.indexOf(i));
 		if (Initiative.pendingInitiatives.indexOf(i)>=0) {
 		Initiative.pendingInitiatives.remove(Initiative.pendingInitiatives.indexOf(i));
 		}
+		i=null;
 		Initiative.sortInitiatives(Initiative.pendingInitiatives);
 		User.saveUsers();
 		Initiative.saveInitiatives();
